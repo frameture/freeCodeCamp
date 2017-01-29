@@ -1,0 +1,33 @@
+body {
+  margin-top: 5em;
+  font-family: "Open Sans", sans-serif;
+  cursor: default;
+}
+.navbar {
+  color: white;
+  background-color: #CD906D;
+  margin-top: -5em;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
+
+.btn { 
+  background-color: #A96640;
+}
+
+.avatar {
+  border: 0.3em solid #F5C3A7;
+  border-radius: 50%;
+}
+
+.fa {
+  color: #A96640;
+  transition: color .2s;
+  -webkit-transition: color .2s;
+}
+
+.fa:hover {
+  color: #F5C3A7;
+}
+
