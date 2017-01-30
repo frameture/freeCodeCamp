@@ -5,6 +5,10 @@
     <title>Portfolio</title>
     <!-- Font-Awesome -->
     <script src="https://use.fontawesome.com/ea897efe72.js"></script>
+    <!-- JS script -->
+    <script type="text/javascript" src="./script.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Font - Open Sans -->
@@ -13,49 +17,66 @@
     <link rel="stylesheet" type="text/css" href="./styles.css">
   </head>
 
-  <body>
+  <body onload="start()">
     <div class="container-fluid">
-      <div class="row navbar well">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-1">frameture</div>
-        <div class="col-xs-6"></div>
-        <div class="col-xs-1 btn">About</div>
-        <div class="col-xs-1 btn">Portfolio</div>
-        <div class="col-xs-1 btn">Contact</div>
+      <div class="row navbar">
+        <div class="col-xs-7"></div>
+        <div class="col-xs-1 btn btn-about">About</div>
+        <div class="col-xs-1 btn btn-portfolio">Portfolio</div>
+        <div class="col-xs-1 btn btn-contact">Contact</div>
         <div class="col-xs-1"></div>
       </div>
-      <div class="row well about">
-        <div class="col-xs-8 well">
-          Full Stack Developer and UX/UI designer with practical experience in Agile 
-          project management. Passionate about technology and creating things. Eye to
-          details, love when every pixel looks perfect. Have familiarity with Android
-          Development.  
+
+      <div class="row about">
+        <div class="col-xs-7">
+          <h2>Lorem ipsum dolor sit amet</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris 
+            at diam tempor, luctus dolor iaculis, congue nunc. Sed suscipit at sem vel molestie. 
+          </p>
+          <p>
+            Vestibulum convallis lorem id nunc tincidunt mollis. Mauris feugiat lacinia lorem eu egestas. 
+            Donec eget posuere purus. Suspendisse egestas efficitur turpis eu consectetur. Sed faucibus orci id consectetur faucibus. Duis at elementum neque.
+          </p>
         </div> 
-        <div class="col-xs-4 well">
-          <img class="avatar img-responsive" src="./images/profile_picture.jpg"  
+        <div class="col-xs-4">
+          <img class="avatar img-responsive" src="./images/profile_picture.jpg"/>  
         </div> 
+        <div class="col-xs-1"></div>
       </div>
-      <div class="row well portfolio">
+
+      <div class="row portfolio">
         <div class="row">
           <div class="col-xs-12">
-            TEXT ABOUT PROJECTS
+            <h2 class="text-center">Sed dignissim tortor vel gravida interdum</h2>
           </div>
         </div>
-        <div class="row well">
-          <div class="col-xs-6 well">PROJECTS</div>
-          <div class="col-xs-6 well">PROJECTS</div>
+        <div class="row">
+          <div class="col-xs-6">
+            <img class="project img-responsive" src="./images/project-1.png" />
+          </div>
+          <div class="col-xs-6">
+            <img class="project img-responsive" src="./images/project-2.png" />
+          </div>
         </div>
-        <div class="row well">
-          <div class="col-xs-6 well">PROJECTS</div>
-          <div class="col-xs-6 well">PROJECTS</div>
+        <div class="row">
+          <div class="col-xs-6">
+            <img class="project img-responsive" src="./images/project-3.png" />
+          </div>
+          <div class="col-xs-6">
+            <img class="project img-responsive" src="./images/project-4.png" />
+          </div>
         </div>
       </div>
-      <div class="row well contact">
-        <p>CONTACT TEXT</p>
+
+      <div class="row contact">
+        <h2 class="text-center">Contact</h2>
+        <p>Donec iaculis turpis nec suscipit aliquam. Fusce iaculis quis tortor sit amet rutrum. Etiam vitae ex suscipit nisi dictum ultricies. Aenean et molestie metus. In interdum diam ac imperdiet cursus.</p>
+        <h4 class="text-center email">email here</h4>
       </div>
-      <div class="row footer well">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-3">frameture 2017. All rights reserved.</div>
+
+      <div class="row footer">
+        <div class="col-xs-4 copyright">frameture 2017. All rights reserved.</div>
         <div class="col-xs-4"></div>
         <div class="col-xs-1">
           <a href="https://github.com/frameture" target="_blank">
@@ -68,12 +89,13 @@
           </a>
         </div>
         <div class="col-xs-1">
-          <a href="https://facebook.com/frameture" target="_blank">
+          <a href="https://facebook.com/" target="_blank">
             <i class="fa fa-facebook fa-2x"></i>
           </a>
         </div>
         <div class="col-xs-1"></div>
       </div>
+      
     </div>
   </body>
 </html>

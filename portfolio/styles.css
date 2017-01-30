@@ -4,7 +4,7 @@ body {
   cursor: default;
 }
 .navbar {
-  color: white;
+  color: #F5C3A7;
   background-color: #CD906D;
   margin-top: -5em;
   position: fixed;
@@ -12,8 +12,33 @@ body {
   width: 100%;
 }
 
+.about {
+  margin: 1em;
+}
+
+h2 {
+  font-size: 2.2em;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1.2em;
+  margin: 1em 0;
+  line-height: 1.6;
+}
+
 .btn { 
   background-color: #A96640;
+  margin: 1em;
+  transition: border-color;
+  -webkit-transition: border-color;
+  border: 0.3em solid #F5C3A7;
+  border-radius: 30%;
+  width: 6em;
+}
+
+.btn:hover {
+  border-color: black;
 }
 
 .avatar {
@@ -21,7 +46,33 @@ body {
   border-radius: 50%;
 }
 
+.portfolio {
+  margin: 2em;
+}
+.project {
+  padding: 2em 0;
+}
+
+.contact {
+  margin: 2em 10em;
+}
+
+.email {
+  font-weight: 600;
+}
+
+.footer {
+  background-color: rgb(255, 226, 209);
+}
+
+.copyright {
+  font-size: .9em;
+  color: #A96640;
+  margin: 2.5em 0;
+}
+
 .fa {
+  margin: 1em;
   color: #A96640;
   transition: color .2s;
   -webkit-transition: color .2s;
