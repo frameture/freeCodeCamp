@@ -20,11 +20,22 @@ body {
 }
 
 .button {
+  opacity: 0.8;
   font-family: "Open Sans", sans-serif;
-  font-size: .7em;
+  font-size: .8em;
   display: inline;
-  padding: .3em;
+  padding: .5em;
   background-color: #333;
   color: #fff;
   border-radius: 5%;
+  cursor: pointer;
+}
+
+.fa-twitter {
+  display: inline;
+  margin-left: 5em;
+}
+
+.button:hover {
+  opacity: 1;
 }
