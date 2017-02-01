@@ -1,17 +1,30 @@
 body {
-  background-color: #eee;
+  background-color: #333;
   cursor: default;
 }
 
 .quote-container {
-  margin: auto;
-  vertical-align: middle;
-  padding: 1em;
+  z-index: 1;
+  padding: 3em;
+  max-width: 33%;
+  line-height: 1.5;
+  font-family: "Open Sans", sans-serif;
   background-color: #fff;
-  color:#000;
-  border: 0.3em solid #000;
+  color:#333;
+  border: 0.3em solid #333;
+  border-radius: 4%;
 }
 
 .quote-container p {
   text-align: right;
+}
+
+.button {
+  font-family: "Open Sans", sans-serif;
+  font-size: .7em;
+  display: inline;
+  padding: .3em;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5%;
 }
