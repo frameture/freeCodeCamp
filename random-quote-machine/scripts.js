@@ -5,7 +5,7 @@ $(document).ready(function() {
     onResize();
   });
 
-  $(".twitter-share-button").on("click", function tweet(e) {
+  $(".twitter-share-button").on("click", function() {
     $(".twitter-share-button").attr('href', 
     "https://twitter.com/intent/tweet?text=" 
     + encodeURI($(".quote").text()) + "-  " + encodeURI($(".quote-author").text()));
@@ -19,7 +19,6 @@ function animateIt() {
   while (last == colors[0])
     colors = getColors()[Math.floor(Math.random() * 6)];
   last = colors[0];
-  console.log(colors[0], last);
   
   $("body").animate( { backgroundColor: colors[0] }, 400);
   $(".quote-container").animate( { backgroundColor: colors[1], 
