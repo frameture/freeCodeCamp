@@ -1,0 +1,17 @@
+body {
+  background-color: #eee;
+  cursor: default;
+}
+
+.quote-container {
+  margin: auto;
+  vertical-align: middle;
+  padding: 1em;
+  background-color: #fff;
+  color:#000;
+  border: 0.3em solid #000;
+}
+
+.quote-container p {
+  text-align: right;
+}
