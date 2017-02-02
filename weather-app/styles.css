@@ -1,0 +1,33 @@
+body {
+  background-color: #333;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  cursor: default;
+}
+
+.container {
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+h4 {
+  font-size: .8em;
+}
+
+.weather {
+  margin-top: 3em;
+}
+
+.temp {
+  display: inline;
+}
+
+.degree-switch {
+  color: #AE8B31;
+  cursor: pointer;
+}
+
+.degree-switch:hover {
+  color: #FFB800;
+}
