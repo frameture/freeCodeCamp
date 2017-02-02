@@ -8,7 +8,7 @@ function getData() {
   var SERVER = 'http://api.openweathermap.org/data/2.5/weather?';
 
   if (!navigator.geolocation) {
-    alert("No weather will be displayed unless it has no acces to your location");
+    alert("No weather will be displayed unless it has access to your location");
     return;
   }
 
