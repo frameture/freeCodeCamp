@@ -1,7 +1,6 @@
 $(document).ready(function() {
  getData();
  registerSwitchDegree();
- animateColor();
 });
 
 function getData() {
@@ -27,6 +26,7 @@ function getData() {
         $(".value").text(json.main.temp); 
         $(".description").text(json.weather[0].description);
         $(".icon").prop('src', getIcon(json.weather[0].icon));
+        animateColor(json.main.temp);
       });
   }
 }
@@ -42,6 +42,20 @@ function registerSwitchDegree() {
       $switch.html("<span>o</span>C");
     }
   });
+}
+
+function animateColor(temp) {
+  $("body").animate( { backgroundColor: getColor() }, 2000);
+
+  function getColor() {
+    if (temp <= -20) return "#0066ff";
+    else if (temp <= -10) return "#3399ff";
+    else if (temp <= -5) return "#66ccff";
+    else if (temp <= 0) return "#ccffff";
+    else if (temp <= 10) return "#ffffcc";
+    else if (temp <= 20) return "#ffff99";
+    else return "#ffff66";
+  }
 }
 
 function getIcon(id) {
