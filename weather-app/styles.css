@@ -31,3 +31,9 @@ h4 {
 .degree-switch:hover {
   color: #FFB800;
 }
+
+span {
+  position: relative;
+  top: -.9em;
+  font-size: .5em;
+}

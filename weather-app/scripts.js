@@ -1,8 +1,7 @@
 $(document).ready(function() {
  getData();
- $(".degree-switch").in("click", function() {
-   // change from C to F or vice-versa;
- });
+ registerSwitchDegree();
+ animateColor();
 });
 
 function getData() {
@@ -32,18 +31,40 @@ function getData() {
   }
 }
 
+function registerSwitchDegree() {
+  var $switch = $(".degree-switch");
+  $switch.on("click", function() {
+    if ($switch.text().includes("C")) {
+      $(".value").text( Math.round($(".value").text() * 9 / 5 + 32) );
+      $switch.html("<span>o</span>F");
+    } else {
+      $(".value").text( Math.round(($(".value").text() - 32 ) / 9 * 5) );
+      $switch.html("<span>o</span>C");
+    }
+  });
+}
+
 function getIcon(id) {
+  console.log("id:", id);
   var ICONS = {
-    '13d': 'http://icons.iconarchive.com/icons/mkho/christmas/128/Snow-flake-icon.png',
     '01d': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-clear-icon.png',
-    '02d': 'http://openweathermap.org/img/w/02d.png',
-    '09d': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-showers-icon.png',
+    '02d': 'http://icons.iconarchive.com/icons/jaan-jaak/weather/128/cloudy-partly-icon.png',
     '03d': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-many-clouds-icon.png',
     '04d': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-clouds-icon.png',
-    '10d': 'http://openweathermap.org/img/w/10d.png',
-    '11d': 'http://openweathermap.org/img/w/11d.png',
-    '50d': 'http://icons.iconarchive.com/icons/custom-icon-design/lovely-weather/128/wind-night-icon.png'
+    '09d': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-showers-icon.png',    
+    '10d': 'http://icons.iconarchive.com/icons/robinweatherall/seasonal/128/cloud-icon.png',
+    '11d': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-storm-night-icon.png',
+    '13d': 'http://icons.iconarchive.com/icons/mkho/christmas/128/Snow-flake-icon.png',    
+    '50d': 'http://icons.iconarchive.com/icons/custom-icon-design/weather/128/fog-icon.png',
+    '01n': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-clear-night-icon.png',
+    '02n': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-clouds-night-icon.png',
+    '03n': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-many-clouds-icon.png',
+    '04n': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-clouds-icon.png',
+    '09n': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-showers-icon.png',    
+    '10n': 'http://icons.iconarchive.com/icons/icons-land/weather/128/Night-Rain-icon.png',
+    '11n': 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-storm-night-icon.png',
+    '13n': 'http://icons.iconarchive.com/icons/mkho/christmas/128/Snow-flake-icon.png',    
+    '50n': 'http://icons.iconarchive.com/icons/custom-icon-design/weather/128/fog-icon.png'
   }
-
   return (id in ICONS) ? ICONS[id] : ICONS['01d'];
 }
