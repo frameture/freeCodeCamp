@@ -3,17 +3,40 @@
   <head>
     <meta charset='UTF-8'>
     <title>Twitch Streamers</title>
-    <!-- CSS -->
-    <link rel='stylesheet' src='./styles.css'>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Scripts -->
-    <script src='./scripts.js'></script>
     <!-- Font Dosis -->
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <!-- CSS -->
+    <link rel='stylesheet' href='./styles.css'>
+     <!-- Scripts -->
+    <script src='./scripts.js'></script>
   </head>
   <body>
-    <div class='container'>
+    <div class='container-fluid'>
+      <div class='row top'>
+        <div class=' col-xs-8'>
+          <h1 class='title'>TWITCH STREAMERS</h1>
+        </div>
+        <div class='status-container col-xs-4 text-center'>
+          <h3 class='status'>All</h3>
+          <h3 class='status'>Online</h3>
+          <h3 class='status'>Offline</h3>
+        </div>
+      </div>
+      <div class='row list-item' id='0'>
+        <div class='col-xs-2'>
+          <img class='streamer-image img-responsive' src='./profile_picture.jpg'>
+        </div>
+        <div class='box col-xs-6'>
+          <a class='streamer-name' href='#' target='_blank'>Streamer</a>
+        </div>
+        <div class='box col-xs-4'>
+          <p class='streamer-status'>Status</p>
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -1,3 +1,64 @@
+p, h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
 body {
+  background: #0fb8ad;
+  background: -webkit-linear-gradient(left top, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to top right #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  margin: 1em 3em;
+  color: white;
+  text-shadow: 1px 1px 1px #333;
   font-family: 'Dosis', sans-serif;
+  font-size: 3em;
+  cursor: default;
+}
+
+.row {
+  margin: 1em 15%;
+  padding: .3em;
+  background: rgba(255, 255, 255, .15);
+  border: .1em solid white;
+  vertical-align: middle;
+}
+
+.top {
+  padding: 2em 0;
+}
+
+.title {
+  margin: 5% 1em;
+}
+
+.status {
+  color: #ddd;
+  cursor: pointer;
+}
+
+.status:hover {
+  text-shadow: 3px 3px 3px #333;
+}
+
+.box {
+  margin: 5% 0;
+}
+
+.streamer-image {
+  margin: .2em;
+  border: .1em solid white;
+  border-radius: 50%;
+}
+
+.streamer-name {
+  margin-left: 10%;
+}
+
+.streamer-status {
+  text-align: center;
+}
+
+.list-item {
+  display: none;
 }
