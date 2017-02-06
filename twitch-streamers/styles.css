@@ -16,6 +16,10 @@ body {
   cursor: default;
 }
 
+h1 {
+  font-size: 1.5em;
+}
+
 .row {
   margin: 1em 15%;
   padding: .3em;
@@ -29,7 +33,7 @@ body {
 }
 
 .title {
-  margin: 5% 1em;
+  margin: 4% 0;
 }
 
 .status {
@@ -37,12 +41,14 @@ body {
   cursor: pointer;
 }
 
-.status:hover {
+.status:hover, .selected {
   text-shadow: 3px 3px 3px #333;
 }
 
 .box {
-  margin: 5% 0;
+  /*position: relative;
+  top: 25%;*/
+  padding-top: 5%;
 }
 
 .streamer-image {
@@ -61,4 +67,27 @@ body {
 
 .list-item {
   display: none;
+}
+
+.streamer-work {
+  display: block;
+  font-size: 0.5em;
+  color: #eee;
+}
+
+a {
+  text-decoration: none !important;
+  color: white !important;
+}
+
+a:hover {
+  text-shadow: 3px 3px 3px #333;
+}
+
+.error {
+  display: none;
+}
+
+.error-message {
+  text-align: center;
 }
