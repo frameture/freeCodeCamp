@@ -1,0 +1,106 @@
+body {
+  background: #616161;
+  cursor: default;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.main {
+  width: 20em;
+  height: 27em;
+  margin: auto;
+  margin-top: 10%;
+  padding: 2em;
+  padding-bottom: 4em;
+  background: #dfd8d0;
+  text-align: center;
+  border: 1px solid #333;
+  border-radius: 5%;
+  -webkit-box-shadow: 0px 0px 60px 15px rgba(51,51,51,1),
+             inset 5px 5px 30px -5px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 60px 15px rgba(51,51,51,1),
+             inset 5px 5px 30px -5px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 60px 15px rgba(51,51,51,1),
+             inset 5px 5px 30px -5px rgba(0,0,0,0.75);
+}
+
+.title {
+  font-weight: 500;
+}
+
+span {
+  color: rgb(200, 39, 52);
+}
+
+.red {
+  background: rgb(150, 39, 52);
+}
+
+.display {
+  background: #c3c2ab;
+  border: .15em solid #999;
+  border-radius: inherit;
+  text-align: right;
+}
+
+.input {
+  font-weight: 500;
+  padding: 0 .2em;
+  margin-top: .3em;
+  margin-bottom: .3em;
+}
+
+.answer {
+  margin: 0;
+  padding: .6em;
+  font-size: 0.8em;
+  font-weight: 300;
+  color: #888;
+}
+
+.row {
+  text-align: left;
+  position: relative;
+  margin: .7em 0;
+}
+
+.buttons {
+  margin-top: 6%;
+}
+
+button {
+  font: inherit;
+  width: 4em;
+  height: 3em;
+  color: white;
+  background: #333;
+  outline: none;
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.equals {
+  position: absolute;
+  right: .15em;
+  height: 6.7em !important;
+}
+
+.zero {
+  position: absolute;
+  right: 0;
+  width: 9.2em;
+}
+
+.dot {
+  position: absolute;
+  left: 0;
+}
+
+.spacing {
+  display: inline;
+  margin: 0 .5em; 
+}
+
+.short {
+  width: 14.5em;
+}
