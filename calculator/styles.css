@@ -87,13 +87,13 @@ button {
 
 .zero {
   position: absolute;
-  right: 0;
+  left: 0;
   width: 9.2em;
 }
 
 .dot {
   position: absolute;
-  left: 0;
+  right: 0;
 }
 
 .spacing {
