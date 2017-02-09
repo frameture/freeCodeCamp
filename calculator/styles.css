@@ -2,6 +2,10 @@ body {
   background: #616161;
   cursor: default;
   font-family: 'Orbitron', sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .main {
@@ -47,7 +51,7 @@ span {
   margin-bottom: .3em;
 }
 
-.answer {
+.expression {
   margin: 0;
   padding: .6em;
   font-size: 0.8em;
@@ -90,6 +94,10 @@ span {
   position: absolute;
   right: .15em;
   height: 6.7em !important;
+}
+
+.equals .key {
+  margin-top: 2.5em;
 }
 
 .zero {
