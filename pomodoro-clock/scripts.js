@@ -89,7 +89,6 @@ function app() {
 
     function registerControlsHandler() {
       $('.break-control').on('click', function(e) {
-
         if (running)
           return;
 
@@ -109,7 +108,17 @@ function app() {
           updateClock(sessionTime);
       });
 
-      // Inner of registerControlHandler. 
+      $('.control').on('mousedown', function(e) { animateClick(e.delegateTarget, true); });
+      $('.control').on('mouseup', function(e) { animateClick(e.delegateTarget, false); });
+
+
+      // Inner of registerControlHandler.
+
+      function animateClick(ele, down) {
+        var value = down ? '1px' : '0';
+        $(ele).css('top', value);
+        $(ele).css('left', value);
+      } 
 
       function applyChangeTo(toChange, operator) {
         if (toChange === 1 && operator === '-')
