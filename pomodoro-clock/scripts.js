@@ -4,11 +4,9 @@ $(document).ready(app.main);
 function app() {
   var app = {};
   app.main = main;
-  console.log(1);
 
   function main() {
     var STATES = ['session', 'break'];
-    //var SECOND = 1000;
     var state = STATES[0];
     var running = false;
     var breakTime = 1;
@@ -21,23 +19,29 @@ function app() {
     registerClockHandler();
     registerControlsHandler();
 
-    //// Inner functions. ////
+    //// Inner functions.
 
     function registerClockHandler() {
-      var interval;
+      var timerInterval;
+      var pulseInterval;
 
       $('.clock').on('click', function() {
         running =  ! running;
         switchClock(running);
       });
 
-      // Inner
+      // Inner >>
 
       function switchClock(on) {
-        if (on)
+        if (on) {
+          clearInterval(pulseInterval);
           interval = window.setInterval(timer, 1000); 
-        else 
+        }
+        else {
           clearInterval(interval);
+          pulsingClock();
+          pulseInterval = window.setInterval(pulsingClock, 2000);
+        }
       }
 
       function timer() {
@@ -55,13 +59,37 @@ function app() {
           min -= 1;
           sec = 59;
         }
+        if (min === 0 && sec === 0) {
+          changeState();
+          return;
+        }
 
         setTime(min.toString(), sec.toString());
       }
+
+      function changeState() {
+        if (state === STATES[0]) {
+          state = STATES[1];
+          updateEle('.state', 'Break');
+          updateClock(breakTime);
+        } else {
+          state = STATES[0];
+          updateEle('.state', 'Session');
+          updateClock(sessionTime);
+        }
+      }
+
+      function pulsingClock() {
+        var $c = $('.clock');
+        $c.animate({ opacity: '.25' }, 1000);
+        $c.animate({ opacity: '1' }, 1000);
+      }
+
     }
 
     function registerControlsHandler() {
       $('.break-control').on('click', function(e) {
+
         if (running)
           return;
 
@@ -103,20 +131,15 @@ function app() {
     }
 
     function setTime(min, sec) {
-      if (time.minutes === '0' && time.seconds === '00')
-        changeState();
       if (sec) {
-        time.seconds = sec;
         if (sec.length === 1)
           sec = '0' + sec;
+      time.seconds = sec;
+      } else {
+        time.seconds = '00';
       }
-      
-      time.minutes = min;
-    }
 
-    function changeState() {
-      // TODO:
-      console.log('changes state');
+      time.minutes = min;
     }
 
   }
