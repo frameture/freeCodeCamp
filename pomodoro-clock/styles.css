@@ -1,8 +1,21 @@
 body {
+  min-width: 12em;
   font-family: 'Quicksand', sans-serif;
   font-weight: 400;
   text-align: center;
+  text-shadow: 1px 1px 1px #376400;
   vertical-align: middle;
+  padding: 1em;
+  color: white;
+  background: rgba(100, 100, 100, 1);
+  cursor: default;
+  background: -moz-linear-gradient(left, rgba(150, 150, 150, 1) 0%, rgba(100, 100, 100, 1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(150, 150, 150, 1)), color-stop(100%, rgba(100, 100, 100, 1)));
+  background: -webkit-linear-gradient(left, rgba(150, 150, 150, 1) 0%, rgba(100, 100, 100, 1) 100%);
+  background: -o-linear-gradient(left, rgba(150, 150, 150, 1) 0%, rgba(100, 100, 100, 1) 100%);
+  background: -ms-linear-gradient(left, rgba(150, 150, 150, 1) 0%, rgba(100, 100, 100, 1) 100%);
+  background: linear-gradient(to right, rgba(150, 150, 150, 1) 0%, rgba(100, 100, 100, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a3bdaa', endColorstr='#408753', GradientType=1 );
 }
 
 .title {
@@ -15,18 +28,29 @@ body {
   font-weight: 300;
 }
 
+.break, .session {
+  display: inline-block;
+  margin: 0 1em;
+}
+
 .controls h4 {
   display: inline;
   margin: .3em;
 }
 
+.break-control, .session-control {
+  cursor: pointer;
+}
+
 .clock {
   display:inline-block;
-  padding: 1em 2em;
-  margin: 2em;
-  border: .15em solid #9ce;
+  padding: 3em 4em;
+  margin: 3em;
+  border: .15em solid #71A137;
   border-radius: 50%;
+  cursor: pointer;
 }
+
 
 
 
