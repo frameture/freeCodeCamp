@@ -3,12 +3,16 @@ body {
   font-family: 'Quicksand', sans-serif;
   font-weight: 400;
   text-align: center;
-  text-shadow: 1px 1px 1px #376400;
+  text-shadow: .1em .1em .1em #376400;
   vertical-align: middle;
   padding: 1em;
   color: white;
   background: rgba(100, 100, 100, 1);
   cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background: -moz-linear-gradient(left, rgba(150, 150, 150, 1) 0%, rgba(100, 100, 100, 1) 100%);
   background: -webkit-gradient(left top, right top, color-stop(0%, rgba(150, 150, 150, 1)), color-stop(100%, rgba(100, 100, 100, 1)));
   background: -webkit-linear-gradient(left, rgba(150, 150, 150, 1) 0%, rgba(100, 100, 100, 1) 100%);
@@ -38,15 +42,17 @@ body {
   margin: .3em;
 }
 
-.break-control, .session-control {
+.control {
+  position: relative;
   cursor: pointer;
 }
 
 .clock {
   display:inline-block;
+  min-width: 7em;
   padding: 3em 4em;
   margin: 3em;
-  border: .15em solid #71A137;
+  border: .2em solid #71A137;
   border-radius: 50%;
   cursor: pointer;
 }
