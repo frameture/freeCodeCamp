@@ -1,0 +1,32 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.title {
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+}
+
+.states {
+  font-size: .9em;
+  font-weight: 300;
+}
+
+.controls h4 {
+  display: inline;
+  margin: .3em;
+}
+
+.clock {
+  display:inline-block;
+  padding: 1em 2em;
+  margin: 2em;
+  border: .15em solid #9ce;
+  border-radius: 50%;
+}
+
+
+
