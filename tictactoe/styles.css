@@ -1,6 +1,6 @@
 body {
   cursor: default;
-  font-family: 'Indie FLower', sans-serif;
+  font-family: 'Indie FLower', cursive, serif;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -16,8 +16,6 @@ body {
   padding: 2em;
   width: 20em;
   height: 20em;
-  max-width: 75%;
-  max-height: 75%;
   background: rgb(240, 180, 135); 
   border-radius: 7%;
   -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
@@ -34,7 +32,7 @@ body {
   color: #666;
 }
 
-.player-one, .player-two, .reset {
+.player, .reset {
   display: inline-block;
 }
 
@@ -69,8 +67,8 @@ body {
 }
 
 .intro {
-  display: none;
-  opacity: 0;
+  display: block;
+  opacity: 1;
 }
 
 .mode, .sign {
@@ -106,4 +104,38 @@ body {
 
 .back h3 {
   display: inline;
+}
+
+.grid {
+  display: none;
+  opacity: 0;
+  margin-top: .2em;
+  vertical-align: middle;
+}
+
+.row {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.line-width {
+  display: inline-block;
+  height: .03em;
+  width: 100%;
+  background: white;
+}
+
+.line-height {
+  
+  display: inline-block;
+  margin: -1.5em 0;
+  width: .03em;
+  height: 6em;
+  background: white;
+}
+
+.cell {
+  display: inline-block;
+  width: 1.5em;
+  font-size: 3em;
 }

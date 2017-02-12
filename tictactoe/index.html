@@ -29,13 +29,13 @@
       <div class='container'>
         <div class='intro'>
           <h2 class='mode-question'>Which mode would you like to choose?</h2>
-          <h2 class='mode one-pl btn'>One Player</h2>
-          <h2 class='mode two-pl btn'>Two Players</h2>
+          <h2 class='mode btn' id='pl-one'>One Player</h2>
+          <h2 class='mode btn' id='pl-two'>Two Players</h2>
         </div>
         <div class='sign-pick'>
           <h2 class='sign-question'>Would you like to be X or O?</h2>
-          <h2 class='sign x btn'>X</h2>
-          <h2 class='sign o btn'>O</h2>          
+          <h2 class='sign btn' id='x'>X</h2>
+          <h2 class='sign btn' id='o'>O</h2>          
           <div class='back'>
             <div class='back-btn btn'>
               <i class='fa fa-arrow-left'></i>
@@ -44,7 +44,29 @@
           </div>       
         </div>
         <div class='grid'>
-          <canvas></canvas>
+          <div class='row' id='row-1'>
+            <div class='cell one'>X</div>
+            <div class='line-height'></div>
+            <div class='cell two'>X</div>
+            <div class='line-height'></div>
+            <div class='cell three'>X</div>
+          </div>
+          <div class='line-width'></div>
+          <div class='row' id='row-2'>
+            <div class='cell one'>X</div>
+            <div class='line-height'></div>
+            <div class='cell two'>X</div>
+            <div class='line-height'></div>
+            <div class='cell three'>X</div>
+          </div>
+          <div class='line-width'></div>
+          <div class='row' id='row-3'>
+            <div class='cell one'>X</div>
+            <div class='line-height'></div>
+            <div class='cell two'>X</div>
+            <div class='line-height'></div>
+            <div class='cell three'>X</div>
+          </div>
         </div>
       </div>
     </div>
