@@ -14,13 +14,17 @@
   <body>
     <div class='background'>
       <div class='score-keeper'>
+        <div class='turn'>
+          <div class='player-one-turn'>Your turn</div>
+          <div class='player-two-turn'>Computer's turn</div>
+        </div>
         <div id='player-one'>
-          <h6 class='score'>0</h6>
-          <h6 class='name'>player I</h6>
+          <h6 class='player-one-score'>0</h6>
+          <h6 class='player-one-name'>player I</h6>
         </div>
         <div id='player-two'>
-          <h6 class='score'>0</h6>
-          <h6 class='name'>computer</h6>
+          <h6 class='player-two-score'>0</h6>
+          <h6 class='player-two-name'>computer</h6>
         </div>
         <div class='reset btn'>
           <h6>Reset All</h6>
@@ -44,28 +48,24 @@
           </div>       
         </div>
         <div class='grid'>
+          <div class='line-height' id='line-h-one'></div>
+          <div class='line-height' id='line-h-two'></div>
+          <div class='line-width' id='line-w-one'></div>
+          <div class='line-width' id='line-w-two'></div>
           <div class='row' id='row-1'>
-            <div class='cell one'>X</div>
-            <div class='line-height'></div>
-            <div class='cell two'>X</div>
-            <div class='line-height'></div>
-            <div class='cell three'>X</div>
+            <div class='cell one'></div>
+            <div class='cell two'></div>
+            <div class='cell three'></div>
           </div>
-          <div class='line-width'></div>
           <div class='row' id='row-2'>
-            <div class='cell one'>X</div>
-            <div class='line-height'></div>
-            <div class='cell two'>X</div>
-            <div class='line-height'></div>
-            <div class='cell three'>X</div>
+            <div class='cell one'></div>
+            <div class='cell two'></div>
+            <div class='cell three'></div>
           </div>
-          <div class='line-width'></div>
           <div class='row' id='row-3'>
-            <div class='cell one'>X</div>
-            <div class='line-height'></div>
-            <div class='cell two'>X</div>
-            <div class='line-height'></div>
-            <div class='cell three'>X</div>
+            <div class='cell one'></div>
+            <div class='cell two'></div>
+            <div class='cell three'></div>
           </div>
         </div>
       </div>
