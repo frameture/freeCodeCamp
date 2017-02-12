@@ -32,7 +32,7 @@ body {
   color: #666;
 }
 
-.player, .reset {
+#player-one, #player-two, .reset {
   display: inline-block;
 }
 
@@ -80,6 +80,10 @@ body {
 .sign {
   display: inline;
   margin: .5em;
+}
+
+.btn {
+  cursor: pointer;
 }
 
 .btn:hover {
