@@ -6,11 +6,46 @@
     <link rel='stylesheet' href='./styles.css'>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> 
+    <!-- Font-Awesome -->
+    <script src="https://use.fontawesome.com/ea897efe72.js"></script>
     <script src='./scripts.js'></script>
   </head>
   <body>
     <div class='background'>
+      <div class='score-keeper'>
+        <div class='player-one'>
+          <h6 class='score'>0</h6>
+          <h6 class='name'>player I</h6>
+        </div>
+        <div class='player-two'>
+          <h6 class='score'>0</h6>
+          <h6 class='name'>computer</h6>
+        </div>
+        <div class='reset btn'>
+          <h6>Reset All</h6>
+        </div>
+      </div>
       <div class='container'>
+        <div class='intro'>
+          <h2 class='mode-question'>Which mode would you like to choose?</h2>
+          <h2 class='mode one-pl btn'>One Player</h2>
+          <h2 class='mode two-pl btn'>Two Players</h2>
+        </div>
+        <div class='sign-pick'>
+          <h2 class='sign-question'>Would you like to be X or O?</h2>
+          <h2 class='sign x btn'>X</h2>
+          <h2 class='sign o btn'>O</h2>          
+          <div class='back'>
+            <div class='back-btn btn'>
+              <i class='fa fa-arrow-left'></i>
+              <h3>Back</h3>  
+            </div> 
+          </div>       
+        </div>
+        <div class='grid'>
+          <canvas></canvas>
+        </div>
       </div>
     </div>
   </body>
