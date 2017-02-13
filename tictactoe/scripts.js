@@ -9,10 +9,7 @@ function getApp() {
   var mode;
   var turn;
   var running = false;
-  var score = {
-    'pl-one': 0,
-    'pl-two': 0
-  };
+  var score = [0, 0];
   var grid = [[], [], []];
 
   var app = {};
@@ -32,7 +29,22 @@ function getApp() {
     $('.cell').on('click', cellClickHandler);
   }
 
+  function computersMove() {
+    var cell = nextCell();
+
+
+    function nextCell() {
+      for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
+          
+        }
+      }
+    }
+  }
+
   function cellClickHandler(ele) {
+    if (! running || (mode === MODES[0] && turn === 1))
+      return;
     ele = ele.delegateTarget;
     var row = parseInt(ele.parentElement.className.substr(3), 10);
     var col = parseInt(ele.className.substr(4), 10);
@@ -43,9 +55,12 @@ function getApp() {
   
     // TODO
     if (won(sign[turn])) {
+      console.log('won', sign[turn]);
+      running = false;
       showWinner();
       resetGrid();
     } else if (fullGrid()) {
+      running = false;
       showDraw();
       resetGrid();      
     }
@@ -55,6 +70,62 @@ function getApp() {
       computersMove();
 
     // Inner
+
+    function showWinner() {
+      $('.player-one-turn').animate( { display: 'none', opacity: 0 }, 500);
+      $('.player-two-turn').animate( { display: 'none', opacity: 0 }, 500);
+      if (turn == 0) {
+        var winner = mode === 'pl-one' ? 'You' : 'First player';
+        $('.player-two-turn').text(winner + ' won!');
+        $('.player-two-turn').animate( { display: 'inline', opacity: 1 }, 500);
+      } else {
+        var winner = mode === 'pl-one' ? 'Computer' : 'Second player';
+        $('.player-one-turn').text(winner + ' won!');
+        $('.player-one-turn').animate( { display: 'inline', opacity: 1 }, 500);
+      }
+
+      updatePlayer();
+
+      function updatePlayer() {
+        console.log('update', turn);
+        var pl;
+        if (turn === 0)
+          pl = '.player-one-score';
+        else 
+          pl = '.player-two-score';
+        score[turn] += 1;
+        $(pl).text(score[turn]);
+
+      }
+      
+    }
+
+    function resetGrid() {
+      window.setTimeout(function() {
+        $('.grid').animate({ opacity: 0 }, 500);
+        $('.cell').removeClass('x-sign o-sign');
+        grid = [[], [], []];
+        $('.cell').css('backgroundColor', 'rgba(0,0,0,0)');
+
+        if (mode === 'pl-one') {
+          $('.player-one-turn').text('Your turn');
+          $('.player-two-turn').text("Computer's turn");
+        } else {
+          $('.player-one-turn').text('First player turn');
+          $('.player-two-turn').text('Second player turn');
+        }
+
+        turn = turn === 0 ? 1 : 0;
+        showTurn();
+
+        window.setTimeout(function() { 
+          $('.grid').animate({ opacity: 1 }, 500);
+          running = true;
+        }, 500);
+      }, 3000);
+
+    }
+
     function fullGrid() {
       var total = 0;
       for (var i = 0; i < 3; i++) {
@@ -171,15 +242,14 @@ function getApp() {
 
   function resetHandler() {
     running = false;
-    score = {
-      'pl-one': null,
-      'pl-two': null
-    };
+    score = [0, 0];
     sign = [];
     turn = null;
     mode = null;
     hideShow('.grid', '.intro');
     hideShow('.score-keeper');
+    $('.player-one-score').text(0);
+    $('.player-two-score').text(0);
     $('.cell').removeClass('x-sign o-sign');
     grid = [[], [], []];
     $('.cell').css('backgroundColor', 'rgba(0,0,0,0)');
@@ -202,6 +272,7 @@ function getApp() {
     hideShow('.sign-pick', '.grid');
     hideShow(null, '.score-keeper')
     startGame();
+
   }
 
   function registerBackButton() {
@@ -240,7 +311,9 @@ function getApp() {
     if (mode === MODES[0])
       vsComputer();
     else
-      vsPlayer(); 
+      vsPlayer();
+      
+            
   }
 
   function vsComputer() {
@@ -248,6 +321,8 @@ function getApp() {
     $('.player-one-turn').text("Your turn");
     $('.player-two-turn').text("Computer's turn");
     showTurn();
+    if (mode === 'pl-one' && turn === 1) 
+      computersMove();
   }
 
   function vsPlayer() {
