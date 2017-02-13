@@ -30,30 +30,201 @@ function getApp() {
   }
 
   function computersMove() {
-    var cell = nextCell();
+    if (! running)
+      return;
+    window.setTimeout(function() {
+      var cell;
 
+      if (findWin()) {
+        cell = findWin();
+      } else if (checkH(sign[0]) !== false && findNextInRow(checkH(sign[0]))) {
+        cell = findNextInRow(checkH(sign[0]));
+      } else if (checkV(sign[0]) !== false && findNextInCol(checkV(sign[0]))) {
+        cell = findNextInCol(checkV(sign[0]));
+      } else if (checkD(sign[0]) && findNextInDiagonal(checkD(sign[0]))) {
+        cell = findNextInDiagonal(checkD(sign[0]));
+      } else {
+        cell = findNextEmpty();
+      }
 
-    function nextCell() {
+      if (! grid[1][1]) // try to get the middle
+        addToGrid($('#row-1 > .cell-1'), 1, 1);
+      else 
+        addToGrid(cell.cell, cell.row, cell.col);
+
+      if (won(sign[turn])) {
+        console.log('won', sign[turn]);
+        running = false;
+        showWinner();
+        resetGrid();
+      } else if (fullGrid()) {
+        running = false;
+        showDraw();
+        resetGrid();      
+      }
+
+      showTurn();
+    }, 1000);
+
+    // Inner.
+
+    function findNextEmpty() {
       for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
-          
+          if (! grid[i][j])
+            return {
+              cell: $('#row-' + i + ' > .cell-' + j),
+              row: i,
+              col: j
+            }
         }
       }
+      fullGrid();
+    }
+
+    function findWin() {
+      var cell;
+      if (checkH(sign[1]) !== false && findNextInRow(checkH(sign[1]))) {
+        cell = findNextInRow(checkH(sign[1]));
+      } else if (checkV(sign[1]) !== false && findNextInCol(checkV(sign[1]))) {
+        cell = findNextInCol(checkV(sign[1]));
+      } else if (checkD(sign[1]) && findNextInDiagonal(checkD(sign[1]))) {
+        cell = findNextInDiagonal(checkD(sign[1]));
+      }
+      console.log('findWin:', cell);
+      return cell;
+    }
+
+    function findNextInDiagonal(obj) {
+      console.log('findNextInDiag', obj);
+      if (obj.left) {
+        for (var i = 0; i < 3; i++) {
+          if (! grid[i][i])
+            return {
+              cell: $('#row-' + i + ' > .cell-' + i),
+              row: i,
+              col: i
+            };   
+        }
+      } else {
+        for (var i = 0; i < 3; i++) {
+          if (! grid[i][2 - i])
+            return {
+              cell: $('#row-' + i + ' > .cell-' + (2 - i)),
+              row: i,
+              col: 2 - i
+            };   
+        }
+      }
+    }
+
+    function findNextInCol(c) {
+      console.log('findNextInCol', c);
+      
+      if (c === false)
+        return;
+      for (var k = 0; k < 3; k++) {
+        if (! grid[k][c]) {
+          console.log('foundEmptyinCol:', k, c);
+          return {
+            cell: $('#row-' + k + ' > .cell-' + c),
+            row: k,
+            col: c
+          };
+        }
+      }
+    }
+
+    function findNextInRow(row) {
+      console.log('findNextInRow', row);
+      if (row === false)
+        return;
+      for (var i = 0; i < 3; i++) {
+        console.log(row, i, grid[row][i]);
+        if (! grid[row][i]) {
+          console.log('foundEmptyinRow:', row, i);          
+          return {
+            cell: $('#row-' + row + ' > .cell-' + i),
+            row: row,
+            col: i
+          };
+        }
+      }
+    }
+
+    function checkV(sign) {
+      for (var o = 0; o < 3; o++) {
+        var total = 0;
+        var taken = 0;
+        for (var j = 0; j < 3; j++) {
+          if (grid[j][o] === sign)
+            total++;
+          else if (grid[j][o])
+            taken++;  
+        }
+        if (total === 2 && taken === 0) {
+          console.log('checkV - found 2:', o, j);
+          return o;
+        }
+      }
+      return false;
+    }
+
+    function checkH(sign) {
+      console.log('checkH');
+    for (var i = 0; i < 3; i++) {
+        var total = 0;
+        var taken = 0;
+        for (var j = 0; j < 3; j++) {
+          if (grid[i][j] === sign)
+            total++;
+          else if (grid[i][j])
+            taken++;
+        }
+        if (total === 2 && taken === 0)
+          return i;
+      }
+      return false;
+    }
+
+    function checkD(sign) {
+      // left to right
+      var total = 0;
+      var taken = 0;
+      for (var i = 0; i < 3; i++) {
+        if (grid[i][i] === sign)
+          total++;
+        else if (grid[i][i])
+          taken++;
+      }
+      if (total === 2 && taken === 0)
+        return { left: true };
+      total = 0;
+      taken = 0;
+      for (var i = 0; i < 3; i++) {
+        if (grid[i][2 - i] === sign)
+          total++;
+        else if (grid[i][2 - i])
+          taken++;
+      }
+      if (total === 2 && taken === 0)
+        return { left: false };
+      return undefined;
     }
   }
 
   function cellClickHandler(ele) {
     if (! running || (mode === MODES[0] && turn === 1))
       return;
+       
     ele = ele.delegateTarget;
     var row = parseInt(ele.parentElement.className.substr(3), 10);
     var col = parseInt(ele.className.substr(4), 10);
     
     if (taken(row, col))
       return;
-    addToGrid(row, col);
+    addToGrid(ele, row, col);
   
-    // TODO
     if (won(sign[turn])) {
       console.log('won', sign[turn]);
       running = false;
@@ -68,8 +239,20 @@ function getApp() {
     showTurn();
     if (mode === 'pl-one' && turn === 1) 
       computersMove();
+ 
+  }
 
-    // Inner
+  function showDraw() {
+      $('.player-one-turn').animate( { display: 'none', opacity: 0 }, 500);
+      $('.player-two-turn').animate( { display: 'none', opacity: 0 }, 500);
+      if (turn == 0) {
+        $('.player-two-turn').text('It was a draw!');
+        $('.player-two-turn').animate( { display: 'inline', opacity: 1 }, 500);
+      } else {
+        $('.player-one-turn').text('It was a draw!');
+        $('.player-one-turn').animate( { display: 'inline', opacity: 1 }, 500);
+      }
+    }
 
     function showWinner() {
       $('.player-one-turn').animate( { display: 'none', opacity: 0 }, 500);
@@ -115,13 +298,15 @@ function getApp() {
           $('.player-two-turn').text('Second player turn');
         }
 
-        turn = turn === 0 ? 1 : 0;
-        showTurn();
-
         window.setTimeout(function() { 
           $('.grid').animate({ opacity: 1 }, 500);
           running = true;
+          turn = turn === 0 ? 1 : 0;
+          showTurn();
+          if (mode === 'pl-one' && turn === 1) 
+            computersMove();
         }, 500);
+
       }, 3000);
 
     }
@@ -223,11 +408,9 @@ function getApp() {
       }
     }
 
-    function addToGrid(row, col) {
-      $(ele).addClass(sign[turn] + '-sign');
-      grid[row][col] = sign[turn];
-    }
-    
+  function addToGrid(ele, row, col) {
+    $(ele).addClass(sign[turn] + '-sign');
+    grid[row][col] = sign[turn];
   }
 
   function taken(row, col) {

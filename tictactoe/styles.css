@@ -24,7 +24,7 @@ body {
 }
 
 .score-keeper {
-  display: block;  /*TODO change*/
+  display: none;
   opacity: 1; 
   text-align: left;
   position: absolute;
