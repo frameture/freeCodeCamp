@@ -21,8 +21,8 @@ body {
   border-radius: 50%;
 }
 
-canvas {
-  background: #666;
+svg {
+  background: #333;
   margin: 25px;
   width: 450px;
   height: 450px;
@@ -31,11 +31,11 @@ canvas {
 
 .center {
   position: relative;
-  top: -500px;
+  top: -505px;
   margin: 125px;
   width: 250px;
   height: 250px; 
-  background: #bbb;
+  background: #eee;
   border-radius: 50%;
 }
 
