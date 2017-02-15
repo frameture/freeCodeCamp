@@ -111,7 +111,7 @@ svg {
   margin-bottom: 5px;
   width: 3px;
   height: 3px;
-  background: red;
+  background: #333;
   border: 3px solid #333;
   border-radius: 50%;
 }
