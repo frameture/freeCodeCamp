@@ -3,6 +3,7 @@
   <head>
     <meta charset='UTF-8'>
     <link rel='stylesheet' href='./styles.css'>
+    <link href="https://fonts.googleapis.com/css?family=Dosis:500|Merriweather:900" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src='./scripts/js'></script>
   </head>
@@ -19,21 +20,26 @@
         <h1 class='name'>Simon</h1>
         <div class='controls'>
           <div class='control count'>
-            <div class='count-display'></div>
+            <div class='count-display'>
+              <p class='count-value'>- -</p>
+            </div>
             <h4 class='count-name'>COUNT</h4>
-          </div>    
+          </div>
           <div class='control start'>
             <div class='start-display'></div>
             <h4 class='start-name'>START</h4>
           </div>    
           <div class='control strict'>
+            <div class='strict-lamp'></div>
             <div class='strict-display'></div>
             <h4 class='strict-name'>STRICT</h4>
           </div>    
         </div>
         <div class='switch-on-off'>
           <h5 class='off'>OFF</h5>
-          <div class='switch'></div>
+          <div class='switch-container'>
+            <div class='switch'></div>
+          </div>
           <h5 class='on'>ON</h5>
         </div>
       </div>
