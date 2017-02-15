@@ -49,7 +49,7 @@ svg {
 .controls {
   position: relative;
   top: -20px;
-  left: -13px;
+  left: -9px;
 }
 
 .control, .on, .off, .switch-container {
@@ -62,22 +62,24 @@ svg {
 }
 
 .count-display {
-  width: 60px;
-  height: 40px;
-  background: #000;
+  width: 56px;
+  height: 36px;
+  background: #400;
+  border: 2px solid #333;
   border-radius: 20%;
 }
 
 .count-value {
   position: relative;
   visibility: hidden;
-  top: 4px;
+  top: 3px;
   font-size: 23px;
   color: red;
   margin: 0;
 }
 
 .start-display {
+  position: relative;
   width: 20px;
   height: 20px;
   background: rgb(200, 50, 50);
@@ -93,6 +95,7 @@ svg {
 }
 
 .strict-display {
+  position: relative;  
   width: 20px;
   height: 20px;
   background: rgb(200, 200, 50);
@@ -104,7 +107,7 @@ svg {
 }
 
 .strict-lamp {
-  margin: auto;
+  margin: 0 10px;
   margin-bottom: 5px;
   width: 3px;
   height: 3px;

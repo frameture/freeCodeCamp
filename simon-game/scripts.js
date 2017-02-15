@@ -16,6 +16,7 @@ function getApp() {
   function main() {
    registerControlsHandlers();
    registerQuartersHandler();
+   registerAnimations();
   }
 
   function registerControlsHandlers() {
@@ -26,7 +27,19 @@ function getApp() {
     // Inner functions
     function powerSwitch() {
       power = ! power;
-      // TODO
+      switchDisplay(power);
+      movePowerSwitch(power);
+
+      // Inner functions
+      function switchDisplay(on) {
+        var visible = on ? 'visible' : 'hidden';
+        $('.count-value').css('visibility', visible);
+      }
+
+      function movePowerSwitch(on) {
+        var left = on ? '20px' : '0';
+        $('.switch').css('left', left);
+      }
     }
 
     function startSwitch() {
@@ -53,7 +66,28 @@ function getApp() {
         return;
       // TODO
     }
-    
+
+  }
+
+  function registerAnimations() {
+    $('.start-display').on('mousedown', function() { animateClick(this, 'down');});
+    $('.strict-display').on('mousedown', function() { animateClick(this, 'down');});
+    $('.start-display').on('mouseup', function() { animateClick(this, 'up');});
+    $('.strict-display').on('mouseup', function() { animateClick(this, 'up');});
+
+    // Inner function
+    function animateClick(ele, down) {
+      var move = '0';
+      var shadow = '0px 2px 5px 0px';
+
+      if (down === 'down') {
+        move = '3px';
+        shadow = 'none'; 
+      }
+
+      $(ele).css('top', move);
+      $(ele).css('boxShadow', shadow);
+    }
   }
 
   return app; 
