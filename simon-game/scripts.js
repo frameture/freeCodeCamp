@@ -11,6 +11,7 @@ function getApp() {
   var started = false;
   var strict = false;
   var levels = [];
+  var clickable = false;
   // count = levels.length;
 
   function main() {
@@ -27,9 +28,15 @@ function getApp() {
     // Inner functions
     function powerSwitch() {
       power = ! power;
+      started = false;
+      strict = false;
+
+      endGame();
+      updateDisplay('- -');
       switchDisplay(power);
       movePowerSwitch(power);
-
+      switchStrictLamp(false);
+      
       // Inner functions
       function switchDisplay(on) {
         var visible = on ? 'visible' : 'hidden';
@@ -45,15 +52,93 @@ function getApp() {
     function startSwitch() {
       if (! power)
         return;
-      start = ! start;
-      // TODO
+
+      if (started)
+        resetGame();
+      
+      started = true;
+      startGame();
     }
 
     function strictSwitch() {
       if (! power)
         return;
+
       strict = ! strict;
-      // TODO
+      switchStrictLamp(strict);
+    }
+
+    function switchStrictLamp(on) {
+      var color = on ? 'red' : '#333';
+      $('.strict-lamp').css('backgroundColor', color);
+    }
+  }
+
+  function updateDisplay(value) {
+    console.log(value);
+    $('.count-value').text(value);
+  }
+
+  function resetGame() {
+    // reset current game
+    console.log('resetting current game');
+    endGame();
+    startGame();
+  }
+
+  function endGame() {
+    clickable = false;
+    console.log('ending current game');    
+  }
+
+  function startGame() {
+    // TODO
+    console.log('starting current game');    
+    
+    levels = [];
+    animateDisplay();
+    setTimeout(addNextLevel, 1500);
+    setTimeout(showLevels, 1700);
+
+    // Inner functions
+    function animateDisplay() {
+      var times = 2;
+
+      animate();
+
+      function animate() {
+        if (!times)
+          return;
+        times--; 
+        updateDisplay('');
+        setTimeout(function() {
+          updateDisplay('- -');
+          setTimeout(animate, 300);
+        }, 300);
+      }
+    }
+
+    function showLevels() {
+      levels.forEach(function(lvl) {
+        showLvl(lvl);
+      });
+      updateDisplay(levels.length);
+      clickable = true;
+
+      // Inner function
+      function showLvl(lvl) {
+        changeColor(lvl, 1);
+        playSound(lvl, 1);
+        setTimeout(function() {
+          changeColor(lvl, 0);
+          playSound(lvl, 0);
+        }, 500);
+      }
+    }
+
+    function addNextLevel() {      
+      var nextLevel = Math.ceil((Math.random() * 4));
+      levels.push(nextLevel);
     }
   } 
 
@@ -62,9 +147,13 @@ function getApp() {
 
     // Inner functions
     function quarterClick() {
-      if (! power || ! start)
+      if (! power || ! started || ! clickable)
         return;
       // TODO
+
+      // consider strict
+
+      // clickable = false;
     }
 
   }
