@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background: #eee;
+  color: #333;
+  font-size: 1.5em; }
+
+.markdown textarea {
+  width: 100%;
+  height: 35em; }
+
+.previewer {
+  width: 100%;
+  height: 35em; }
+
+/*# sourceMappingURL=styles.css.map */

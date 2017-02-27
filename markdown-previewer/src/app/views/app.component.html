@@ -1,10 +1,15 @@
 <div>
   <div class="row">
     <div class="col-xs-6">
-      <markdown></markdown>
+      <div class="markdown">
+        <textarea [(ngModel)]="markdown" (keyup)="parseMarkdown()">
+        </textarea>
+      </div>
     </div> 
     <div class="col-xs-6">
-      <previewer></previewer>
+      <div class="previewer">
+        <p [innerHTML]="previewer"></p>
+      </div>
     </div>
   </div>
 </div>
