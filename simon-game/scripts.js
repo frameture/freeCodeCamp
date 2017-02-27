@@ -15,9 +15,9 @@ function getApp() {
   var clickable = false;
 
   function main() {
-   registerControlsHandlers();
-   registerQuartersHandler();
-   registerAnimations();
+    registerControlsHandlers();
+    registerQuartersHandler();
+    registerAnimations();
   }
 
   function registerControlsHandlers() {
@@ -27,7 +27,7 @@ function getApp() {
 
     // Inner functions
     function powerSwitch() {
-      power = ! power;
+      power = !power;
       started = false;
       strict = false;
       levels = [];
@@ -39,7 +39,7 @@ function getApp() {
       switchDisplay(power);
       movePowerSwitch(power);
       switchStrictLamp(false);
-      
+
       // Inner functions
       function switchDisplay(on) {
         var visible = on ? 'visible' : 'hidden';
@@ -53,7 +53,7 @@ function getApp() {
     }
 
     function startSwitch() {
-      if (! power)
+      if (!power)
         return;
 
       if (started)
@@ -63,10 +63,10 @@ function getApp() {
     }
 
     function strictSwitch() {
-      if (! power)
+      if (!power)
         return;
 
-      strict = ! strict;
+      strict = !strict;
       switchStrictLamp(strict);
     }
 
@@ -109,23 +109,23 @@ function getApp() {
     function animate() {
       if (!times)
         return;
-      times--; 
+      times--;
       updateDisplay('');
-      setTimeout(function() {
+      setTimeout(function () {
         updateDisplay(text);
         setTimeout(animate, 300);
       }, 300);
     }
-  } 
+  }
 
   function showLevels() {
     var offset;
-    levels.forEach(function(lvl, i) {
+    levels.forEach(function (lvl, i) {
       offset = i;
       setTimeout(showQuarter, i * 1000, lvl);
     });
     updateDisplay(levels.length);
-    setTimeout(function() {
+    setTimeout(function () {
       clickable = true;
     }, offset * 1000);
     clicked = [];
@@ -148,19 +148,19 @@ function getApp() {
     }
 
     function playSound(id, play) {
-      var SOUNDS = [ 
-        './sounds/simonSound1.mp3', 
-        './sounds/simonSound2.mp3', 
-        './sounds/simonSound3.mp3', 
+      var SOUNDS = [
+        './sounds/simonSound1.mp3',
+        './sounds/simonSound2.mp3',
+        './sounds/simonSound3.mp3',
         './sounds/simonSound4.mp3'
       ]
 
       new Audio(SOUNDS[id]).play();
-    } 
+    }
   }
 
 
-  function addNextLevel() {      
+  function addNextLevel() {
     var nextLevel = Math.floor((Math.random() * 4));
     levels.push(nextLevel);
   }
@@ -170,7 +170,7 @@ function getApp() {
 
     // Inner functions
     function quarterClick(e) {
-      if (! power || ! started || ! clickable)
+      if (!power || !started || !clickable)
         return;
 
       clicked.push(e.delegateTarget.id);
@@ -206,10 +206,10 @@ function getApp() {
   }
 
   function registerAnimations() {
-    $('.start-display').on('mousedown', function() { animateClick(this, 'down');});
-    $('.strict-display').on('mousedown', function() { animateClick(this, 'down');});
-    $('.start-display').on('mouseup', function() { animateClick(this, 'up');});
-    $('.strict-display').on('mouseup', function() { animateClick(this, 'up');});
+    $('.start-display').on('mousedown', function () { animateClick(this, 'down'); });
+    $('.strict-display').on('mousedown', function () { animateClick(this, 'down'); });
+    $('.start-display').on('mouseup', function () { animateClick(this, 'up'); });
+    $('.strict-display').on('mouseup', function () { animateClick(this, 'up'); });
 
     // Inner function
     function animateClick(ele, down) {
@@ -218,7 +218,7 @@ function getApp() {
 
       if (down === 'down') {
         move = '3px';
-        shadow = 'none'; 
+        shadow = 'none';
       }
 
       $(ele).css('top', move);
@@ -226,5 +226,5 @@ function getApp() {
     }
   }
 
-  return app; 
+  return app;
 }
