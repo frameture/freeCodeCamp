@@ -1,3 +1,4 @@
-<h1>
-  {{title}}
-</h1>
+<div class="recipes" *ngIf="recipes">
+  <div class="recipe" *ngFor="let recipe of recipes">{{recipe.name}}</div>
+</div>
+<button class="btn btn-info" (click)="addRecipe()">Add Recipe</button>
