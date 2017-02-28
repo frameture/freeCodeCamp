@@ -11,7 +11,9 @@ body {
 .nav {
   height: 3em;
   background: green;
-  color: white;
+  font-size: 2em;
+  
+  a { color: white !important; }
 }
 
 .campers {

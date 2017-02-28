@@ -10,7 +10,9 @@ body {
 .nav {
   height: 3em;
   background: green;
-  color: white; }
+  font-size: 2em; }
+  .nav a {
+    color: white !important; }
 
 .campers {
   min-width: 40em;
