@@ -1,0 +1,52 @@
+h4, div {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background: #ccc; }
+  body a {
+    font-size: 1.15em; }
+
+.nav {
+  height: 3em;
+  background: green;
+  color: white; }
+
+.campers {
+  min-width: 40em;
+  margin: 3em;
+  background: #fff; }
+  .campers .camper:nth-child(even) {
+    background: #eee; }
+  .campers .camper:nth-child(odd) {
+    background: #fff; }
+  .campers .row {
+    height: 4em;
+    border: .1em solid #bbb; }
+    .campers .row .item {
+      height: 100%;
+      border-left: .05em solid #bbb;
+      border-right: .05em solid #bbb; }
+    .campers .row img {
+      height: 3em;
+      border-radius: 50%;
+      border: .1em solid green; }
+  .campers #top {
+    height: 100%;
+    background: green;
+    color: white;
+    text-align: center;
+    font-size: 2em; }
+  .campers .titles {
+    border: .10em solid #bbb; }
+    .campers .titles .control {
+      cursor: pointer;
+      color: green; }
+      .campers .titles .control:hover {
+        color: #000;
+        text-shadow: 1px 1px 1px green; }
+    .campers .titles .selected {
+      color: #000;
+      text-shadow: 1px 1px 1px green; }
+
+/*# sourceMappingURL=styles.css.map */

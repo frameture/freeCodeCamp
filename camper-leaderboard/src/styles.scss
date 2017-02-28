@@ -1,0 +1,63 @@
+h4, div {
+  margin: 0;
+  padding: 0;
+ }
+
+body {
+  background: #ccc;
+  a { font-size: 1.15em; }
+}
+
+.nav {
+  height: 3em;
+  background: green;
+  color: white;
+}
+
+.campers {
+  min-width: 40em;
+  margin: 3em;
+  background: #fff;
+
+  .camper:nth-child(even) { background: #eee; }
+  .camper:nth-child(odd)  { background: #fff; }
+  .row {
+    height: 4em;
+    border: .1em solid #bbb;
+
+    .item {
+      height: 100%;
+      border-left: .05em solid #bbb;     
+      border-right: .05em solid #bbb;     
+    }
+    img { 
+      height: 3em;
+      border-radius: 50%;
+      border: .1em solid green;
+    }
+  }
+  #top {
+    height: 100%;
+    background: green;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+  }
+  .titles {
+    border: .10em solid #bbb;  
+
+    .control {
+      cursor: pointer;
+      color: green;
+      &:hover{ 
+        color: #000;
+        text-shadow: 1px 1px 1px green;
+        
+       }
+    }   
+    .selected { 
+      color: #000; 
+      text-shadow: 1px 1px 1px green;
+    }
+  }
+}
