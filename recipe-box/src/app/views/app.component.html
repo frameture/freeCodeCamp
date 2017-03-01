@@ -1,4 +1,10 @@
 <div class="recipes" *ngIf="recipes">
-  <div class="recipe" *ngFor="let recipe of recipes">{{recipe.name}}</div>
+  <div class="recipe" *ngFor="let recipe of recipes"
+       clickable      (click)="selectRecipe(recipe)">
+       <p>{{recipe.name}}</p>
+  </div>
+  <recipe-detail *ngIf="selectedRecipe"
+                 [recipe]="selectedRecipe">
+  </recipe-detail>
 </div>
 <button class="btn btn-info" (click)="addRecipe()">Add Recipe</button>

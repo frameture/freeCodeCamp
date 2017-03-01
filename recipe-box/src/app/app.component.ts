@@ -11,6 +11,7 @@ import { RecipesService } from './recipes.service';
 })
 export class AppComponent implements OnInit {
   private recipes: Recipe[];
+  private selectedRecipe: Recipe;
   private newRecipe = false;
 
   constructor(private recipesService: RecipesService) { }
@@ -22,6 +23,13 @@ export class AppComponent implements OnInit {
   private getRecipes(): void {
     this.recipesService.getRecipes()
       .then(recipes => this.recipes = recipes);
+  }
+
+  private selectRecipe(recipe: Recipe) {
+    if (this.selectedRecipe && this.selectedRecipe.name === recipe.name)
+      this.selectedRecipe = null;
+    else 
+      this.selectedRecipe = recipe;
   }
 
   private addRecipe(): void {
