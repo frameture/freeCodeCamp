@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { Recipe } from './recipe';
 
 @Injectable()
-export class RecipesService {
+export class RecipeService {
    private mockRecipes: Recipe[] = [
     new Recipe('Apple Pie', ['apples', 'flour', 'water', 'sugar']),
     new Recipe('Oats',      ['oats', 'water', 'honey', 'oil']),
