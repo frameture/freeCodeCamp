@@ -1,0 +1,17 @@
+<div *ngIf="isEdit">
+  <div class="form" #editForm>
+    <div class="form-group">
+      <label for="recipe">Recipe</label>
+      <input type="text" id="recipe" class="form-control" 
+            name="recipe" [(ngModel)]="editedRecipe.name">
+    </div>
+    <div class="form-group">
+      <label for="ingredients">Ingredients</label>
+      <textarea id="ingredients" class="form-control" id="ingredients"
+                name="ingredients" [(ngModel)]="editedRecipe.ingredientsList">
+      </textarea>
+    </div>
+    <button type="submit" class="btn btn-info">Edit Recipe</button>
+    <button type="button" class="btn btn-default" (click)="closeForm(editForm)">Close</button>
+  </div>
+</div>
