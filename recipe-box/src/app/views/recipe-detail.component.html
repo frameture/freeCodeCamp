@@ -1,13 +1,11 @@
-<div class="details">
+<div *ngIf="recipe" class="details">
   <h2>Ingredients</h2>
   <ul>
-    <li class="ingredient" *ngFor="let ingredient of recipe.ingredients">
+    <li class="ingredient" *ngFor="let ingredient of recipe.ingredientsList">
       <h4>{{ingredient}}</h4>
     </li>
   </ul>
   <button type="button" class="btn btn-danger"  (click)="delete()">Delete</button>
   <button type="button" class="btn btn-default" (click)="edit()">Edit</button>
 </div>
-<edit-recipe [parentRecipe]="recipe"
-             [(isEdit)]="isEditing">
-</edit-recipe>
+<app-edit-recipe [(isEdit)]="isEditing"></app-edit-recipe>

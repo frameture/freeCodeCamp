@@ -7,6 +7,9 @@ import { AppComponent }              from './app.component';
 import { RecipeDetailComponent }     from './recipe-detail.component';
 import { EditRecipeFormComponent }   from './edit-recipe-form.component';
 
+import { RecipeService }         from './recipe.service';
+import { SelectedRecipeService } from './selected-recipe.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,10 @@ import { EditRecipeFormComponent }   from './edit-recipe-form.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    RecipeService,
+    SelectedRecipeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

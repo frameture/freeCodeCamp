@@ -1,17 +1,18 @@
 <div *ngIf="isEdit">
-  <div class="form" #editForm>
+  <form (ngSubmit)="onSubmit(box.value, box2.value)" #editForm="ngForm">
     <div class="form-group">
       <label for="recipe">Recipe</label>
       <input type="text" id="recipe" class="form-control" 
-            name="recipe" [(ngModel)]="editedRecipe.name">
+            #box name="recipe" [value]="recipe.name" required>
     </div>
     <div class="form-group">
       <label for="ingredients">Ingredients</label>
-      <textarea id="ingredients" class="form-control" id="ingredients"
-                name="ingredients" [(ngModel)]="editedRecipe.ingredientsList">
+      <textarea id="ingredients" class="form-control" id="ingredients" 
+                required #box2 name="ingredients" [value]="recipe.ingredients">
       </textarea>
+      {{recipe.name}} - {{recipe.ingredients}} {{diagnostic}}
     </div>
-    <button type="submit" class="btn btn-info">Edit Recipe</button>
-    <button type="button" class="btn btn-default" (click)="closeForm(editForm)">Close</button>
-  </div>
+    <button type="submit" class="btn btn-info" [disabled]="!editForm.form.valid">Edit Recipe</button>
+    <button type="button" class="btn btn-default" (click)="closeForm()">Close</button>
+  </form>
 </div>
