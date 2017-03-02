@@ -1,43 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { Recipe }        from './recipe';
-import { RecipeService } from './recipe.service';
+import { Recipe }                from './recipe';
+import { RecipeService }         from './recipe.service';
+import { SelectedRecipeService } from './selected-recipe.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './views/app.component.html',
-  styleUrls:  ['./styles/app.component.css'],
-  providers:  [ RecipeService ] 
+  styleUrls:  ['./styles/app.component.css']
 })
-export class AppComponent implements OnInit {
-  private recipes: Recipe[];
-  private selectedRecipe: Recipe;
-  private newRecipe = false;
+export class AppComponent {
+  @Input() isAddRecipe = false;
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(
+    private recipeService: RecipeService,
+    private selectedRecipeService: SelectedRecipeService
+  ) { }
 
-  ngOnInit(): void {
-    this.getRecipes();
+  get recipes(): Recipe[] {
+    return this.recipeService.mockRecipes;
   }
 
-  private getRecipes(): void {
-    this.recipeService.getRecipes()
-      .then(recipes => this.recipes = recipes);
+  get recipe(): Recipe {
+    return this.selectedRecipeService.selectedRecipe;
   }
 
-  private selectRecipe(recipe: Recipe) {
-    if (this.selectedRecipe && this.selectedRecipe.name === recipe.name)
-      this.selectedRecipe = null;
-    else 
-      this.selectedRecipe = recipe;
+  set recipe(recipe: Recipe) {
+    const selected = this.selectedRecipeService.selectedRecipe;
+    if (selected && selected.name === recipe.name) {
+      this.selectedRecipeService.selectedRecipe = null; // Unselect
+    } else {
+      this.selectedRecipeService.selectedRecipe = recipe;
+    }
+  }
+
+  private selectRecipe(recipe): void {
+    this.recipe = recipe;
   }
 
   private addRecipe(): void {
-    this.newRecipe = true;
+    this.isAddRecipe = true;
+    // TODO:
   }
 
-  private cancelRecipe(): void {
-    this.newRecipe = false;
+  // TODO: remove
+  get diagnostic() {
+    return JSON.stringify(this.recipes);
   }
-
 }

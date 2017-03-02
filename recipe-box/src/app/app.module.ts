@@ -4,6 +4,7 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
 import { AppComponent }              from './app.component';
+import { AddRecipeComponent }        from './add-recipe.component';
 import { RecipeDetailComponent }     from './recipe-detail.component';
 import { EditRecipeFormComponent }   from './edit-recipe-form.component';
 
@@ -13,6 +14,7 @@ import { SelectedRecipeService } from './selected-recipe.service';
 @NgModule({
   declarations: [
     AppComponent,
+    AddRecipeComponent,
     RecipeDetailComponent,
     EditRecipeFormComponent
   ],

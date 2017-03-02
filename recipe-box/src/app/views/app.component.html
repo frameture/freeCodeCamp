@@ -7,3 +7,4 @@
   <app-recipe-detail *ngIf="recipe"></app-recipe-detail>
 </div>
 <button class="btn btn-info" (click)="addRecipe()">Add Recipe</button>
+<app-add-recipe [(isAddRecipe)]="isAddRecipe"></app-add-recipe>
