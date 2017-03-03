@@ -26,21 +26,17 @@ export class AddRecipeComponent implements OnInit {
   }
 
   private closeForm(): void {
-    // TODO
-  }
-
-  get diagnostic() {
-    return JSON.stringify(this.recipe);
+    this.isAddRecipe = false;
+    this.isAddRecipeChange.emit(this.isAddRecipe);
+    this.createModel();
   }
 
    ngOnInit(): void {
-     console.log('onInit');
     this.createModel();
   }
 
   private createModel(): void {
-    let id;
-    this.recipeService.getRecipes().then(r => id = r.length + 1);
+    const id = this.recipeService.getRecipes().length + 1;
     this.recipe = new Recipe(id, '', '');
   }
 }
