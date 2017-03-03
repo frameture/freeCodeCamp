@@ -5,8 +5,7 @@
   color: #333;
   border: .1em solid #bbb;
   border-radius: 1%;
-  cursor: default;
-  text-shadow: none; }
+  cursor: default; }
   .details .title {
     margin: 1em auto;
     text-align: center; }

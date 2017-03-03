@@ -1,4 +1,4 @@
-<div *ngIf="recipe" class="details">
+<div *ngIf="recipe" class="details" clickable (click)="$event.stopPropagation()">
   <h3 class="title">Ingredients</h3>
   <div class="ingredients">
     <div class="ingredient" *ngFor="let ingredient of recipe.ingredientsList">
@@ -8,4 +8,4 @@
   <button type="button" class="btn btn-danger"  (click)="delete()">Delete</button>
   <button type="button" class="btn btn-default" (click)="edit()">Edit</button>
 </div>
-<app-edit-recipe [(isEdit)]="isEditing"></app-edit-recipe>
+<app-edit-recipe [(isEdit)]="isEditing" clickable (click)="$event.stopPropagation()"></app-edit-recipe>
