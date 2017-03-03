@@ -1,0 +1,19 @@
+.recipes { 
+  padding: 3em;
+  background: #eee;
+  border: .1em solid #ddd;  
+  border-radius: 1%;
+
+  .recipe {
+    margin: .5em 0;
+    padding: .7em;
+    background: rgb(200, 250, 200);
+    border: .1em solid green;  
+    border-radius: 2px;      
+    color: green;
+  }
+}
+
+.btn {
+  margin: 2em 0;
+}
