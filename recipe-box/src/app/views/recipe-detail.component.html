@@ -1,10 +1,10 @@
 <div *ngIf="recipe" class="details">
-  <h2>Ingredients</h2>
-  <ul>
-    <li class="ingredient" *ngFor="let ingredient of recipe.ingredientsList">
+  <h3 class="title">Ingredients</h3>
+  <div class="ingredients">
+    <div class="ingredient" *ngFor="let ingredient of recipe.ingredientsList">
       <h4>{{ingredient}}</h4>
-    </li>
-  </ul>
+    </div>
+  </div>
   <button type="button" class="btn btn-danger"  (click)="delete()">Delete</button>
   <button type="button" class="btn btn-default" (click)="edit()">Edit</button>
 </div>

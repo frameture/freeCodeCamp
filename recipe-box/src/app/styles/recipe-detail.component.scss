@@ -1,0 +1,34 @@
+.details {
+  margin: 1em;
+  padding: 1em;
+  background: rgb(253, 253, 253);
+  color: #333;
+  border: .1em solid #bbb;  
+  border-radius: 1%;
+  cursor: default;
+  text-shadow: none;
+
+  .title {
+    margin: 1em auto;
+    text-align: center;
+  }
+
+  .ingredients {
+    border: .1em solid #ddd;  
+    border-top: none;  
+    border-radius: 2px;
+
+    .ingredient {
+      width: 100%;
+      margin: 0;
+      padding: .7em;
+      height: 3em;
+      border-top: .1em solid #ddd;  
+      border-radius: 2px;
+    }
+  }
+
+  .btn {
+    margin: 1em 0;
+  }
+}
