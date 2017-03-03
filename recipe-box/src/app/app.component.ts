@@ -18,7 +18,7 @@ export class AppComponent {
   ) { }
 
   get recipes(): Recipe[] {
-    return this.recipeService.mockRecipes;
+    return this.recipeService.getRecipes();
   }
 
   get recipe(): Recipe {
@@ -40,11 +40,5 @@ export class AppComponent {
 
   private addRecipe(): void {
     this.isAddRecipe = true;
-    // TODO:
-  }
-
-  // TODO: remove
-  get diagnostic() {
-    return JSON.stringify(this.recipes);
   }
 }
