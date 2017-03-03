@@ -10,7 +10,6 @@
       <textarea id="ingredients" class="form-control" id="ingredients" placeholder="Ingredients"
                 required name="ingredients" [(ngModel)]="recipe.ingredients">
       </textarea>
-      {{diagnostic}}
     </div>
     <button type="submit" class="btn btn-info" [disabled]="!addForm.form.valid">Add Recipe</button>
     <button type="button" class="btn btn-default" (click)="closeForm()">Close</button>

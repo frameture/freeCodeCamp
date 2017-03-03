@@ -11,6 +11,11 @@
     border: .1em solid green;  
     border-radius: 2px;      
     color: green;
+    cursor: pointer;
+
+    :hover:not(app-recipe-detail) {
+      text-shadow: 1px 1px 1px #000;
+    }
   }
 }
 

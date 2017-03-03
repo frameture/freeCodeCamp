@@ -9,7 +9,10 @@
     background: #c8fac8;
     border: .1em solid green;
     border-radius: 2px;
-    color: green; }
+    color: green;
+    cursor: pointer; }
+    .recipes .recipe :hover:not(app-recipe-detail) {
+      text-shadow: 1px 1px 1px #000; }
 
 .btn {
   margin: 2em 0; }
