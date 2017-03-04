@@ -6,9 +6,9 @@ import { GameGrid } from './game-grid';
 export class GameService {
 
   public static readonly SIZES = {
-    '50x30':  [50, 30],
-    '70x50':  [70, 50],
-    '100x80': [100, 80]
+    '50x30':  [30, 50],
+    '70x50':  [50, 70],
+    '100x80': [80, 100]
   };
 
   public static readonly SPEEDS = {

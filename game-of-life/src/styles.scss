@@ -1,0 +1,25 @@
+body {
+  cursor: default;
+  padding: 2em;
+  background: #D71530;
+  color: white;
+  -webkit-box-shadow: inset 0px 0px 195px -16px rgba(0,0,0,0.68);
+  -moz-box-shadow: inset 0px 0px 195px -16px rgba(0,0,0,0.68);
+  box-shadow: inset 0px 0px 195px -16px rgba(0,0,0,0.68);
+}
+
+button {
+  margin: 0 1em;
+  padding: .4em;
+  background: #F46B7E;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  outline-style: none;
+  font-size: .8em; 
+  cursor: pointer;
+}
+
+button:hover {
+  background: #D71530;
+}

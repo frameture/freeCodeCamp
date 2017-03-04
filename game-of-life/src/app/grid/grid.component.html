@@ -1,8 +1,7 @@
 <table *ngIf="grid">
   <tr *ngFor="let row of grid; let i = index">
     <td *ngFor="let cell of row; let j = index" clickable 
-        (click)="changeCell(i, j)">
-      {{cell}}
+        (click)="changeCell(i, j)" [class.selected]="cell">
     </td>
   </tr>
 </table>
