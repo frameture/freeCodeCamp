@@ -5,28 +5,56 @@ export class GameGrid {
   private size: number[];
   private cellsToChange = [];
   private _grid: boolean[][];
-  private _generation = 0;
-  private _state = true;
+  private _generation: number;
 
   constructor(size: number[]) {
     this.fillGrid(size);
+    this.size = size;
   }
 
   get grid() {
     return this._grid;
   }
 
-  private fillGrid(size: number[]): void {
-    const grid = new Array<Array<boolean>>();
+  private fillGrid(size: number[], keepOldRef?: boolean): void {
+    this._generation = 0;
+
+    let grid;
+    if (keepOldRef) {
+      grid = this._grid;
+    } else {
+      grid = new Array<Array<boolean>>();
+      this._grid = grid;
+    }
+
     for (let i = 0; i < size[0]; i++) {
       const row: boolean[] = new Array<boolean>();
       for (let j = 0; j < size[1]; j++) {
-        const isFilled = Math.random() > 0.75;
+        const isFilled = Math.random() > 0.5;
         row.push(isFilled);
       }
       grid.push(row);
     }
-    this._grid = grid;
+  }
+
+  public changeSize(size: number[]): void {
+    this.popOldCells();
+    this.fillGrid(size, true);
+    this.size = size;
+  }
+
+  private popOldCells(): void {
+    while (this._grid.length) {
+      this._grid.pop();
+    }
+  }
+
+  public clearGame(): void {
+    for (let i = 0; i < this._grid.length; i++) {
+      for (let j = 0; j < this.grid[0].length; j++) {
+        this._grid[i][j] = false;
+      }
+    }
   }
 
   public changeCell(row: number, col: number): void {
@@ -34,6 +62,7 @@ export class GameGrid {
   }
 
   public nextGeneration(): void {
+    this._generation++;
     for (let i = 0; i < this.size[0]; i++) {
       for (let j = 0; j < this.size[1]; j++) {
         this.checkNeighbors(i, j);
@@ -102,14 +131,6 @@ export class GameGrid {
       const cell: number[] = this.cellsToChange.pop();
       this.changeCell(cell[0], cell[1]);
     }
-  }
-
-  get state() {
-    return this._state;
-  }
-
-  set state(state: boolean) {
-    this._state = state;
   }
 
   get generation() {

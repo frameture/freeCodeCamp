@@ -6,57 +6,65 @@ import { GameGrid } from './game-grid';
 export class GameService {
 
   public static readonly SIZES = {
-    'test':   [5, 3],
     '50x30':  [50, 30],
     '70x50':  [70, 50],
     '100x80': [100, 80]
   };
 
-  private gridSize = GameService.SIZES['test'];
-  private grid = new GameGrid(this.gridSize);
+  public static readonly SPEEDS = {
+    'fast'  : 500,
+    'medium': 1000,
+    'slow':   2000
+  };
+
+  private _speed = GameService.SPEEDS['medium'];
+  private grid = new GameGrid(GameService.SIZES['50x30']);
   private timer;
+  private running: boolean;
 
   constructor() {
-    this.checkState();
-  }
-
-  private checkState(): void {
-    if (this.grid.state) {
-      this.startGame();
-    }
+    this.startGame();
   }
 
   public startGame(): void {
-    this.timer = setInterval(() => this.grid.nextGeneration(), 500);
+    if (this.running) {
+      return;
+    }
+    this.running = true;
+    this.timer = setInterval(() => this.grid.nextGeneration(), this._speed);
   }
 
   public pauseGame(): void {
+    if (!this.running) {
+      return;
+    }
+    this.running = false;
     clearInterval(this.timer);
   }
 
-  public setCell(row: number, col: number): void {
+  public clearGame(): void {
+    this.grid.clearGame();
+  }
+
+  public changeCell(row: number, col: number): void {
     this.grid.changeCell(row, col);
   }
 
   get cells() {
-    return this.grid;
-  }
-
-  get size() {
-    return this.gridSize;
+    return this.grid.grid;
   }
 
   set size(size: number[]) {
-    this.gridSize = size;
-    this.grid = new Grid(size);
+    this.pauseGame();
+    this.grid.changeSize(size);
   }
 
-  get state() {
-    return this.grid.state;
-  }
-
-  set state(state: boolean) {
-    this.grid.state = state;
+  set speed(speed: number) {
+    this._speed = speed;
+    if (this.running) {
+      this.pauseGame();
+      this.startGame();
+    }
   }
 
   get generation() {
