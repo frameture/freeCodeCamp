@@ -13,6 +13,13 @@ export class Player extends Being implements Identifiable {
     'axe': 50
   };
 
+  public static readonly DIRECTIONS = {
+    'left': 37,
+    'up': 38,
+    'right': 39,
+    'down': 40,
+  };
+
   public className: string;
   public weapon: string;
   public nextLevelXp: number;

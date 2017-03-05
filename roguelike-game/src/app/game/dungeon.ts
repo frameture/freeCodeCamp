@@ -2,6 +2,7 @@ import { Identifiable } from './identifiable';
 import { Player } from './player';
 import { Enemy } from './enemy';
 import { Legend } from './legend';
+import { Location } from './location';
 
 import { GRIDS } from './GRIDS';
 
@@ -23,6 +24,12 @@ export class Dungeon {
 
   get board() {
     return this._board;
+  }
+
+  public moveElement(oldLoc: Location, newLoc: Location): void {
+    const temp = this._board[ oldLoc.x ][ oldLoc.y ];
+    this._board[ oldLoc.x ][ oldLoc.y ] = { className: 'space' };
+    this._board[ newLoc.x ][ newLoc.y ] = temp;
   }
 
   private renderBoard(): void {

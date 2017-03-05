@@ -14,9 +14,12 @@ export class GameService {
     this._player = this._game.player;
   }
 
-  // TODO  
-  public movePlayer(direction: string): void {
+  public movePlayer(direction: number): void {
+    this._game.movePlayer(direction);
+  }
 
+  get board() {
+    return this._game.board;
   }
 
   get level() {

@@ -1,0 +1,25 @@
+table {
+  border-spacing: 0; }
+  table td {
+    width: 1em;
+    height: 1em; }
+
+.block {
+  background: black; }
+
+.health {
+  background: green;
+  border-radius: 50%; }
+
+.weapon {
+  background: #fa9600;
+  border-radius: 25%; }
+
+.enemy {
+  background: red; }
+
+.player {
+  background: blue;
+  border-radius: 12%; }
+
+/*# sourceMappingURL=board.component.css.map */

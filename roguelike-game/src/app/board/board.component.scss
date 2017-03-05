@@ -1,0 +1,30 @@
+table {
+    border-spacing: 0;
+    td {
+        width: 1em;
+        height: 1em;
+    }
+}
+
+.block {
+    background: black;
+}
+
+.health {
+    background: green;
+    border-radius: 50%;
+}
+
+.weapon {
+    background: rgb(250, 150, 0);
+    border-radius: 25%;
+}
+
+.enemy {
+    background: red;
+}
+
+.player {
+    background: blue;
+    border-radius: 12%;
+}

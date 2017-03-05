@@ -1,3 +1,5 @@
-<p>
-  board works!
-</p>
+<table *ngIf="board" (click)="move($event)">
+  <tr *ngFor="let row of board">
+    <td *ngFor="let cell of row" [ngClass]="cell.className"></td>
+  </tr>
+</table>

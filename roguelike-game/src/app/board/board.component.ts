@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { GameService } from '../game.service';
+
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css']
+  styleUrls: [ './board.component.css' ]
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent {
 
-  constructor() { }
+  constructor(private gameService: GameService) { }
 
-  ngOnInit() {
+  get board() {
+    return this.gameService.board;
+  }
+
+  @HostListener('window:keydown', [ '$event' ])
+  keyboardInput(event: KeyboardEvent) {
+    this.move(event.keyCode);
+  }
+
+  private move(direction: number): void {
+    this.gameService.movePlayer(direction);
   }
 
 }
