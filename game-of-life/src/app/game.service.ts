@@ -6,19 +6,19 @@ import { GameGrid } from './game-grid';
 export class GameService {
 
   public static readonly SIZES = {
-    '50x30':  [30, 50],
-    '70x50':  [50, 70],
-    '100x80': [80, 100]
+    '50x30': [ 30, 50 ],
+    '70x50': [ 50, 70 ],
+    '100x80': [ 80, 100 ]
   };
 
   public static readonly SPEEDS = {
-    'fast'  : 500,
+    'fast': 500,
     'medium': 1000,
-    'slow':   2000
+    'slow': 2000
   };
 
-  private _speed = GameService.SPEEDS['medium'];
-  private grid = new GameGrid(GameService.SIZES['50x30']);
+  private _speed = GameService.SPEEDS[ 'medium' ];
+  private grid = new GameGrid(GameService.SIZES[ '50x30' ]);
   private timer;
   private running: boolean;
 
