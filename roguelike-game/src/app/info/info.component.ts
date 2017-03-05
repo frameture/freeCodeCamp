@@ -1,15 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
-  styleUrls: ['./info.component.css']
+  styleUrls: [ './info.component.css' ]
 })
-export class InfoComponent implements OnInit {
+export class InfoComponent {
 
-  constructor() { }
+  constructor(private gameService: GameService) { }
 
-  ngOnInit() {
+  get health() {
+    return this.gameService.health;
+  }
+
+  get weapon() {
+    return this.gameService.weapon;
+  }
+
+  get attack() {
+    return this.gameService.attack;
+  }
+
+  get level() {
+    return this.gameService.level;
+  }
+
+  get nextLevel() {
+    return this.gameService.nextLevelXp;
+  }
+
+  get xp() {
+    return this.gameService.xp;
   }
 
 }
