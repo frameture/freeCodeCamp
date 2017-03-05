@@ -1,12 +1,23 @@
 import { Being } from './being';
+import { Identifiable } from './identifiable';
 
-export class Enemy extends Being {
+export class Enemy extends Being implements Identifiable {
 
-  constructor(health: number, attack: number, x: number, y: number) {
+  public className: string;
+
+  constructor(level: number) {
     super();
-    this.location.setLocation(x, y);
-    this.health = health;
-    this.attack = attack;
+    this.className = 'enemy';
+    this.setHealth(level);
+    this.setAttack(level);
+  }
+
+  private setHealth(level: number): void {
+    this.health = Math.ceil(Math.random() * 50) * level;
+  }
+
+  private setAttack(level: number): void {
+    this.attack = Math.ceil(Math.random() * 25) * level;
   }
 
 }
