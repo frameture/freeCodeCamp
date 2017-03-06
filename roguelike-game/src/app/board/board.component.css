@@ -1,11 +1,14 @@
-table {
-  margin: auto;
-  border-spacing: 0; }
-  table td {
-    width: 20px;
-    height: 20px; }
+.grid {
+  margin: 4em; }
+  .grid table {
+    margin: auto;
+    border-spacing: 0; }
+    .grid table td {
+      width: 20px;
+      height: 20px; }
 
-.block {
+.block,
+.darkness {
   background: gray; }
 
 .space {
