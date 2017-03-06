@@ -1,4 +1,4 @@
-export const GRIDS = [
+const GRIDS = [
   [
     'ooooooooooooooooooooooo',
     'o p                  oo',
@@ -68,3 +68,20 @@ export const GRIDS = [
     'ooooooooooooooooooooooooooooooooooooooooooooooooo',
   ],
 ];
+
+export class Grid {
+
+  public grid: string[];
+
+  constructor(gridNumber: number) {
+    this.grid = this.copyGrid(gridNumber);
+    console.log(this.grid);
+  }
+
+  private copyGrid(gridNumber: number): string[] {
+    const grid = [];
+    GRIDS[ gridNumber ].forEach(row => grid.push(row));
+    return grid;
+  }
+
+}

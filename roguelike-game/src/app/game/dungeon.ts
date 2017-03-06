@@ -5,7 +5,7 @@ import { Enemy } from './enemy';
 import { Legend } from './legend';
 import { Location } from './location';
 
-import { GRIDS } from './GRIDS';
+import { Grid } from './grid';
 
 export class Dungeon {
 
@@ -23,7 +23,7 @@ export class Dungeon {
 
   private loadGrid(gridNumber: number): void {
     this._gridNumber = gridNumber;
-    this._grid = GRIDS[ this._gridNumber ];
+    this._grid = new Grid(this._gridNumber).grid;
     this.scatterItems();
     this.renderBoard();
   }
@@ -113,7 +113,6 @@ export class Dungeon {
 
   public moveElement(oldLoc: Location, newLoc: Location): void {
     const id: Identifiable = this._board[ newLoc.y ][ newLoc.x ];
-    console.log(id);
     let collected: boolean;
 
     if (id.className === 'next') {
