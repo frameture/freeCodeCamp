@@ -1,53 +1,55 @@
-import { Injectable } from '@angular/core';
-
-import { Game } from './game/game';
 import { Player } from './game/player';
+import { Dungeon } from './game/dungeon';
 
-@Injectable()
+import { Location } from './game/location';
+
 export class GameService {
 
-  private _game: Game;
   private _player: Player;
+  private _dungeon: Dungeon;
 
   constructor() {
-    this._game = new Game();
-    this._player = this._game.player;
+    this._player = new Player(0, 0);
+    this._dungeon = new Dungeon(this._player);
   }
 
   public movePlayer(direction: number): void {
-    this._game.movePlayer(direction);
+    const oldLoc = this._player.location.copy();
+    const newLoc = this._player.location.copy();
+
+    switch (direction) {
+      case Player.DIRECTIONS.up:
+        newLoc.y--;
+        break;
+      case Player.DIRECTIONS.down:
+        newLoc.y++;
+        break;
+      case Player.DIRECTIONS.left:
+        newLoc.x--;
+        break;
+      case Player.DIRECTIONS.right:
+        newLoc.x++;
+        break;
+      default: return;
+    }
+    console.log(direction, oldLoc, newLoc);
+    this.move(oldLoc, newLoc);
+  }
+
+  private move(oldLoc: Location, newLoc: Location): void {
+    this._dungeon.moveElement(oldLoc, newLoc);
+  }
+
+  get player() {
+    return this._player;
   }
 
   get board() {
-    return this._game.board;
+    return this._dungeon.board;
   }
 
-  get level() {
-    return this._player.level;
-  }
-
-  get xp() {
-    return this._player.xp;
-  }
-
-  get nextLevelXp() {
-    return this._player.nextLevelXp;
-  }
-
-  get weapon() {
-    return this._player.weapon;
-  }
-
-  get attack() {
-    return this._player.attack;
-  }
-
-  get health() {
-    return this._player.health;
-  }
-
-  private playerDied(): void {
-    // TODO if hp === 0
+  get dungeonNumber() {
+    return this._dungeon.dungeonNumber;
   }
 
 }
