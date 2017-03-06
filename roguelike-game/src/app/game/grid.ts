@@ -75,7 +75,6 @@ export class Grid {
 
   constructor(gridNumber: number) {
     this.grid = this.copyGrid(gridNumber);
-    console.log(this.grid);
   }
 
   private copyGrid(gridNumber: number): string[] {
