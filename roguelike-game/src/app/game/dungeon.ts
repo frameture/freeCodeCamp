@@ -16,38 +16,15 @@ export class Dungeon {
   private _player: Player;
 
   constructor(player: Player) {
-    this._gridNumber = 0;
-    this._grid = GRIDS[ this._gridNumber ];
     this._legend = new Legend();
     this._player = player;
+    this.loadGrid(0);
+  }
+
+  private loadGrid(gridNumber: number): void {
+    this._gridNumber = gridNumber;
+    this._grid = GRIDS[ this._gridNumber ];
     this.renderBoard();
-  }
-
-  get board() {
-    return this._board;
-  }
-
-  public moveElement(oldLoc: Location, newLoc: Location): void {
-    const identity = this._board[ newLoc.y ][ newLoc.x ];
-    let collected: boolean;
-    console.log('identity', identity);
-
-    if (identity.className === 'block') {
-      return;
-    } else if (
-      identity instanceof Health ||
-      identity instanceof Weapon ||
-      identity instanceof Enemy) {
-      console.log('collectable');
-      collected = identity.action(this._player);
-    }
-    if (collected || identity.className === 'space') {
-      const temp = this._board[ oldLoc.y ][ oldLoc.x ];
-      this._board[ oldLoc.y ][ oldLoc.x ] = { className: 'space' };
-      this._board[ newLoc.y ][ newLoc.x ] = temp;
-      this._player.location = newLoc;
-    }
-    console.log(identity.className);
   }
 
   private renderBoard(): void {
@@ -57,12 +34,12 @@ export class Dungeon {
       const row = new Array<Identifiable>();
       for (let j = 0; j < this._grid[ 0 ].length; j++) {
         const sign = this._grid[ i ][ j ];
-        let identity = this._legend.createIdentifiable(sign,
+        let id: Identifiable = this._legend.createIdentifiable(sign,
           this._player.level);
-        if (identity.className === 'player') {
-          identity = this.switchPlayer(<Player>identity, j, i);
+        if (id.className === 'player') {
+          id = this.switchPlayer(<Player>id, j, i);
         }
-        row.push(identity);
+        row.push(id);
       }
       board.push(row);
     }
@@ -72,6 +49,35 @@ export class Dungeon {
   private switchPlayer(p: Player, x: number, y: number): Player {
     this._player.location.setLocation(x, y);
     return this._player;
+  }
+
+  public moveElement(oldLoc: Location, newLoc: Location): void {
+    const id: Identifiable = this._board[ newLoc.y ][ newLoc.x ];
+    let collected: boolean;
+
+    if (id.className === 'next') {
+      this.loadGrid(this._gridNumber + 1);
+    } else if (
+      id instanceof Health ||
+      id instanceof Weapon ||
+      id instanceof Enemy) {
+      collected = id.action(this._player);
+    }
+
+    if (collected || id.className === 'space') {
+      this.move(oldLoc, newLoc);
+    }
+  }
+
+  private move(oldLoc: Location, newLoc: Location) {
+    const temp = this._board[ oldLoc.y ][ oldLoc.x ];
+    this._board[ oldLoc.y ][ oldLoc.x ] = { className: 'space' };
+    this._board[ newLoc.y ][ newLoc.x ] = temp;
+    this._player.location = newLoc;
+  }
+
+  get board() {
+    return this._board;
   }
 
   get dungeonNumber() {
