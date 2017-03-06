@@ -10,6 +10,7 @@ export class Legend {
     switch (sign) {
       case 'o': return { className: 'block' };
       case ' ': return { className: 'space' };
+      case 'n': return { className: 'next' };
       case 'h': return new Health(level);
       case 'w': return new Weapon(Weapon.getRandomWeapon());
       case 'p': return new Player(0, 0);
