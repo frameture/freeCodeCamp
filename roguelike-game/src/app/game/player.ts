@@ -44,6 +44,10 @@ export class Player extends Being implements Identifiable {
     this.attack = Player.WEAPONS[ weapon ];
   }
 
+  /**
+   * @param enemy Enemy to fight with
+   * @return true when enemy was killed
+   */
   public fight(enemy: Enemy): boolean {
     this.changeHealth(- enemy.attack);
     enemy.changeHealth(- this.attack);
