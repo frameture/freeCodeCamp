@@ -32,8 +32,8 @@ export class Player extends Being implements Identifiable {
     this.className = 'player';
     this.location = new Location(x, y);
     this.health = 100;
-    this.attack = Player.WEAPONS[ 'stick' ];
-    this.weapon = 'stick';
+    this.attack = 2;
+    this.weapon = 'bare fists';
     this.nextLevelXp = 60;
     this.level = 1;
     this.xp = 0;
@@ -44,21 +44,23 @@ export class Player extends Being implements Identifiable {
     this.attack = Player.WEAPONS[ weapon ];
   }
 
-  public fight(enemy: Enemy): void {
-    enemy.changeHealth(- enemy.attack);
+  public fight(enemy: Enemy): boolean {
+    this.changeHealth(- enemy.attack);
     enemy.changeHealth(- this.attack);
 
-    if (enemy.health === 0) {
+    if (enemy.health <= 0) {
       this.addXp(enemy.attack * this.level);
+      return true;
     }
+    return false;
   }
 
-  public addXp(xp: number): void {
+  private addXp(xp: number): void {
     this.xp += xp;
     if (this.xp >= this.nextLevelXp) {
       this.xp -= this.nextLevelXp;
-      this.nextLevelXp *= 1.62;
-      this.attack *= this.level;
+      this.nextLevelXp = Math.round(this.nextLevelXp *= 1.62);
+      this.attack = Math.round(this.attack *= this.level);
       this.level++;
     }
   }

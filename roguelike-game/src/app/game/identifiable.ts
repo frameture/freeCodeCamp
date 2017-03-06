@@ -1,3 +1,3 @@
 export interface Identifiable {
-  className;
+  className: string;
 }

@@ -1,7 +1,9 @@
 import { Being } from './being';
 import { Identifiable } from './identifiable';
+import { Collectable } from './collectable';
+import { Player } from './player';
 
-export class Enemy extends Being implements Identifiable {
+export class Enemy extends Being implements Identifiable, Collectable {
 
   public className: string;
 
@@ -10,6 +12,10 @@ export class Enemy extends Being implements Identifiable {
     this.className = 'enemy';
     this.setHealth(level);
     this.setAttack(level);
+  }
+
+  public action(player: Player): boolean {
+    return player.fight(this);
   }
 
   private setHealth(level: number): void {
