@@ -14,6 +14,10 @@ export class GameInteractionService {
     this._player = this.gameService.player;
   }
 
+  public toggleDarkness(): void {
+    this.gameService.toggleDarkness();
+  }
+
   public playerDied(): void {
     this.gameService.playerDied();
     this._player = this.gameService.player;

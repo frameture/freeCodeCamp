@@ -7,26 +7,28 @@
       width: 20px;
       height: 20px; }
 
-.block,
-.darkness {
+.isBlock {
   background: gray; }
 
-.space {
+.isSpace {
   background: white; }
 
-.health {
+.isHealth {
   background: green; }
 
-.weapon {
+.isWeapon {
   background: #fa9600; }
 
-.enemy {
+.isEnemy {
   background: red; }
 
-.player {
+.isPlayer {
   background: blue; }
 
-.next {
+.isNext {
   background: purple; }
+
+.isDark {
+  background: black; }
 
 /*# sourceMappingURL=board.component.css.map */

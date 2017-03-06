@@ -1,7 +1,7 @@
 <div class="grid" *ngIf="playerAlive">
   <table *ngIf="board">
     <tr *ngFor="let row of board">
-      <td *ngFor="let cell of row" [ngClass]="cell.className"></td>
+      <td *ngFor="let cell of row" [ngClass]="cell.identity"></td>
     </tr>
   </table>
 </div>

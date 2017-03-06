@@ -11,6 +11,10 @@ export class InfoComponent {
 
   constructor(private gameInteractionService: GameInteractionService) { }
 
+  public toggleDarkness(): void {
+    this.gameInteractionService.toggleDarkness();
+  }
+
   get health() {
     return this.gameInteractionService.health;
   }

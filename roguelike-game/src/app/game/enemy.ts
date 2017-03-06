@@ -1,15 +1,15 @@
 import { Being } from './being';
-import { Identifiable } from './identifiable';
+import { Identifiable, Identity } from './identifiable';
 import { Collectable } from './collectable';
 import { Player } from './player';
 
 export class Enemy extends Being implements Identifiable, Collectable {
 
-  public className: string;
+  public identity: Identity;
 
   constructor(level: number) {
     super();
-    this.className = 'enemy';
+    this.identity = { isEnemy: true };
     this.setHealth(level);
     this.setAttack(level);
   }

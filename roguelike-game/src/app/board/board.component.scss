@@ -10,31 +10,34 @@
     }
 }
 
-.block,
-.darkness {
+.isBlock {
     background: gray;
 }
 
-.space {
+.isSpace {
     background: white;
 }
 
-.health {
+.isHealth {
     background: green;
 }
 
-.weapon {
+.isWeapon {
     background: rgb(250, 150, 0);
 }
 
-.enemy {
+.isEnemy {
     background: red;
 }
 
-.player {
+.isPlayer {
     background: blue;
 }
 
-.next {
+.isNext {
     background: purple;
+}
+
+.isDark {
+    background: black;
 }

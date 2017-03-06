@@ -1,4 +1,4 @@
-import { Identifiable } from './identifiable';
+import { Identifiable, Identity } from './identifiable';
 import { Player } from './player';
 
 
@@ -15,12 +15,12 @@ export interface Collectable {
 
 export class Health implements Identifiable, Collectable {
 
+  public identity: Identity;
   public health: number;
-  public className: string;
 
   constructor(level: number) {
     this.setHealth(level);
-    this.className = 'health';
+    this.identity = { isHealth: true };
   }
 
   public action(player: Player): boolean {
@@ -36,14 +36,14 @@ export class Health implements Identifiable, Collectable {
 
 export class Weapon implements Identifiable, Collectable {
 
+  public identity: Identity;
   public weapon: string;
-  public className: string;
   private readonly WEAPONS: string[];
 
   constructor(gridNumber: number) {
     this.WEAPONS = Object.keys(Player.WEAPONS);
     this.weapon = this.WEAPONS[ gridNumber ];
-    this.className = 'weapon';
+    this.identity = { isWeapon: true };
   }
 
   public action(player: Player): boolean {

@@ -1,5 +1,5 @@
 import { Collectable, Health, Weapon } from './collectable';
-import { Identifiable } from './identifiable';
+import { Identifiable, Identity } from './identifiable';
 import { Player } from './player';
 import { Enemy } from './enemy';
 import { Legend } from './legend';
@@ -14,6 +14,8 @@ export class Dungeon {
   private _legend: Legend;
   private _board: Identifiable[][];
   private _player: Player;
+  private _darkness: boolean;
+  private _darknessRadius = 2;
 
   constructor(player: Player) {
     this._legend = new Legend();
@@ -21,11 +23,45 @@ export class Dungeon {
     this.loadGrid(0);
   }
 
+  public toggleDarkness(): void {
+    if (!this._darkness) {
+      this._darkness = true;
+      this.darken();
+    } else {
+      this._darkness = false;
+      this.lighten();
+    }
+  }
+
+  private darken() {
+    const r = this._darknessRadius;
+    const row = this._player.location.y;
+    const col = this._player.location.x;
+
+    console.log(`row: ${ row } col: ${ col }`);
+
+    for (let i = 0; i < this._board.length; i++) {
+      for (let j = 0; j < this._board[ 0 ].length; j++) {
+        const cell = this._board[ i ][ j ];
+        if (i > row + r || i < row - r || j > col + r || j < col - r) {
+          Identity.changeIsDark(cell.identity, true);
+        } else {
+          Identity.changeIsDark(cell.identity, false);
+        }
+      }
+    }
+  }
+
+  private lighten(): void {
+    // TODO
+  }
+
   private loadGrid(gridNumber: number): void {
     this._gridNumber = gridNumber;
     this._grid = new Grid(this._gridNumber).grid;
     this.scatterItems();
     this.renderBoard();
+    this.toggleDarkness();
   }
 
   private scatterItems(): void {
@@ -96,7 +132,7 @@ export class Dungeon {
         const sign = this._grid[ i ][ j ];
         let id: Identifiable = this._legend.createIdentifiable(sign,
           this._player.level, this._gridNumber);
-        if (id.className === 'player') {
+        if (id.identity.isPlayer) {
           id = this.switchPlayer(<Player>id, j, i);
         }
         row.push(id);
@@ -115,7 +151,7 @@ export class Dungeon {
     const id: Identifiable = this._board[ newLoc.y ][ newLoc.x ];
     let collected: boolean;
 
-    if (id.className === 'next') {
+    if (id.identity.isNext) {
       this.loadGrid(this._gridNumber + 1);
     } else if (
       id instanceof Health ||
@@ -124,16 +160,23 @@ export class Dungeon {
       collected = id.action(this._player);
     }
 
-    if (collected || id.className === 'space') {
+    if (collected || id.identity.isSpace) {
       this.move(oldLoc, newLoc);
     }
   }
 
   private move(oldLoc: Location, newLoc: Location) {
     const temp = this._board[ oldLoc.y ][ oldLoc.x ];
-    this._board[ oldLoc.y ][ oldLoc.x ] = { className: 'space' };
+    this._board[ oldLoc.y ][ oldLoc.x ] = { identity: { isSpace: true } };
     this._board[ newLoc.y ][ newLoc.x ] = temp;
     this._player.location = newLoc;
+    if (this._darkness) {
+      this.moveDarkness(oldLoc, newLoc);
+    }
+  }
+
+  private moveDarkness(oldLoc: Location, newLoc: Location): void {
+    this.darken();
   }
 
   get board() {

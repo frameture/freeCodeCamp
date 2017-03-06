@@ -21,6 +21,10 @@ export class GameService {
     this.newGame();
   }
 
+  public toggleDarkness(): void {
+    this._dungeon.toggleDarkness();
+  }
+
   public movePlayer(direction: number): void {
     const oldLoc = this._player.location.copy();
     const newLoc = this._player.location.copy();
