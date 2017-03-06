@@ -9,8 +9,16 @@ export class GameService {
   private _dungeon: Dungeon;
 
   constructor() {
+    this.newGame();
+  }
+
+  private newGame(): void {
     this._player = new Player(0, 0);
     this._dungeon = new Dungeon(this._player);
+  }
+
+  public playerDied(): void {
+    this.newGame();
   }
 
   public movePlayer(direction: number): void {

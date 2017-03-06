@@ -14,6 +14,11 @@ export class GameInteractionService {
     this._player = this.gameService.player;
   }
 
+  public playerDied(): void {
+    this.gameService.playerDied();
+    this._player = this.gameService.player;
+  }
+
   public movePlayer(direction: number): void {
     this.gameService.movePlayer(direction);
   }
@@ -44,10 +49,6 @@ export class GameInteractionService {
 
   get health() {
     return this._player.health;
-  }
-
-  private playerDied(): void {
-    // TODO if hp === 0
   }
 
 }

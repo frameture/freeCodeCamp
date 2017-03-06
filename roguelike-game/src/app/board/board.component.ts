@@ -28,4 +28,8 @@ export class BoardComponent {
     this.gameInteractionService.movePlayer(direction);
   }
 
+  get playerAlive() {
+    return this.gameInteractionService.health !== 0;
+  }
+
 }

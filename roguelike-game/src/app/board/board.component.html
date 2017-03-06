@@ -1,5 +1,8 @@
-<table *ngIf="board" (click)="move($event)">
-  <tr *ngFor="let row of board">
-    <td *ngFor="let cell of row" [ngClass]="cell.className"></td>
-  </tr>
-</table>
+<div class="grid" *ngIf="playerAlive">
+  <table *ngIf="board">
+    <tr *ngFor="let row of board">
+      <td *ngFor="let cell of row" [ngClass]="cell.className"></td>
+    </tr>
+  </table>
+</div>
+<app-dead-player-info *ngIf="!playerAlive"></app-dead-player-info>
