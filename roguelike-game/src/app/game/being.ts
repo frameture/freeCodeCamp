@@ -6,5 +6,8 @@ export abstract class Being {
 
   public changeHealth(health: number): void {
     this.health += health;
+    if (this.health < 0) {
+      this.health = 0;
+    }
   }
 }

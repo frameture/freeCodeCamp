@@ -59,10 +59,14 @@ export class Player extends Being implements Identifiable {
     this.xp += xp;
     if (this.xp >= this.nextLevelXp) {
       this.xp -= this.nextLevelXp;
-      this.nextLevelXp = Math.round(this.nextLevelXp *= 1.62);
-      this.attack = Math.round(this.attack *= this.level);
+      this.nextLevelXp = this.factor(this.nextLevelXp);
+      this.attack = this.factor(this.attack);
       this.level++;
     }
+  }
+
+  private factor(toApply: number): number {
+    return Math.round(toApply *= 1.62);
   }
 
 }
