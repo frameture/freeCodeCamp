@@ -14,19 +14,4 @@ export class Location {
     this.y = y;
   }
 
-  public moveUp(): void {
-    this.x--;
-  }
-
-  public moveDown(): void {
-    this.x++;
-  }
-
-  public moveLeft(): void {
-    this.y--;
-  }
-
-  public moveRight(): void {
-    this.y++;
-  }
 }

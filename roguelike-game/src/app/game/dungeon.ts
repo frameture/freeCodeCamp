@@ -1,3 +1,4 @@
+import { Collectable, Health, Weapon } from './collectable';
 import { Identifiable } from './identifiable';
 import { Player } from './player';
 import { Enemy } from './enemy';
@@ -27,9 +28,26 @@ export class Dungeon {
   }
 
   public moveElement(oldLoc: Location, newLoc: Location): void {
-    const temp = this._board[ oldLoc.x ][ oldLoc.y ];
-    this._board[ oldLoc.x ][ oldLoc.y ] = { className: 'space' };
-    this._board[ newLoc.x ][ newLoc.y ] = temp;
+    const identity = this._board[ newLoc.y ][ newLoc.x ];
+    let collected: boolean;
+    console.log('identity', identity);
+
+    if (identity.className === 'block') {
+      return;
+    } else if (
+      identity instanceof Health ||
+      identity instanceof Weapon ||
+      identity instanceof Enemy) {
+      console.log('collectable');
+      collected = identity.action(this._player);
+    }
+    if (collected || identity.className === 'space') {
+      const temp = this._board[ oldLoc.y ][ oldLoc.x ];
+      this._board[ oldLoc.y ][ oldLoc.x ] = { className: 'space' };
+      this._board[ newLoc.y ][ newLoc.x ] = temp;
+      this._player.location = newLoc;
+    }
+    console.log(identity.className);
   }
 
   private renderBoard(): void {
@@ -42,7 +60,7 @@ export class Dungeon {
         let identity = this._legend.createIdentifiable(sign,
           this._player.level);
         if (identity.className === 'player') {
-          identity = this.switchPlayer(<Player>identity, i, j);
+          identity = this.switchPlayer(<Player>identity, j, i);
         }
         row.push(identity);
       }
