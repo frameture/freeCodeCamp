@@ -29,7 +29,7 @@ export class Health implements Identifiable, Collectable {
   }
 
   private setHealth(level: number): void {
-    this.health = Math.ceil(Math.random() * 50) * level;
+    this.health = Math.round(Math.random() * 50 * (level * .5));
   }
 
 }
@@ -38,15 +38,11 @@ export class Weapon implements Identifiable, Collectable {
 
   public weapon: string;
   public className: string;
+  private readonly WEAPONS: string[];
 
-  public static getRandomWeapon(): string {
-    const weapons = Object.keys(Player.WEAPONS);
-    const weapon = Math.floor(Math.random() * weapons.length);
-    return weapons[ weapon ];
-  };
-
-  constructor(weapon: string) {
-    this.weapon = weapon;
+  constructor(gridNumber: number) {
+    this.WEAPONS = Object.keys(Player.WEAPONS);
+    this.weapon = this.WEAPONS[ gridNumber ];
     this.className = 'weapon';
   }
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { GameService } from '../game.service';
+import { GameInteractionService } from '../game-interaction.service';
 
 import { HostListener } from '@angular/core';
 
@@ -11,19 +11,21 @@ import { HostListener } from '@angular/core';
 })
 export class BoardComponent {
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameInteractionService: GameInteractionService) { }
 
   get board() {
-    return this.gameService.board;
+    return this.gameInteractionService.board;
   }
 
   @HostListener('window:keydown', [ '$event' ])
   keyboardInput(event: KeyboardEvent) {
+    event.preventDefault();
+    event.stopPropagation();
     this.move(event.keyCode);
   }
 
   private move(direction: number): void {
-    this.gameService.movePlayer(direction);
+    this.gameInteractionService.movePlayer(direction);
   }
 
 }

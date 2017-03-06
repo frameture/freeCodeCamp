@@ -1,25 +1,29 @@
 table {
+  margin: auto;
   border-spacing: 0; }
   table td {
-    width: 1em;
-    height: 1em; }
+    width: 20px;
+    height: 20px; }
 
 .block {
-  background: black; }
+  background: gray; }
+
+.space {
+  background: white; }
 
 .health {
-  background: green;
-  border-radius: 50%; }
+  background: green; }
 
 .weapon {
-  background: #fa9600;
-  border-radius: 25%; }
+  background: #fa9600; }
 
 .enemy {
   background: red; }
 
 .player {
-  background: blue;
-  border-radius: 12%; }
+  background: blue; }
+
+.next {
+  background: purple; }
 
 /*# sourceMappingURL=board.component.css.map */

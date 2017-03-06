@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { GameService } from '../game.service';
+import { GameInteractionService } from '../game-interaction.service';
 
 @Component({
   selector: 'app-info',
@@ -9,30 +9,30 @@ import { GameService } from '../game.service';
 })
 export class InfoComponent {
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameInteractionService: GameInteractionService) { }
 
   get health() {
-    return this.gameService.health;
+    return this.gameInteractionService.health;
   }
 
   get weapon() {
-    return this.gameService.weapon;
+    return this.gameInteractionService.weapon;
   }
 
   get attack() {
-    return this.gameService.attack;
+    return this.gameInteractionService.attack;
   }
 
   get level() {
-    return this.gameService.level;
+    return this.gameInteractionService.level;
   }
 
   get nextLevel() {
-    return this.gameService.nextLevelXp;
+    return this.gameInteractionService.nextLevelXp;
   }
 
   get xp() {
-    return this.gameService.xp;
+    return this.gameInteractionService.xp;
   }
 
 }

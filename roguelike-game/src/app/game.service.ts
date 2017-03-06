@@ -32,7 +32,6 @@ export class GameService {
         break;
       default: return;
     }
-    console.log(direction, oldLoc, newLoc);
     this.move(oldLoc, newLoc);
   }
 

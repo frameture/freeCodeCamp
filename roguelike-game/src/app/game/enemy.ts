@@ -19,11 +19,11 @@ export class Enemy extends Being implements Identifiable, Collectable {
   }
 
   private setHealth(level: number): void {
-    this.health = Math.ceil(Math.random() * 50) * level;
+    this.health = Math.ceil(Math.random() * 25) * level;
   }
 
   private setAttack(level: number): void {
-    this.attack = Math.ceil(Math.random() * 25) * level;
+    this.attack = Math.ceil(Math.random() * 15) * level;
   }
 
 }

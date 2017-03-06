@@ -24,7 +24,67 @@ export class Dungeon {
   private loadGrid(gridNumber: number): void {
     this._gridNumber = gridNumber;
     this._grid = GRIDS[ this._gridNumber ];
+    this.scatterItems();
     this.renderBoard();
+  }
+
+  private scatterItems(): void {
+    const spaces: Location[] = this.getShuffledSpaces();
+    const itemsQuantity = Math.round(Math.random() * (spaces.length * .3));
+    const items: string[] = this.divideItems(itemsQuantity);
+
+    while (items.length) {
+      this.injectItem(items.pop(), spaces.pop());
+    }
+  }
+
+  private getShuffledSpaces(): Location[] {
+    const spaces = this.findSpaces();
+    this.shuffle(spaces);
+    return spaces;
+  }
+
+  private findSpaces(): Location[] {
+    const spaces = new Array<Location>();
+    for (let i = 0; i < this._grid.length; i++) {
+      for (let j = 0; j < this._grid[ 0 ].length; j++) {
+        const sign = this._grid[ i ][ j ];
+        if (sign === ' ') {
+          spaces.push(new Location(j, i));
+        }
+      }
+    }
+    return spaces;
+  }
+
+  private divideItems(quantity: number): string[] {
+    const items: string[] = [];
+    items.push('w');
+
+    while (items.length < quantity) {
+      const random = Math.random();
+      if (random < .35) {
+        items.push('h');
+      } else {
+        items.push('e');
+      }
+    }
+    return items;
+  }
+
+  private shuffle(items: Location[]): void {
+    for (let i = 0; i < items.length; i++) {
+      const random = Math.floor(Math.random() * items.length);
+      const temp = items[ random ];
+      items[ random ] = items[ 0 ];
+      items[ 0 ] = temp;
+    }
+  }
+
+  private injectItem(item: string, where: Location): void {
+    const row = this._grid[ where.y ];
+    this._grid[ where.y ] = row.slice(0, where.x) + item
+      + row.slice(where.x + 1);
   }
 
   private renderBoard(): void {
@@ -35,7 +95,7 @@ export class Dungeon {
       for (let j = 0; j < this._grid[ 0 ].length; j++) {
         const sign = this._grid[ i ][ j ];
         let id: Identifiable = this._legend.createIdentifiable(sign,
-          this._player.level);
+          this._player.level, this._gridNumber);
         if (id.className === 'player') {
           id = this.switchPlayer(<Player>id, j, i);
         }
@@ -53,6 +113,7 @@ export class Dungeon {
 
   public moveElement(oldLoc: Location, newLoc: Location): void {
     const id: Identifiable = this._board[ newLoc.y ][ newLoc.x ];
+    console.log(id);
     let collected: boolean;
 
     if (id.className === 'next') {

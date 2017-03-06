@@ -1,23 +1,26 @@
 table {
+    margin: auto;
     border-spacing: 0;
     td {
-        width: 1em;
-        height: 1em;
+        width: 20px;
+        height: 20px;
     }
 }
 
 .block {
-    background: black;
+    background: gray;
+}
+
+.space {
+    background: white;
 }
 
 .health {
     background: green;
-    border-radius: 50%;
 }
 
 .weapon {
     background: rgb(250, 150, 0);
-    border-radius: 25%;
 }
 
 .enemy {
@@ -26,5 +29,8 @@ table {
 
 .player {
     background: blue;
-    border-radius: 12%;
+}
+
+.next {
+    background: purple;
 }

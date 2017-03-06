@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { GameService } from './game.service';
+import { GameInteractionService } from './game-interaction.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,6 @@ import { GameService } from './game.service';
 })
 export class AppComponent {
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameInteractionService: GameInteractionService) { }
 
-  get diagnostic() {
-    return JSON.stringify(this.gameService);
-  }
 }
