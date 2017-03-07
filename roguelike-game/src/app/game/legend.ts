@@ -15,6 +15,7 @@ export class Legend {
       case 'w': return new Weapon(gridNumber);
       case 'p': return new Player(0, 0);
       case 'e': return new Enemy(level);
+      case 'b': return new Enemy(level, true);
     }
   }
 

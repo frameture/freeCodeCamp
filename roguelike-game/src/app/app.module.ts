@@ -10,13 +10,15 @@ import { GameService } from './game.service';
 import { InfoComponent } from './info/info.component';
 import { BoardComponent } from './board/board.component';
 import { DeadPlayerInfoComponent } from './dead-player-info/dead-player-info.component';
+import { GameWonComponent } from './game-won/game-won.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InfoComponent,
     BoardComponent,
-    DeadPlayerInfoComponent
+    DeadPlayerInfoComponent,
+    GameWonComponent
   ],
   imports: [
     BrowserModule,

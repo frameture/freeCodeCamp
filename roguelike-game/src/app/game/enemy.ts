@@ -7,11 +7,17 @@ export class Enemy extends Being implements Identifiable, Collectable {
 
   public identity: Identity;
 
-  constructor(level: number) {
+  constructor(level: number, isBoss?: boolean) {
     super();
-    this.identity = { isEnemy: true };
-    this.setHealth(level);
-    this.setAttack(level);
+    if (isBoss) {
+      this.identity = { isBoss: true };
+      this.setHealth(level * 3);
+      this.setAttack(level * 3);
+    } else {
+      this.identity = { isEnemy: true };
+      this.setHealth(level);
+      this.setAttack(level);
+    }
   }
 
   public action(player: Player): boolean {

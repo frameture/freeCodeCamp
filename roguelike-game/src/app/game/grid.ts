@@ -64,7 +64,7 @@ const GRIDS = [
     'ooo ooooooo        oooooooo      oo             o',
     'ooooooooooo        oo    oo      oo             o',
     'ooo   oooooooooo   oo    oo      oo      ooooo oo',
-    'ooo  p                                    oo    o',
+    'ooo  p                                    oob   o',
     'ooooooooooooooooooooooooooooooooooooooooooooooooo',
   ],
 ];

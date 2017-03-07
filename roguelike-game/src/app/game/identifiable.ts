@@ -10,6 +10,7 @@ export class Identity {
   public isWeapon?: boolean;
   public isPlayer?: boolean;
   public isEnemy?: boolean;
+  public isBoss?: boolean
   public isDark?: boolean;
 
   public static changeIsDark(id: Identity, option: boolean): void {

@@ -1,34 +1,52 @@
 .grid {
-  margin: 4em; }
-  .grid table {
+    margin: 4em;
+}
+
+.grid table {
     margin: auto;
-    border-spacing: 0; }
-    .grid table td {
-      width: 20px;
-      height: 20px; }
+    border-spacing: 0;
+}
+
+.grid table td {
+    width: 20px;
+    height: 20px;
+}
 
 .isBlock {
-  background: gray; }
+    background: gray;
+}
 
 .isSpace {
-  background: white; }
+    background: white;
+}
 
 .isHealth {
-  background: green; }
+    background: green;
+}
 
 .isWeapon {
-  background: #fa9600; }
+    background: #fa9600;
+}
 
 .isEnemy {
-  background: red; }
+    background: red;
+}
+
+.isBoss {
+    background: aqua;
+}
 
 .isPlayer {
-  background: blue; }
+    background: blue;
+}
 
 .isNext {
-  background: purple; }
+    background: purple;
+}
 
 .isDark {
-  background: black; }
+    background: black;
+}
+
 
 /*# sourceMappingURL=board.component.css.map */

@@ -17,6 +17,10 @@ export class BoardComponent {
     return this.gameInteractionService.board;
   }
 
+  get gameWon() {
+    return this.gameInteractionService.gameWon;
+  }
+
   @HostListener('window:keydown', [ '$event' ])
   keyboardInput(event: KeyboardEvent) {
     event.preventDefault();

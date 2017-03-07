@@ -1,4 +1,4 @@
-<div class="grid" *ngIf="playerAlive">
+<div class="grid" *ngIf="playerAlive && !gameWon">
   <table *ngIf="board">
     <tr *ngFor="let row of board">
       <td *ngFor="let cell of row" [ngClass]="cell.identity"></td>
@@ -6,3 +6,4 @@
   </table>
 </div>
 <app-dead-player-info *ngIf="!playerAlive"></app-dead-player-info>
+<app-game-won *ngIf="gameWon"></app-game-won>

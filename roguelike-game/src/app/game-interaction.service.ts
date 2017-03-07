@@ -19,12 +19,21 @@ export class GameInteractionService {
   }
 
   public playerDied(): void {
+    this.gameWon = false;
     this.gameService.playerDied();
     this._player = this.gameService.player;
   }
 
   public movePlayer(direction: number): void {
     this.gameService.movePlayer(direction);
+  }
+
+  get gameWon() {
+    return this._player.won;
+  }
+
+  set gameWon(won: boolean) {
+    this._player.won = won;
   }
 
   get board() {

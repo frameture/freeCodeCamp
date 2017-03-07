@@ -26,6 +26,7 @@ export class Player extends Being implements Identifiable {
   public level: number;
   public xp: number;
   public location: Location;
+  public won: boolean;
 
   constructor(x: number, y: number) {
     super();
@@ -37,6 +38,7 @@ export class Player extends Being implements Identifiable {
     this.nextLevelXp = 60;
     this.level = 1;
     this.xp = 0;
+    this.won = false;
   }
 
   public setWeapon(weapon: string): void {
@@ -53,10 +55,17 @@ export class Player extends Being implements Identifiable {
     enemy.changeHealth(- this.attack);
 
     if (enemy.health <= 0) {
+      if (enemy.identity.isBoss) {
+        this.gameWon();
+      }
       this.addXp(enemy.attack * this.level);
       return true;
     }
     return false;
+  }
+
+  private gameWon(): void {
+    this.won = true;
   }
 
   private addXp(xp: number): void {
