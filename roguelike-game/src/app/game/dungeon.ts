@@ -29,20 +29,22 @@ export class Dungeon {
       this.darken();
     } else {
       this._darkness = false;
-      this.lighten();
+      this.darken(true);
     }
   }
 
-  private darken() {
+  private darken(lighten?: boolean) {
     const r = this._darknessRadius;
     const row = this._player.location.y;
     const col = this._player.location.x;
 
-    console.log(`row: ${ row } col: ${ col }`);
-
     for (let i = 0; i < this._board.length; i++) {
       for (let j = 0; j < this._board[ 0 ].length; j++) {
         const cell = this._board[ i ][ j ];
+        if (lighten) {
+          Identity.changeIsDark(cell.identity, false);
+          continue;
+        }
         if (i > row + r || i < row - r || j > col + r || j < col - r) {
           Identity.changeIsDark(cell.identity, true);
         } else {
@@ -52,15 +54,12 @@ export class Dungeon {
     }
   }
 
-  private lighten(): void {
-    // TODO
-  }
-
   private loadGrid(gridNumber: number): void {
     this._gridNumber = gridNumber;
     this._grid = new Grid(this._gridNumber).grid;
     this.scatterItems();
     this.renderBoard();
+    this._darkness = false;
     this.toggleDarkness();
   }
 

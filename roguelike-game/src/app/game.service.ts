@@ -7,6 +7,7 @@ export class GameService {
 
   private _player: Player;
   private _dungeon: Dungeon;
+  private _darkness: boolean;
 
   constructor() {
     this.newGame();
