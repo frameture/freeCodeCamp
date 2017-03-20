@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
 import { ChartService } from './chart.service';
 import { DataService } from './data.service';
+import { TooltipComponent } from './tooltip/tooltip.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChartComponent
+    ChartComponent,
+    TooltipComponent
   ],
   imports: [
     BrowserModule,

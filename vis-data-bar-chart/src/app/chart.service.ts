@@ -23,6 +23,8 @@ export class ChartService {
     outerWidth: number,
     outerHeight: number,
     margin: Margin,
+    mouseOverHandler: (entry: DataEntry) => void,
+    mouseOutHandler: () => void
   ) {
     this.data = data;
     this.outerHeight = outerHeight;
@@ -47,12 +49,39 @@ export class ChartService {
       .enter().append('g')
       .attr('transform', (d) => `translate( ${ scaleX(d.quarter) + this.margin.left }, 0 )`);
 
+    chart.append('g')
+      .attr('class', 'tooltip')
+      .append('rect')
+      .attr('width', 150)
+      .attr('height', 30);
+    const tooltip = d3.select('.tooltip');
+    tooltip.append('text')
+      .text('sssss');
+
+
     bar.append('rect')
       .attr('class', 'bar')
       .attr('y', (d) => scaleY(d.value))
       .attr('width', scaleX.bandwidth())
       .attr('height', (d) => this.innerHeight - scaleY(d.value))
-      .on('mouseover', (d) => console.log('rect', d));
+      .on('mouseover', (d) => {
+        const event: MouseEvent = d3.event;
+        tooltip.select('text')
+          .text(this.toCurrency(d.value))
+          .attr('x', event.clientX - 100)
+          .attr('y', event.clientY - 150);
+
+        tooltip.transition()
+          .duration(200)
+          .style('opacity', 1);
+
+        tooltip.select('rect')
+          .attr('x', event.clientX - 105)
+          .attr('y', event.clientY - 170);
+      })
+      .on('mouseout', () => {
+        tooltip.transition().duration(200).style('opacity', 0);
+      });
 
     chart.append('g')
       .attr('class', 'axis x')
@@ -62,7 +91,14 @@ export class ChartService {
     chart.append('g')
       .attr('class', 'axis y')
       .attr('transform', `translate( ${ this.margin.left }, ${ this.margin.top } )`)
-      .call(axisY);
+      .call(axisY)
+      .append('text')
+      .attr('transform', `translate( ${ this.margin.left }, ${ this.margin.top } )`)
+      .attr('transform', 'rotate(-90)')
+      .attr('y', 6)
+      .attr('dy', '.71em')
+      .style('text-anchor', 'end')
+      .text('GDP in Billions $');
   }
 
   private calculateInnerSize() {
@@ -91,5 +127,10 @@ export class ChartService {
       }
     });
     return years;
+  }
+
+  private toCurrency(value: number): string {
+    return `$ ${ value } Billion`;
+
   }
 }

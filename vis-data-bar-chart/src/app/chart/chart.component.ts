@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataEntry } from '../data-entry';
 import { DataService } from '../data.service';
 import { Margin } from '../margin';
+import * as d3 from 'd3';
 
 @Component({
   selector: 'app-chart',
@@ -15,6 +16,9 @@ export class ChartComponent implements OnInit {
   private height: number;
   private margin: Margin;
   private data: DataEntry[];
+
+  dataEntry: DataEntry;
+  showTooltip: boolean;
 
   constructor(
     private chartService: ChartService,
@@ -39,12 +43,26 @@ export class ChartComponent implements OnInit {
       this.data,
       this.width,
       this.height,
-      this.margin
+      this.margin,
+      this.handleMouseOver,
+      this.handleMouseOut,
     );
   }
 
   private extractData(response) {
     this.data = response.map((e) => new DataEntry(e[ 0 ], e[ 1 ]));
+  }
+
+  private handleMouseOver(entry: DataEntry): void {
+    console.log(entry.quarter);
+    this.showTooltip = true;
+    this.dataEntry = entry;
+    // console.log('cmp', entry, d3.event);
+  }
+
+  private handleMouseOut(): void {
+    console.log('tooltip out');
+    this.showTooltip = false;
   }
 
 }
