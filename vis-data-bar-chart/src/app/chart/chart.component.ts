@@ -20,9 +20,9 @@ export class ChartComponent implements OnInit {
     private chartService: ChartService,
     private dataService: DataService
   ) {
-    this.margin = new Margin(20, 20, 40, 40);
-    this.width = 960;
-    this.height = 600;
+    this.margin = new Margin(10, 0, 30, 50);
+    this.width = 900;
+    this.height = 450;
   }
 
   ngOnInit() {
@@ -44,7 +44,6 @@ export class ChartComponent implements OnInit {
   }
 
   private extractData(response) {
-    console.log(response);
     this.data = response.map((e) => new DataEntry(e[ 0 ], e[ 1 ]));
   }
 
