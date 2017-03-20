@@ -52,7 +52,7 @@ export class ChartService {
     chart.append('g')
       .attr('class', 'tooltip')
       .append('rect')
-      .attr('width', 150)
+      .attr('width', 250)
       .attr('height', 30);
     const tooltip = d3.select('.tooltip');
     tooltip.append('text')
@@ -67,8 +67,8 @@ export class ChartService {
       .on('mouseover', (d) => {
         const event: MouseEvent = d3.event;
         tooltip.select('text')
-          .text(this.toCurrency(d.value))
-          .attr('x', event.clientX - 100)
+          .text(this.toCurrency(d))
+          .attr('x', event.clientX - 500)
           .attr('y', event.clientY - 150);
 
         tooltip.transition()
@@ -76,7 +76,7 @@ export class ChartService {
           .style('opacity', 1);
 
         tooltip.select('rect')
-          .attr('x', event.clientX - 105)
+          .attr('x', event.clientX - 505)
           .attr('y', event.clientY - 170);
       })
       .on('mouseout', () => {
@@ -129,8 +129,8 @@ export class ChartService {
     return years;
   }
 
-  private toCurrency(value: number): string {
-    return `$ ${ value } Billion`;
+  private toCurrency(data: DataEntry): string {
+    return `$ ${ data.value } Billion --- ${ data.quarter }`;
 
   }
 }
