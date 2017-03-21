@@ -44,6 +44,47 @@ export class ChartService {
     this.appendXAxis();
     this.appendYAxis();
     this.appendTitle();
+    this.appendLegend();
+  }
+
+  private appendLegend(): void {
+    let legend = this.chart.append('g')
+      .attr('transform', `translate(
+      ${ this.innerWidth - 6 * this.margin.left },
+      ${ this.innerHeight * .62 }
+    )`)
+      .attr('class', 'legend');
+
+    legend
+      .append('circle')
+      .attr('r', '5')
+      .attr('cx', '5')
+      .attr('cy', '5')
+      .style('fill', 'powderblue');
+
+    legend
+      .append('text')
+      .attr('transform', `translate(20, 9 )`)
+      .text('No doping allegations');
+
+    legend = this.chart.append('g')
+      .attr('transform', `translate(
+      ${ this.innerWidth - 6 * this.margin.left },
+      ${ this.innerHeight * .62 + 30 }
+    )`)
+      .attr('class', 'legend');
+
+    legend
+      .append('circle')
+      .attr('r', '5')
+      .attr('cx', '5')
+      .attr('cy', '5')
+      .style('fill', 'steelblue');
+
+    legend
+      .append('text')
+      .attr('transform', `translate(20, 9 )`)
+      .text('Riders with doping allegations');
   }
 
   private appendScores(): void {
@@ -51,7 +92,8 @@ export class ChartService {
       .append('circle')
       .attr('r', '5')
       .attr('cx', '5')
-      .attr('cy', '5');
+      .attr('cy', '5')
+      .style('fill', (ele) => this.determineColor(ele));
 
     this.score
       .append('text')
@@ -108,6 +150,14 @@ export class ChartService {
       )`);
   }
 
+  private determineColor(ele: any): string {
+    if (ele[ 'Doping' ]) {
+      return 'steelblue';
+    } else {
+      return 'powderblue';
+    }
+  }
+
   private setChart(): void {
     this.chart = d3.select(this.selector)
       .attr('width', this.outerWidth)
@@ -132,12 +182,23 @@ export class ChartService {
 
   }
 
+  private getTime(seconds: number): string {
+    let minutes = 0;
+
+    while (seconds >= 60) {
+      seconds -= 60;
+      minutes++;
+    }
+
+    return `${ minutes }:${ seconds }`;
+  }
+
   private getXAxisScale(): ScaleBand<string> {
     const reduced = [];
     this.data.forEach((ele) => {
       const time = parseFloat(ele[ 'Seconds' ]);
       if (time % 15 === 0) {
-        reduced.push(time.toString());
+        reduced.push(this.getTime(time));
       }
     });
 
