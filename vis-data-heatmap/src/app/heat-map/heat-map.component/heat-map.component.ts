@@ -23,7 +23,7 @@ export class HeatMapComponent implements OnInit {
   ) {
     this.width = 800;
     this.height = 500;
-    this.margin = new Margin(20, 60, 40, 20);
+    this.margin = new Margin(20, 60, 60, 80);
   }
 
   ngOnInit() {

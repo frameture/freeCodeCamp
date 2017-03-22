@@ -14,13 +14,6 @@ export class DataService {
 
   constructor(private http: Http) { }
 
-  getBaseTemperature(): Observable<number> {
-    if (!this.body) {
-      this.getData();
-    }
-    return Observable.of(this.body[ 'baseTemperature' ]);
-  }
-
   getData(): Observable<Data[]> {
     return this.http.get(this.url)
       .map(this.extractData);
