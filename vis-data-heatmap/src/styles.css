@@ -1,3 +1,22 @@
 body {
     text-align: center;
 }
+
+svg {
+    margin: 20px;
+}
+
+.heat-map .axis.y line,
+.heat-map .axis.y path {
+    stroke: none;
+}
+
+.title {
+    fill: #000;
+    font-size: 20px;
+}
+
+.legend-axis path,
+.legend-axis line {
+    stroke: none;
+}
