@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    text-align: center;
+    cursor: default;
+}
+
+.score {
+    cursor: pointer;
+}
+
+.score:hover {
+    fill: powderblue;
+}
+
+circle {
+    fill: deepskyblue;
+}
+
+.axis text {
+    text-anchor: end;
+    font-size: 10px;
+}
+
+.score text {
+    text-anchor: start;
+    font-size: 10px;
+}
+
+.chart .title {
+    fill: black;
+    font-size: 12px;
+    text-anchor: end;
+}
+
+.legend text {
+    font-size: 10px;
+}
+
+.tooltip text {
+    fill: steelblue;
+    font-size: 10px;
+}

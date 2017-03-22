@@ -7,21 +7,21 @@ import { Selection, ScaleBand, ScaleLinear } from 'd3';
 @Injectable()
 export class ChartService {
 
-  private selector: string;
+  private data: Array<any>;
   private innerWidth: number;
   private innerHeight: number;
   private outerWidth: number;
   private outerHeight: number;
   private margin: Margin;
-  private data: Array<any>;
+  private selector: string;
 
   private chart;
   private score;
+  private tooltip;
   private xAxis;
   private xScale: ScaleBand<string>;
   private yAxis;
   private yScale: ScaleLinear<number, number>;
-  private tooltip;
 
   createChart(
     selector: string,
@@ -48,7 +48,6 @@ export class ChartService {
     this.appendLegend();
     this.appendTooltip();
     this.registerTooltipHandlers();
-
   }
 
   private appendLegend(): void {
