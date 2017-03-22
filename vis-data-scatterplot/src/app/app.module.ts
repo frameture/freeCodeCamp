@@ -4,17 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { DataService } from './data.service';
+import { ScatterPlotComponent } from './scatter-plot/scatter-plot.component';
+import { ChartService } from './chart.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ScatterPlotComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    ChartService,
+    DataService
+  ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
