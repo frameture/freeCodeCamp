@@ -21,6 +21,7 @@ export class ChartService {
   private xScale: ScaleBand<string>;
   private yAxis;
   private yScale: ScaleLinear<number, number>;
+  private tooltip;
 
   createChart(
     selector: string,
@@ -45,6 +46,9 @@ export class ChartService {
     this.appendYAxis();
     this.appendTitle();
     this.appendLegend();
+    this.appendTooltip();
+    this.registerTooltipHandlers();
+
   }
 
   private appendLegend(): void {
@@ -117,6 +121,31 @@ export class ChartService {
       .text('Place');
   }
 
+  private appendTooltip(): void {
+    this.tooltip = this.chart.append('g')
+      .attr('transform', `translate(
+      ${ this.innerWidth - 6 * this.margin.left },
+      ${ this.innerHeight * .75 }
+    )`)
+      .attr('class', 'tooltip')
+      .style('opacity', 0);
+
+    this.tooltip.append('rect')
+      .attr('width', '170')
+      .attr('height', '50')
+      .style('fill', 'powderblue');
+
+    this.tooltip
+      .append('text')
+      .attr('class', 'name')
+      .attr('transform', `translate(20, 15 )`);
+
+    this.tooltip
+      .append('text')
+      .attr('class', 'year')
+      .attr('transform', `translate(20, 40 )`);
+  }
+
   private appendXAxis(): void {
     const axis = d3.axisBottom(this.getXAxisScale());
 
@@ -158,6 +187,31 @@ export class ChartService {
     }
   }
 
+  private getTime(seconds: number): string {
+    let minutes = 0;
+
+    while (seconds >= 60) {
+      seconds -= 60;
+      minutes++;
+    }
+
+    return `${ minutes }:${ seconds }`;
+  }
+
+  private getXAxisScale(): ScaleBand<string> {
+    const reduced = [];
+    this.data.forEach((ele) => {
+      const time = parseFloat(ele[ 'Seconds' ]);
+      if (time % 15 === 0) {
+        reduced.push(this.getTime(time));
+      }
+    });
+
+    return d3.scaleBand()
+      .domain(reduced.reverse())
+      .range([ 0, this.innerWidth ]);
+  }
+
   private setChart(): void {
     this.chart = d3.select(this.selector)
       .attr('width', this.outerWidth)
@@ -182,29 +236,27 @@ export class ChartService {
 
   }
 
-  private getTime(seconds: number): string {
-    let minutes = 0;
 
-    while (seconds >= 60) {
-      seconds -= 60;
-      minutes++;
-    }
-
-    return `${ minutes }:${ seconds }`;
+  private registerTooltipHandlers(): void {
+    this.score.on('mouseover', (ele) => this.showHideTooltip(ele));
+    this.score.on('mouseout', (ele) => this.showHideTooltip());
   }
 
-  private getXAxisScale(): ScaleBand<string> {
-    const reduced = [];
-    this.data.forEach((ele) => {
-      const time = parseFloat(ele[ 'Seconds' ]);
-      if (time % 15 === 0) {
-        reduced.push(this.getTime(time));
-      }
-    });
+  private showHideTooltip(data?: any): void {
+    const opacity = data ? 1 : 0;
 
-    return d3.scaleBand()
-      .domain(reduced.reverse())
-      .range([ 0, this.innerWidth ]);
+    if (data) {
+      this.tooltip.select('.name')
+        .text(data[ 'Name' ] + ':' + data[ 'Nationality' ]);
+      this.tooltip.select('.year')
+        .text('Year: ' + data[ 'Year' ] + ', Time: ' + data[ 'Time' ]);
+    }
+
+    this.tooltip
+      .transition()
+      .delay(100)
+      .duration(200)
+      .style('opacity', opacity);
   }
 
 }
