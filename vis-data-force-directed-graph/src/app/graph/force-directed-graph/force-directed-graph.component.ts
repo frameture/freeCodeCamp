@@ -12,8 +12,8 @@ import { GraphService } from '../graph.service';
 export class ForceDirectedGraphComponent implements OnInit {
 
   private svgSelector = '.graph';
-  private height = 500;
-  private width = 600;
+  private height = 600;
+  private width = 900;
   private countries: Country[];
   private links: Link[];
 
