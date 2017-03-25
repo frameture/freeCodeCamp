@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataService } from '../data.service';
 import { GlobeService } from './globe.service';
 
 @Component({
@@ -9,27 +8,26 @@ import { GlobeService } from './globe.service';
 })
 export class GlobeComponent implements OnInit {
 
-  selector = '.globe';
-  width = 1600;
-  height = 1200;
-  data: JSON;
+  selector: string;
+  width: number;
+  height: number;
 
-  constructor(
-    private dataService: DataService,
-    private globeService: GlobeService
-  ) { }
+  constructor(private globeService: GlobeService) {
+    this.selector = '.globe';
+    this.width = 1200;
+    this.height = 600;
+  }
 
   ngOnInit() {
-    this.dataService.getData()
-      .subscribe((data) => {
-        this.data = data;
-        this.globeService.createGlob(
-          this.selector,
-          this.width,
-          this.height,
-          this.data
-        );
-      });
+    this.creteGlobe();
+  }
+
+  private creteGlobe(): void {
+    this.globeService.appendGlobe(
+      this.selector,
+      this.width,
+      this.height,
+    );
   }
 
 }

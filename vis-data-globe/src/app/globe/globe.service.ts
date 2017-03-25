@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 
 import * as d3 from 'd3';
+import * as topojsonModule from './topojson';
+
+import { DataService } from '../data.service';
 
 @Injectable()
 export class GlobeService {
 
-  private data: JSON;
+  private topojson: any = topojsonModule;
+
+  private map: any;
+  private meteorite: any;
   private width: number;
   private height: number;
   private selector: string;
@@ -15,39 +21,39 @@ export class GlobeService {
   private path;
   private projection;
 
-  createGlob(
+  constructor(private dataService: DataService) { }
+
+  appendGlobe(
     selector: string,
     width: number,
-    height: number,
-    data: JSON
+    height: number
   ): void {
     this.selector = selector;
     this.width = width;
     this.height = height;
-    this.data = data;
 
+    this.createGlobe();
+  }
+
+  private createGlobe(): void {
+    this.getData();
+    this.setSVG();
     this.setProjection();
     this.setPath();
-    this.setSVG();
-    this.setGraticule();
-
-    // this.bindData();
-    // this.appendCells();
-    // this.appendTitles();
   }
 
   private setGraticule(): void {
     this.graticule = this.svg.selectAll('path')
-      .data(this.data[ 'features' ])
-      .enter().append('path')
-      .attr('d', d3.geoPath());
+      .data(this.topojson.feature(this.map, this.map.objects.countries).features)
+      .enter()
+      .append('path')
+      .attr('fill', '#95E1D3')
+      .attr('stroke', '#266D98')
+      .attr('d', this.path);
   }
 
   private setProjection(): void {
-    this.projection = d3.geoEquirectangular()
-      //  .scale(75)
-      // .translate([ this.width / 2, this.height / 2 ])
-      .rotate([ -180, 0 ]);
+    this.projection = d3.geoEquirectangular();
   }
 
   private setPath(): void {
@@ -58,6 +64,17 @@ export class GlobeService {
     this.svg = d3.select(this.selector)
       .attr('width', this.width)
       .attr('height', this.height);
+  }
+
+  private getData(): void {
+    this.dataService.getMeteoriteData()
+      .subscribe(data => this.meteorite = data);
+
+    this.dataService.getMapData()
+      .subscribe((data) => {
+        this.map = data;
+        this.setGraticule();
+      });
   }
 
 }
