@@ -14,8 +14,8 @@ export class GlobeComponent implements OnInit {
 
   constructor(private globeService: GlobeService) {
     this.selector = '.globe';
-    this.width = 1200;
-    this.height = 600;
+    this.width = 3000;
+    this.height = 1600;
   }
 
   ngOnInit() {
