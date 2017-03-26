@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { GlobeModule } from 'app/globe/globe.module';
 import { DataService } from 'app/data.service';
+import { GlobeModule } from 'app/globe/globe.module';
 
 @NgModule({
   declarations: [ AppComponent ],
