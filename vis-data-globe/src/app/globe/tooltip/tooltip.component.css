@@ -1,0 +1,7 @@
+.container {
+    position: absolute;
+    padding: 10px;
+    border-radius: 3px;
+    background: rgb(200, 100, 150);
+    color: white;
+}

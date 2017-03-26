@@ -1,0 +1,7 @@
+<div class="container" *ngIf="show && meteorite" appMove [position]="position">
+  <h5>Name: {{meteorite.name}}</h5>
+  <h5>Mass: {{meteorite.mass}}</h5>
+  <h5>Year: {{meteorite.year}}</h5>
+  <h5>Recclass: {{meteorite.recclass}}</h5>
+  <h5>Fell: {{meteorite.fall === 'Fell' ? true: false}}</h5>
+</div>

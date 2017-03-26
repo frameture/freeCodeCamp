@@ -35,6 +35,19 @@ export class GlobeService {
     this.createGlobe();
   }
 
+  registerTooltipHandler(
+    mouseover: (data, event) => void,
+    mouseout: () => void
+  ): void {
+    if (!this.meteorite) {
+      setInterval(() => this.registerTooltipHandler(mouseover, mouseout), 10);
+      return;
+    }
+
+    this.meteorite
+      .on('mouseover', d => mouseover(d, d3.event))
+      .on('mouseout', d => mouseout());
+  }
 
   private createGlobe(): void {
     this.getData();
@@ -56,9 +69,7 @@ export class GlobeService {
   private getMasses(): number[] {
     return this.meteoriteData.features
       .map(ele => ele.properties.mass)
-      .sort((a, b) => {
-        return a - b;
-      })
+      .sort((a, b) => a - b)
       .filter(mass => mass);
   }
 
@@ -85,14 +96,12 @@ export class GlobeService {
       .data(this.meteoriteData.features.filter(e => e.geometry))
       .enter().append('circle')
       .attr('r', e => this.radius(e.properties.mass) * 2)
-      // color    .attr('fill', 'red')
       .attr('transform', d => {
         return `translate( ${ this.projection([
           d.geometry.coordinates[ 0 ],
           d.geometry.coordinates[ 1 ]
         ]) })`;
-      })
-      .on('mouseover', d => console.log(d.properties));
+      });
   }
 
   private setProjection(): void {
@@ -115,7 +124,6 @@ export class GlobeService {
     else if (value < 2000000) { return 25; }
     else { return 40; }
   }
-
 
   private setSVG(): void {
     this.svg = d3.select(this.selector)
