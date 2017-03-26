@@ -21,7 +21,7 @@ export class TooltipComponent implements OnInit {
 
   private onMouseOver(data: any, event: any): void {
     this.meteorite = data.properties;
-    this.position = { x: event.clientX + 'px', y: event.clientY + 'px' };
+    this.position = { x: event.layerX + 'px', y: event.layerY + 'px' };
     this.show = true;
   }
 
