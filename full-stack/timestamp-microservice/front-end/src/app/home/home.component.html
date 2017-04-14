@@ -1,3 +1,18 @@
+<h1>Timestamp Microservice</h1>
+<h3>Usage:</h3>
 <p>
-  home works!
+  Timestamp microservice takes an argument through its URL and outputs a JSON object with two properties:
+  <b>unix</b> and
+  <b>natural</b>
 </p>
+<p>
+  The argument might be an unix number which will be converted into natural representation of a date or a string with normal
+  date representation that will be converted to unix number.
+</p>
+
+<h5>Examples of URL : </h5>
+<code>http://localhost:8080/1450137600</code>
+<code>http://localhost:8080/December%2015,%202015</code>
+
+<h5>Output : </h5>
+<code>{{ '{' }} "unix": 1450137600, "natural": "December 15 2015" {{ '}' }}</code>
