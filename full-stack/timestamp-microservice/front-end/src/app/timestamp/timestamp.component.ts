@@ -1,17 +1,30 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
+
+import { BackendService } from '../backend.service';
+import { Timestamp } from 'app/timestamp';
 
 @Component({
-  selector: 'tm-timestamp',
-  templateUrl: './timestamp.component.html',
-  styleUrls: [ './timestamp.component.scss' ]
+  template: '{{ timestamp | json }}',
 })
 export class TimestampComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  timestamp: Timestamp;
+
+  constructor(
+    private be: BackendService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    const date = this.route.params.subscribe(params => console.log('date', params[ 'date' ]));
+    this.route.params
+      .switchMap(params => this.be.getTimestamp(params[ 'date' ]))
+      .subscribe(res => this.extractTimestamp(res));
+  }
+
+  private extractTimestamp(response) {
+    this.timestamp = <Timestamp>JSON.parse(response._body);
   }
 
 }
