@@ -8,7 +8,7 @@ app.use(logger('dev'));
 app.use(cors());
 
 app.get('/:date', requestHandler);
-app.listen('8080');
+app.listen(process.env.PORT || 8080);
 
 function requestHandler(req: express.Request, res): void {
   let param = req.params[ 'date' ];
