@@ -5,6 +5,7 @@ const app = express();
 
 app.use(logger('short'));
 app.get('/', requestHandler);
+app.listen(process.env.PORT || 8080);
 
 function requestHandler(req: express.Request, res): void {
   console.log('headers', req.headers);
