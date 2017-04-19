@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 1em auto;
+    text-align: center;
+    
+    .title {
+        width: 50%;
+        height: 90px;
+        margin: 2em auto;
+        padding: 1.5em;
+        text-align: center;
+        background: powderblue;
+        border-radius: 4px;
+        
+        h1 {
+            color: #666;
+            vertical-align: middle;
+        }
+    }
+}
