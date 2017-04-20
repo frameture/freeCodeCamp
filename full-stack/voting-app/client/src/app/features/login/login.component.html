@@ -19,6 +19,7 @@
     </div>
     <button class="btn btn-danger" type="button" (click)="onSubmit()">Login</button>
     <button class="btn btn-info" type="button" (click)="onReset()">Reset</button>
+    <p>No account: <a (click)="onNavigateTo('/sign-up')">Sign Up</a></p>
   </form>
   
   <button *ngIf="isLoggedIn()" (click)="onLogout()">Log out</button>

@@ -29,6 +29,10 @@ export class LoginComponent implements OnInit {
     this.userService.logout();
   }
 
+  onNavigateTo(path: string): void {
+    this.router.navigate([ path ]);
+  }
+
   onReset(): void {
     this.resetForm();
   }
