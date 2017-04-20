@@ -8,23 +8,24 @@
     <div>
       <label> Username:
       <input class="form-control" type="text"  name="username"       
-             formControlName="username">
+             formControlName="username" required>
     </label>
     </div>
     <div>
       <label>Password:
       <input class="form-control" type="password" name="password" 
-             formControlName="password">
+             formControlName="password" required>
     </label>
     </div>
     <div>
       <label>Re-enter password:
       <input class="form-control" type="password" name="rePassword" 
-             formControlName="rePassword">
+             formControlName="rePassword" required>
     </label>
     </div>
+    <p *ngIf="errorInfo">{{errorInfo}}</p>
     <button class="btn btn-danger" type="button" 
-           (click)="onSubmit()">Sign Up</button>
+           (click)="onSubmit()" [disabled]="!form.valid">Sign Up</button>
     <button class="btn btn-info" type="button" 
            (click)="onReset()">Reset</button>
   </form>
