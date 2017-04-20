@@ -1,3 +1,20 @@
-<p>
-  home works!
-</p>
+<h1>Welcome to the Voting App</h1>
+
+<div *ngIf="!isLoggedIn()">
+  <h3>You are not logged in.
+    <a (click)="onNavigateTo('/login')">Log in</a>
+  </h3>
+  <h3>If You don't yet have an account -
+    <a (click)="onNavigateTo('/sign-up')">Sign up</a>
+  </h3>
+</div>
+
+<div *ngIf="isLoggedIn()">
+  <h2>Welcome {{user}}!</h2>
+  <h3>To see all polls 
+    <button (click)="onNavigateTo('/polls')">Click here</button>
+  </h3>
+  <h3>To see your polls 
+    <button (click)="onNavigateTo('/user/polls')">Click here</button>
+  </h3>
+</div>
