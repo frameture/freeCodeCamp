@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: 'app/features/login/login.module.ts#LoginModule'
   },
+  {
+    path: 'user',
+    loadChildren: 'app/features/user/user.module.ts#UserModule'
+  },
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent }
 ];
