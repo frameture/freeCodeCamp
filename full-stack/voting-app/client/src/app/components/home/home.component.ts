@@ -1,5 +1,5 @@
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
 
 import { UserService } from '../../services/user.service';
 
@@ -8,9 +8,10 @@ import { UserService } from '../../services/user.service';
   templateUrl: './home.component.html',
   styleUrls: [ './home.component.scss' ]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   info: string;
+  username: string;
 
   constructor(
     private userService: UserService,
@@ -21,9 +22,14 @@ export class HomeComponent {
     this.router.navigate([ path ]);
   }
 
+  ngOnInit(): void {
+    if (this.isLoggedIn()) {
+      this.username = this.userService.getUsername();
+    }
+  }
+
   private isLoggedIn(): boolean {
     return this.userService.isLoggedIn();
   }
-
 
 }

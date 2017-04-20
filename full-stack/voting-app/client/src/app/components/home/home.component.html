@@ -10,11 +10,14 @@
 </div>
 
 <div *ngIf="isLoggedIn()">
-  <h2>Welcome {{user}}!</h2>
+  <h2>Welcome <span>{{username}}</span>!</h2>
   <h3>To see all polls 
     <button (click)="onNavigateTo('/polls')">Click here</button>
   </h3>
   <h3>To see your polls 
     <button (click)="onNavigateTo('/user/polls')">Click here</button>
+  </h3>
+  <h3>To add new poll
+    <button (click)="onNavigateTo('/user/new-poll')">Click here</button>
   </h3>
 </div>
