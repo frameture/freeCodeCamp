@@ -4,7 +4,7 @@
      <h1>Sign Up to the Voting App</h1>
   </div>
   
-  <form [formGroup]="form">
+  <form *ngIf="!userService.isLoggedIn()" [formGroup]="form">
     <div>
       <label> Username:
       <input class="form-control" type="text"  name="username"       
@@ -29,4 +29,8 @@
     <button class="btn btn-info" type="button" 
            (click)="onReset()">Reset</button>
   </form>
+  
+  <div *ngIf="userService.isLoggedIn()">
+    <h1>Already signed up</h1>
+  </div>
 </div>
