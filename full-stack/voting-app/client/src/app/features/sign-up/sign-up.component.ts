@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { SignUpService } from 'app/services/sign-up.service';
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './sign-up.component.html',
+  styleUrls: [ './sign-up.component.scss' ]
 })
-export class LoginComponent implements OnInit {
+export class SignUpComponent implements OnInit {
 
   form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private signUpService: SignUpService
   ) { }
 
   ngOnInit() {

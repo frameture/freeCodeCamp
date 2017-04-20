@@ -5,8 +5,11 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { BackendService } from './services/backend.service';
+import { UserService } from './services/user.service';
+import { SignUpService } from './services/sign-up.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,11 @@ import { HomeComponent } from './components/home/home.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    BackendService,
+    UserService,
+    SignUpService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
