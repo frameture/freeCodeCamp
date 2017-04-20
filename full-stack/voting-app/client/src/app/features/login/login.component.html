@@ -20,6 +20,7 @@
     <button class="btn btn-danger" type="button" (click)="onSubmit()" 
            [disabled]=!form.valid>Login</button>
     <button class="btn btn-info" type="button" (click)="onReset()">Reset</button>
+    <p *ngIf="errorInfo">{{errorInfo}}</p>
     <p>No account: <a (click)="onNavigateTo('/sign-up')">Sign Up</a></p>
   </form>
   

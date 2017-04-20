@@ -12,6 +12,7 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginComponent implements OnInit {
 
+  errorInfo: string;
   form: FormGroup;
   title: string;
 
@@ -46,6 +47,10 @@ export class LoginComponent implements OnInit {
     this.userService
       .login(user)
       .subscribe((res) => {
+        if (!res.success) {
+          this.errorInfo = res.message;
+          return;
+        }
         this.resetForm();
         this.onNavigateTo('/');
       });
@@ -78,6 +83,7 @@ export class LoginComponent implements OnInit {
   }
 
   private resetForm(): void {
+    this.errorInfo = '';
     this.form.reset({
       username: '',
       password: ''
