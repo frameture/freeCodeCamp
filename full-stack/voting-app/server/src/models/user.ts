@@ -7,4 +7,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true }
 });
 
+userSchema.methods.checkPassword = function (guess: string) {
+  return guess === this.password;
+}
+
 UserModel = mongoose.model('User', userSchema, 'users');
