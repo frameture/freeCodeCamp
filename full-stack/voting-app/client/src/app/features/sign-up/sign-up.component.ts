@@ -35,14 +35,16 @@ export class SignUpComponent implements OnInit {
   private createForm(): void {
     this.form = this.fb.group({
       username: '',
-      password: ''
+      password: '',
+      rePassword: ''
     });
   }
 
   private resetForm(): void {
     this.form.reset({
       username: '',
-      password: ''
+      password: '',
+      rePassword: ''
     });
   }
 
