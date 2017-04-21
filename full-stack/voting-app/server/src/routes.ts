@@ -4,9 +4,32 @@ import { PollModel } from './models/poll';
 
 export const router = express.Router();
 
+router.post('/server/add-poll', (req, res) => {
+  const data = req.body.data;
+  
+  PollModel.findOne({
+    username: data.username,
+    pollName: data.poll.name
+  }, (err, doc) => {
+    if (err) { return console.error(err); }
+    if (doc) {
+      return res.json({ message: 'Already have a poll with this name' });
+    }
+    
+    const polls = new PollModel({
+      username: data.username,
+      pollName: data.poll.name,
+      options: data.poll.options
+    }).save((err, doc) => {
+      if (err) { return console.error(err); }
+      res.end();
+    });
+  })
+})
+
 router.post('/server/login', (req, res) => {
   const data = req.body.data;
-  console.log('/server/login', data);
+
   UserModel.findOne({ username: data.username }, (err, doc: any) => {
     if (err) { return res.status(500).end(); }
     if (!doc) { return res.json({ message: 'No user with this username' }); }
