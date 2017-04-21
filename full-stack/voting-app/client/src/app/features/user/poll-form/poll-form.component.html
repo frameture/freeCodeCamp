@@ -1,0 +1,27 @@
+<div class="container">
+  <form [formGroup]="form">
+    <div class="well">
+      <label>Poll name:
+        <input class="form-control" type="text" name="name"     
+               formControlName="pollName" required>
+      </label>
+    </div>
+    <div formArrayName="options">
+      <div class="well" *ngFor="let option of getOptions().controls; 
+           let i = index">
+        <label>Option # {{i + 1}} 
+          <input [formControlName]="i" class="form-control" type="text"
+                 required name="option">
+        </label>
+      </div>
+    </div>
+    <p *ngIf=errorInfo>{{errorInfo}}</p>
+    
+    <div class="new-option">
+      <button class="btn btn-info" type="button" (click)="onNewOption()">Add another option</button>
+      <button class="btn btn-default" type="button" (click)="onRemoveOption()">Remove last option</button>
+    </div>
+    <button type="button" class="btn btn-primary" (click)=onSubmit() [disabled]="!form.valid">Submit</button>
+    <button type="button" class="btn btn-danger" (click)=onReset()>Reset</button>
+  </form>
+</div>

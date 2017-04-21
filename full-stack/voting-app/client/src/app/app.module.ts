@@ -10,6 +10,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { BackendService } from './services/backend.service';
 import { UserService } from './services/user.service';
 import { SignUpService } from './services/sign-up.service';
+import { PollService } from './services/poll.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SignUpService } from './services/sign-up.service';
   providers: [
     BackendService,
     UserService,
-    SignUpService
+    SignUpService,
+    PollService
   ],
   bootstrap: [ AppComponent ]
 })
