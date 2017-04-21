@@ -6,23 +6,24 @@ export const router = express.Router();
 
 router.post('/server/add-poll', (req, res) => {
   const data = req.body.data;
-  
+
   PollModel.findOne({
     username: data.username,
     pollName: data.poll.name
   }, (err, doc) => {
     if (err) { return console.error(err); }
     if (doc) {
-      return res.json({ message: 'Already have a poll with this name' });
+      return res
+        .json({ message: 'You already have a poll with this name.' });
     }
-    
-    const polls = new PollModel({
+
+    new PollModel({
       username: data.username,
       pollName: data.poll.name,
       options: data.poll.options
-    }).save((err, doc) => {
+    }).save((err) => {
       if (err) { return console.error(err); }
-      res.end();
+      res.json({ success: true });
     });
   })
 })
