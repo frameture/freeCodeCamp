@@ -4,6 +4,23 @@ import { PollModel } from './models/poll';
 
 export const router = express.Router();
 
+router.get('/server/polls/:username', (req, res) => {
+  const username = req.params.username;
+  PollModel.find({ username }, (err, docs) => {
+    if (err) { return console.error(err); }
+    res.json(docs);
+  });
+  
+});
+
+router.get('/server/polls', (req, res) => {
+  PollModel.find((err, docs) => {
+    if (err) { return console.error(err); }
+    res.json(docs);
+  });
+  
+});
+
 router.post('/server/add-poll', (req, res) => {
   const data = req.body.data;
 
