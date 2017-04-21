@@ -17,7 +17,19 @@ export class PollService {
   addPoll(poll: Poll): Observable<any> {
     return this.be
       .addPoll(poll, this.us.getUsername())
-      .map(res =>  res.json());
+      .map(res => res.json());
+  }
+
+  getUserPolls(): Observable<Poll[]> {
+    return this.be
+      .getUserPolls(this.us.getUsername())
+      .map(res => res.json() as Poll[]);
+  }
+
+  getPolls(): Observable<Poll[]> {
+    return this.be
+      .getPolls()
+      .map(res => res.json() as Poll[]);
   }
 
 }

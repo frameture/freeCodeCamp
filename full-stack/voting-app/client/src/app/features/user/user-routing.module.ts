@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { UserComponent } from 'app/features/user/user.component';
 import { UserPollsComponent } from 'app/features/user/user-polls/user-polls.component';
-import { PollFormComponent } from "app/features/user/poll-form/poll-form.component";
+import { PollFormComponent } from 'app/features/user/poll-form/poll-form.component';
 
 const routes: Routes = [
   {

@@ -17,6 +17,14 @@ export class BackendService {
     return this.http.post(this.URL + '/add-poll', { data });
   }
 
+  getUserPolls(username: string): Observable<any> {
+    return this.http.get(this.URL + '/polls/' + username);
+  }
+
+  getPolls(): Observable<any> {
+    return this.http.get(this.URL + '/polls/');
+  }
+
   register(data: User): Observable<any> {
     return this.http.post(this.URL + '/sign-up', { data });
   }

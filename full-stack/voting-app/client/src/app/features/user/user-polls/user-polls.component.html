@@ -1,3 +1,10 @@
-<p>
-  user-polls works!
-</p>
+<h2 *ngIf="!polls?.length">Haven't created any polls yet.</h2>
+
+<div *ngIf="polls">
+  <div *ngFor="let poll of polls">
+    {{poll | json}}
+  </div>
+</div>
+
+<button class="btn btn-primary" (click)="onNavigateTo('/user/new-poll')">
+  Add new poll</button>
