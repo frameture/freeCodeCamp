@@ -18,11 +18,13 @@ const pollSchema = new mongoose.Schema({
 
 pollSchema.methods.addVote = function (data, ip?: string): boolean {
   let vote;
+  console.log('votes', this.votes);
   for (let i = 0; i < this.votes.length; i++) {
     vote = this.votes[ i ];
-    if (data.postedBy === 'username' &&
+    if (vote.postedBy === 'username' &&
         data.username === this.username) { return false; }
-    if (ip === this.ip) { return false; }
+    if (vote.postedBy === 'ip' &&
+        ip === vote.ip) { return false; }
   }
 
   this.votes.push({
@@ -31,10 +33,8 @@ pollSchema.methods.addVote = function (data, ip?: string): boolean {
     username: data.username,
     ip: ip
   });
-  this.save((err, doc) => {
-    if (err) { return console.error(err); }
-    console.log('saved in addVote()', doc);
-  });
+  this.save((err) => { if (err) { return console.error(err); } });
+  
   return true;
 }
 
