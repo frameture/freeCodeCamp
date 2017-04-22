@@ -12,6 +12,7 @@ import { PollService } from '../../../services/poll.service';
 })
 export class PollVoteComponent implements OnInit {
 
+  customOption: string;
   errorInfo: string;
   poll: Poll;
   option: string;
@@ -22,6 +23,10 @@ export class PollVoteComponent implements OnInit {
     private pollService: PollService
   ) { }
 
+  isValid(): boolean {
+    return (!!this.option || !!this.customOption) && !this.errorInfo;
+  }
+
   ngOnInit() {
     this.route.params
       .switchMap(params => this.pollService.getPoll(params[ 'id' ]))
@@ -29,8 +34,12 @@ export class PollVoteComponent implements OnInit {
   }
 
   onSubmit(): void {
+    const option = this.customOption
+      ? this.customOption
+      : this.option;
+
     this.pollService
-      .vote(this.option, this.poll._id)
+      .vote(option, this.poll._id)
       .subscribe(res => this.handleResponse(res));
   }
 

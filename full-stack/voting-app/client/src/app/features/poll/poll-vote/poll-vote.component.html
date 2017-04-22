@@ -4,15 +4,22 @@
   <form #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Your choice:
-        <select class="form-control" [(ngModel)]="option" name="option" required>
+        <select class="form-control" [(ngModel)]="option" name="option">
           <option *ngFor="let option of poll.options" [value]="option">
            {{option}}
           </option>
         </select>
       </label>
-      <h6 *ngIf=errorInfo>{{errorInfo}}</h6>
     </div>
+    <div class="form-group">
+      <label>Add new option:
+        <input class="form-control" type="text" name="custom"
+             [(ngModel)]="customOption">
+      </label>
+    </div>
+    <h6 *ngIf=errorInfo>{{errorInfo}}</h6>
     <button type="submit" class="btn btn-success" 
-            [disabled]="!form.form.valid || errorInfo">Vote</button>
+           [disabled]="!isValid()">Vote
+    </button>
   </form>
 </div>
