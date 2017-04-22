@@ -6,12 +6,12 @@
     <h4>Votes: {{poll.votes.length}}</h4>
     <h4>Options: </h4>
     <h5 *ngFor="let option of poll.options">{{option}}</h5>
-    <button class="btn btn-danger" (click)="onRemove(poll._id)">Remove</button>    
+    <button class="btn btn-danger" (click)="onRemove(poll._id)">Remove</button>
+    <button class="btn btn-info" (click)="onTweet(poll._id)">Tweet</button>
   </div>
 </div>
 
-<button class="btn btn-primary" 
-        (click)="onNavigateTo('/user/new-poll')">
+<button class="btn btn-primary" (click)="onNavigateTo('/user/new-poll')">
   Add new poll
 </button>
 <button class="btn btn-default" (click)="onNavigateTo('/')">Back</button>

@@ -31,6 +31,11 @@ export class UserPollsComponent implements OnInit {
       .subscribe(res => this.getPolls());
   }
 
+  onTweet(pollId: string): void {
+    const url = 'https://twitter.com/intent/tweet?text=Vote%20in%20my%20poll:%20http://localhost:4200/polls/vote/';
+    window.location.replace(url + pollId);
+  }
+
   private getPolls(): void {
     this.pollService
       .getUserPolls()
