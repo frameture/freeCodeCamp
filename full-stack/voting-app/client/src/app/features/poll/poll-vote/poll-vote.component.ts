@@ -39,7 +39,7 @@ export class PollVoteComponent implements OnInit {
      return this.errorInfo = res.message;
     }
     this.errorInfo = '';
-    this.router.navigate([ '/' ]);
+    this.router.navigate([ '/polls' ]);
   }
 
 }

@@ -18,12 +18,11 @@ const pollSchema = new mongoose.Schema({
 
 pollSchema.methods.addVote = function (data, ip?: string): boolean {
   let vote;
-  console.log('votes', this.votes);
   for (let i = 0; i < this.votes.length; i++) {
     vote = this.votes[ i ];
-    if (vote.postedBy === 'username' &&
+    if (data.postedBy === 'username' && vote.postedBy === 'username' &&
         data.username === this.username) { return false; }
-    if (vote.postedBy === 'ip' &&
+    if (data.postedBy === 'ip' && vote.postedBy === 'ip' &&
         ip === vote.ip) { return false; }
   }
 

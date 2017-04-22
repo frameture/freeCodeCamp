@@ -7,7 +7,6 @@ export const router = express.Router();
 router.post('/server/vote', (req, res) => {
   const data = req.body.data;
   const ip = req.ip;
-  console.log('vote', data, ip);
   
   PollModel.findById(data.id, (err, doc: any) => {
     if (err) { return console.error(err); }
