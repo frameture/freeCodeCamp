@@ -1,23 +1,26 @@
 <h1>Welcome to the Voting App</h1>
 
-<div *ngIf="!isLoggedIn()">
+<div class="well" *ngIf="!isLoggedIn()">
   <h3>You are not logged in.
     <a (click)="onNavigateTo('/login')">Log in</a>
   </h3>
   <h3>If You don't yet have an account -
     <a (click)="onNavigateTo('/sign-up')">Sign up</a>
   </h3>
+  <h3>To see all polls
+    <button class="btn btn-primary" (click)="onNavigateTo('/polls')">Click here</button>
+  </h3>
 </div>
 
-<div *ngIf="isLoggedIn()">
+<div class="well" *ngIf="isLoggedIn()">
   <h2>Welcome <span>{{username}}</span>!</h2>
-  <h3>To see all polls 
-    <button (click)="onNavigateTo('/polls')">Click here</button>
+  <h3>To see all polls
+    <button class="btn btn-primary" (click)="onNavigateTo('/polls')">Click here</button>
   </h3>
-  <h3>To see your polls 
-    <button (click)="onNavigateTo('/user/polls')">Click here</button>
+  <h3>To see your polls
+    <button class="btn btn-primary" (click)="onNavigateTo('/user/polls')">Click here</button>
   </h3>
   <h3>To add new poll
-    <button (click)="onNavigateTo('/user/new-poll')">Click here</button>
+    <button class="btn btn-primary" (click)="onNavigateTo('/user/new-poll')">Click here</button>
   </h3>
 </div>

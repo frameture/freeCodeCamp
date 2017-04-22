@@ -18,19 +18,27 @@ export class BackendService {
   }
 
   getUserPolls(username: string): Observable<any> {
-    return this.http.get(this.URL + '/polls/' + username);
+    return this.http.get(this.URL + `/polls/${ username }`);
   }
 
   getPolls(): Observable<any> {
     return this.http.get(this.URL + '/polls/');
   }
 
-  register(data: User): Observable<any> {
-    return this.http.post(this.URL + '/sign-up', { data });
+  getPoll(id: string): Observable<any> {
+    return this.http.get(this.URL + `/poll/${ id }`);
   }
 
   login(data: User): Observable<any> {
     return this.http.post(this.URL + '/login', { data });
+  }
+
+  register(data: User): Observable<any> {
+    return this.http.post(this.URL + '/sign-up', { data });
+  }
+
+  vote(data): Observable<any> {
+    return this.http.post(this.URL + '/vote', { data });
   }
 
 }

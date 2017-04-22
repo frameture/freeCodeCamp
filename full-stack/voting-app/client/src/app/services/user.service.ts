@@ -14,7 +14,8 @@ export class UserService {
   constructor(private be: BackendService) { }
 
   getUsername(): string {
-    return this.username;
+    if (this.loggedIn) { return this.username; }
+    return null;
   }
 
   isLoggedIn(): boolean {

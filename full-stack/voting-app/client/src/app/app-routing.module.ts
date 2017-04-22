@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'user',
     loadChildren: 'app/features/user/user.module.ts#UserModule'
   },
+  {
+    path: 'polls',
+    loadChildren: 'app/features/poll/poll.module.ts#PollModule'
+  },
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent }
 ];

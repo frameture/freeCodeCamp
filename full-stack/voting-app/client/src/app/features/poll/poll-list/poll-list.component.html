@@ -1,0 +1,9 @@
+<h2 *ngIf="!polls?.length">There are no polls yet.</h2>
+
+<div *ngIf="polls?.length">
+  <div *ngFor="let poll of polls" class="well-lg">
+    <a (click)="onSelect(poll._id)">{{poll.name}}</a>
+  </div>
+</div>
+
+<button class="btn btn-default" (click)="onNavigateTo('/')">Back</button>

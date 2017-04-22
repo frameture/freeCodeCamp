@@ -32,4 +32,20 @@ export class PollService {
       .map(res => res.json() as Poll[]);
   }
 
+  getPoll(id: string): Observable<Poll> {
+    return this.be
+      .getPoll(id)
+      .map(res => res.json() as Poll);
+  }
+
+  vote(option: string, id: string): Observable<any> {
+    const username = this.us.getUsername();
+    const postedBy = username ? 'username' : 'ip';
+    const data = { option, id, postedBy, username };
+
+    return this.be
+      .vote(data)
+      .map(res => res.json());
+  }
+
 }

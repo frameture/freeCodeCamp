@@ -1,0 +1,15 @@
+<div *ngIf="poll" class="well">
+  <h2>{{poll.name}}</h2>
+  <h4>Poll created by: {{poll.username}}</h4>
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <label>Your choice:
+      <select class="form-control" [(ngModel)]="option" name="option" required>
+        <option *ngFor="let option of poll.options" [value]="option">
+          {{option}}
+        </option>
+      </select>
+    </label>
+    <button type="submit" class="btn btn-success" 
+            [disabled]="!form.form.valid">Vote</button>
+  </form>
+</div>

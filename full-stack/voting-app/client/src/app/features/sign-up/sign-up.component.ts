@@ -32,7 +32,6 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(): void {
     const user = this.getControls();
-    console.log('user', user);
     if (!user) {
       this.errorInfo = 'Passwords must be identical';
       return;
