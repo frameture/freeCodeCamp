@@ -38,6 +38,11 @@ export class PollService {
       .map(res => res.json() as Poll);
   }
 
+  remove(id: string): Observable<any> {
+    return this.be.remove(id)
+      .map(res => res.json());
+  }
+
   vote(option: string, id: string): Observable<any> {
     const username = this.us.getUsername();
     const postedBy = username ? 'username' : 'ip';

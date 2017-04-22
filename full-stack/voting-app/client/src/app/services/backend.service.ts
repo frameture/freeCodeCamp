@@ -37,6 +37,11 @@ export class BackendService {
     return this.http.post(this.URL + '/sign-up', { data });
   }
 
+  remove(id: string): Observable<any> {
+    const data = { id };
+    return this.http.post(this.URL + '/remove', { data });
+  }
+
   vote(data): Observable<any> {
     return this.http.post(this.URL + '/vote', { data });
   }

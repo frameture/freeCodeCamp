@@ -4,6 +4,15 @@ import { PollModel } from './models/poll';
 
 export const router = express.Router();
 
+router.post('/server/remove', (req, res) => {
+  const id = req.body.data.id;
+  
+  PollModel.findByIdAndRemove(id, (err) => {
+    if (err) { return console.error(err); }
+    res.json({ success: true });
+  });
+});
+
 router.post('/server/vote', (req, res) => {
   const data = req.body.data;
   const ip = req.ip;

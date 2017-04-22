@@ -1,10 +1,17 @@
 <h2 *ngIf="!polls?.length">Haven't created any polls yet.</h2>
 
-<div *ngIf="polls">
-  <div *ngFor="let poll of polls">
-    {{poll | json}}
+<div *ngIf="polls?.length">
+  <div *ngFor="let poll of polls" class="well">
+    <h4>Title: {{poll.name}}</h4>
+    <h4>Votes: {{poll.votes.length}}</h4>
+    <h4>Options: </h4>
+    <h5 *ngFor="let option of poll.options">{{option}}</h5>
+    <button class="btn btn-danger" (click)="onRemove(poll._id)">Remove</button>    
   </div>
 </div>
 
-<button class="btn btn-primary" (click)="onNavigateTo('/user/new-poll')">
-  Add new poll</button>
+<button class="btn btn-primary" 
+        (click)="onNavigateTo('/user/new-poll')">
+  Add new poll
+</button>
+<button class="btn btn-default" (click)="onNavigateTo('/')">Back</button>

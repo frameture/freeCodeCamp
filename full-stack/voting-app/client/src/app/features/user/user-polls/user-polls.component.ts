@@ -18,13 +18,23 @@ export class UserPollsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.pollService
-      .getUserPolls()
-      .subscribe(polls => this.polls = polls);
+    this.getPolls();
   }
 
   onNavigateTo(route: string): void {
     this.router.navigate([ route ]);
+  }
+
+  onRemove(pollId: string): void {
+    this.pollService
+      .remove(pollId)
+      .subscribe(res => this.getPolls());
+  }
+
+  private getPolls(): void {
+    this.pollService
+      .getUserPolls()
+      .subscribe(polls => this.polls = polls);
   }
 
 }
