@@ -12,6 +12,7 @@ import { PollService } from '../../../services/poll.service';
 })
 export class PollVoteComponent implements OnInit {
 
+  errorInfo: string;
   poll: Poll;
   option: string;
 
@@ -23,14 +24,22 @@ export class PollVoteComponent implements OnInit {
 
   ngOnInit() {
     this.route.params
-      .switchMap(params => this.pollService.getPoll(params['id']))
+      .switchMap(params => this.pollService.getPoll(params[ 'id' ]))
       .subscribe(poll => this.poll = poll);
   }
 
   onSubmit(): void {
     this.pollService
       .vote(this.option, this.poll._id)
-      .subscribe(console.log);
+      .subscribe(res => this.handleResponse(res));
+  }
+
+  private handleResponse(res): void {
+    if (!res.success) {
+     return this.errorInfo = res.message;
+    }
+    this.errorInfo = '';
+    this.router.navigate([ '/' ]);
   }
 
 }
