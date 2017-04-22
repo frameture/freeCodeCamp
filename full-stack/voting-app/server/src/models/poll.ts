@@ -2,10 +2,40 @@ import * as mongoose from 'mongoose';
 
 export let PollModel: mongoose.Model<mongoose.Document>;
 
+const voteSchema = new mongoose.Schema({
+  option: { type: String, required: true },
+  postedBy: { type: String, required: true },
+  username: { types: String },
+  ip: { type: String }
+});
+
 const pollSchema = new mongoose.Schema({
   username: { type: String, required: true },
-  pollName: { type: String, required: true },
-  options: { type: [ String ] }
+  name: { type: String, required: true },
+  options: { type: [ String ] },
+  votes: { type: [ voteSchema ] }
 });
+
+pollSchema.methods.addVote = function (data, ip?: string): boolean {
+  let vote;
+  for (let i = 0; i < this.votes.length; i++) {
+    vote = this.votes[ i ];
+    if (data.postedBy === 'username' &&
+        data.username === this.username) { return false; }
+    if (ip === this.ip) { return false; }
+  }
+
+  this.votes.push({
+    option: data.option,
+    postedBy: data.postedBy,
+    username: data.username,
+    ip: ip
+  });
+  this.save((err, doc) => {
+    if (err) { return console.error(err); }
+    console.log('saved in addVote()', doc);
+  });
+  return true;
+}
 
 PollModel = mongoose.model('Poll', pollSchema, 'polls');

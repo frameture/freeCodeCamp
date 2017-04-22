@@ -4,13 +4,36 @@ import { PollModel } from './models/poll';
 
 export const router = express.Router();
 
+router.post('/server/vote', (req, res) => {
+  const data = req.body.data;
+  const ip = req.ip;
+  console.log('vote', data, ip);
+  
+  PollModel.findById(data.id, (err, doc: any) => {
+    if (err) { return console.error(err); }
+    if (!doc) { return res.json({ message: 'This poll has been deleted.' }); }
+    if (!doc.addVote(data, ip)) {
+      return res.json({ message: 'You have already voted in this poll.' });
+    }
+    res.json({ success: true });
+  });
+});
+
+router.get('/server/poll/:id', (req, res) => {
+  const id = req.params.id;
+  PollModel.findById(id, (err, doc) => {
+    if (err) { return console.error(err); }
+    if (!doc) { return res.json({ message: 'This poll has been deleted.' }); }
+    res.json(doc);
+  });
+});
+
 router.get('/server/polls/:username', (req, res) => {
   const username = req.params.username;
   PollModel.find({ username }, (err, docs) => {
     if (err) { return console.error(err); }
     res.json(docs);
   });
-  
 });
 
 router.get('/server/polls', (req, res) => {
@@ -18,7 +41,7 @@ router.get('/server/polls', (req, res) => {
     if (err) { return console.error(err); }
     res.json(docs);
   });
-  
+
 });
 
 router.post('/server/add-poll', (req, res) => {
@@ -26,7 +49,7 @@ router.post('/server/add-poll', (req, res) => {
 
   PollModel.findOne({
     username: data.username,
-    pollName: data.poll.name
+    name: data.poll.name
   }, (err, doc) => {
     if (err) { return console.error(err); }
     if (doc) {
@@ -36,7 +59,7 @@ router.post('/server/add-poll', (req, res) => {
 
     new PollModel({
       username: data.username,
-      pollName: data.poll.name,
+      name: data.poll.name,
       options: data.poll.options
     }).save((err) => {
       if (err) { return console.error(err); }
