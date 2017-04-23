@@ -1,6 +1,6 @@
 <h2 *ngIf="!polls?.length">There are no polls yet.</h2>
 
-<div *ngIf="polls?.length">
+<div *ngIf="polls?.length" class="well">
   <div *ngFor="let poll of polls" class="well-lg">
     <a (click)="onSelect(poll._id)">{{poll.name}}</a>
   </div>
