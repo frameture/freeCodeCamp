@@ -1,4 +1,5 @@
 import * as express from 'express';
+
 import { UserModel } from './models/user';
 import { PollModel } from './models/poll';
 
@@ -108,4 +109,9 @@ router.post('/server/sign-up', (req, res) => {
     newUser.save((err, doc) => { if (err) { return res.status(500).end(); } });
     res.send('User registered.');
   });
+});
+
+
+router.get('*', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
 });
