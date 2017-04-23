@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
+  isLoggedIn(): boolean {
+    return this.userService.isLoggedIn();
+  }
+
   onLogout(): void {
     this.userService.logout();
     this.createTitle();
@@ -76,10 +80,6 @@ export class LoginComponent implements OnInit {
       this.form.get('password').value,
     );
     return user;
-  }
-
-  private isLoggedIn(): boolean {
-    return this.userService.isLoggedIn();
   }
 
   private resetForm(): void {

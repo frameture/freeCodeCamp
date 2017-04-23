@@ -22,6 +22,10 @@ export class SignUpComponent implements OnInit {
     private userService: UserService
   ) { }
 
+  isLoggedIn(): boolean {
+    return this.userService.isLoggedIn();
+  }
+
   ngOnInit() {
     this.createForm();
   }
@@ -42,8 +46,8 @@ export class SignUpComponent implements OnInit {
         this.resetForm();
         this.router.navigate([ '/' ]);
       }, (err) => {
-          const error = JSON.parse(err._body);
-          this.errorInfo = error.message;
+        const error = JSON.parse(err._body);
+        this.errorInfo = error.message;
       });
   }
 

@@ -8,7 +8,7 @@ import { User } from '../models/user';
 @Injectable()
 export class BackendService {
 
-  private readonly URL = 'http://localhost:8080/server';
+  private readonly URL = '/server';
 
   constructor(private http: Http) { }
 
