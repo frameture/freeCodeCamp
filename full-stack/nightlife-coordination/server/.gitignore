@@ -1,0 +1,5 @@
+node_modules
+src/*.js
+src/routes/*.js
+.env.ts
+.env.js
