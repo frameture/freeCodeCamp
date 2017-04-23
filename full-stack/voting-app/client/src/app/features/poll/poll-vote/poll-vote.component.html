@@ -1,6 +1,7 @@
 <div *ngIf="poll" class="well">
   <h2>{{poll.name}}</h2>
   <h4>Poll created by: {{poll.username}}</h4>
+  <app-chart [poll]="poll"></app-chart>
   <form #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Your choice:
