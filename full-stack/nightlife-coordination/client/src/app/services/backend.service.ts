@@ -6,6 +6,13 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class BackendService {
+
+  private readonly URL = 'http://localhost:8080/api';
+
   constructor(private http: Http) { }
+
+  getBars(location: string): Observable<any> {
+    return this.http.get(`${ this.URL }/bars/${ location }`);
+  }
 
 }

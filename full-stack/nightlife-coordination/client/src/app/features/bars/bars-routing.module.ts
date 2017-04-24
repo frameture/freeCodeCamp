@@ -6,7 +6,7 @@ import { BarsComponent } from './bars.component';
 const routes: Routes = [
   {
     path: '', children: [
-      { path: '', component: BarsComponent }
+      { path: ':location', component: BarsComponent }
     ]
   },
 ];

@@ -5,7 +5,7 @@ import { publicPath } from '../app';
 
 export const router = Router();
 
-router.get('/api/search/:location', (req, res) => {
+router.get('/api/bars/:location', (req, res) => {
   const searchRequest = {
     location: req.params.location
   };
