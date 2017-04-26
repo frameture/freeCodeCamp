@@ -12,7 +12,7 @@ export const publicPath = path.resolve(__dirname, 'public');
 
 const app = express(); 
 
-// TODO: remove cors
+// TODO: remove cors in production
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
