@@ -1,0 +1,11 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "tsc && node src/app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
