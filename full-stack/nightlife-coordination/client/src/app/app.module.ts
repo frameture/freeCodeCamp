@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 
+import { AuthGuard } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BackendService } from './services/backend.service';
@@ -24,6 +26,8 @@ import { UserService } from './services/user.service';
     AppRoutingModule
   ],
   providers: [
+    AuthGuard,
+    AuthService,
     BackendService,
     BarsService,
     UserService
