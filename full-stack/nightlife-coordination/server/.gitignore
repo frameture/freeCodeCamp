@@ -1,6 +1,7 @@
 node_modules
 src/*.js
 src/routes/*.js
+src/models/*.js
 src/yelp/*.js
 .env.ts
 .env.js
