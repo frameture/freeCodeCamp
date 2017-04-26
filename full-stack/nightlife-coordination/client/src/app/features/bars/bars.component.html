@@ -1,12 +1,16 @@
 <ng-container *ngIf="bars">
-  <div class="bars" *ngIf="bars?.length">
+  <div class="bars" *ngIf="bars.length">
     <div class="well bar" *ngFor="let bar of bars">
       <h3>{{bar.name}}</h3>
+      <button (click)=onGo(bar.id)>
+        Going: {{howManyGoing(bar.id)}} Do I go? {{doIGo(bar.id)}}
+      </button>
       <img [src]="bar.image_url" alt="image" class="image">
+
     </div>
   </div>
 
-  <div *ngIf="!bars?.length">
+  <div *ngIf="!bars.length">
     <h1>No venues around you.</h1>
   </div>
 </ng-container>
