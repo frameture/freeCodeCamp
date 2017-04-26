@@ -1,5 +1,5 @@
 <div class="navbar-top">
-  <button class="btn btn-default" (click)="authService.login()" *ngIf="!authService.authenticated()">Log In</button>
-  <button class="btn btn-default" (click)="authService.logout()" *ngIf="authService.authenticated()">Log Out</button>
+  <button class="btn btn-default" (click)="onLogin()" *ngIf="!isAuthenticated()">Log In</button>
+  <button class="btn btn-default" (click)="onLogout()" *ngIf="isAuthenticated()">Log Out</button>
 </div>
 <router-outlet></router-outlet>

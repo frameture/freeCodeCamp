@@ -25,9 +25,7 @@ router.post('/api/set-venue', (req, res) => {
       }
 
       const index = doc.going.indexOf(data.clientId);
-      console.log('index', index);
       if (index >= 0) {
-        console.log('=splice ', doc.going.splice(index));
         doc.going = doc.going.splice(index);
         doc.save();
         return res.json({ success: true, message: 'un-go' });

@@ -9,4 +9,16 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   constructor(private authService: AuthService) { }
+
+  isAuthenticated(): boolean {
+    return this.authService.authenticated();
+  }
+
+  onLogin(): void {
+    this.authService.login();
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+  }
 }

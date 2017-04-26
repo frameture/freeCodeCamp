@@ -53,7 +53,6 @@ export class BarsComponent implements OnInit {
   }
 
   onGo(id: string): void {
-    console.log('onGo', id);
     this.barsService
       .setBar(id)
       .subscribe(res =>

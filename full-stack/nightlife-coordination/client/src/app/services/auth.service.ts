@@ -31,7 +31,7 @@ export class AuthService {
     });
   }
 
-  login(url: string): void {
+  login(): void {
     this.lock.show();
   }
 

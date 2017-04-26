@@ -14,7 +14,7 @@ export class UserService {
 
     this.be
       .setProfile(clientId)
-      .subscribe(res => console.log(res));
+      .subscribe();
   }
 
   getProfile(): string {

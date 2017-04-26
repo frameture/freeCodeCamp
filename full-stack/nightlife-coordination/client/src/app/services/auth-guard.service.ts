@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route, state): boolean {
     if (!this.authService.authenticated()) {
-      this.authService.login(state.url);
+      this.authService.login();
     }
     return this.authService.authenticated();
   }
