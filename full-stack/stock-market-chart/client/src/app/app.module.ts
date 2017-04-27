@@ -1,3 +1,5 @@
+import { SocketService } from './services/socket.service';
+import { ChartService } from './services/chart.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -22,7 +24,9 @@ import { StockService } from './services/stock.service';
   ],
   providers: [
     BackendService,
-    StockService
+    ChartService,
+    SocketService,
+    StockService,
   ],
   bootstrap: [AppComponent]
 })

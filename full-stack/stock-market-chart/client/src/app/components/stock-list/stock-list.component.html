@@ -1,4 +1,11 @@
+<div class="well" *ngIf="stocks">
+  <div class="well stock" *ngFor="let stock of stocks">
+    <h2>{{stock}}</h2>
+    <button (click)=onRemove(stock)>Remove</button>
+  </div>
+</div>
+
 <form>
-  <input type="text" name="stock" #stock>
-  <button type="button" (click)="onAddStock(stock.value)">Add</button>
+  <input type="text" name="stock" #stockInput>
+  <button type="button" (click)="onAdd(stockInput.value)">Add</button>
 </form>
