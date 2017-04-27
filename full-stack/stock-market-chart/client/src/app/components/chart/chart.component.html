@@ -1,0 +1,6 @@
+stocks:
+<div class="stocks" *ngIf="stocks?.length">
+  <div class="stock well" *ngFor="let stock of stocks">
+    {{stock | json}}
+  </div>
+</div>
