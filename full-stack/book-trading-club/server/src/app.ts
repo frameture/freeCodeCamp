@@ -15,8 +15,8 @@ const app = express();
 app.use(cors()) // TODO
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(api);
+app.use('/api', api);
 app.use(index);
 
 mongoose.connect(DB_URI, () => console.log('Connected to the DB'));
-app.listen(process.env.DB || 8080, () => console.log('Started on 8080:'));
+app.listen(process.env.PORT || 8080, () => console.log('Started on 8080:'));
