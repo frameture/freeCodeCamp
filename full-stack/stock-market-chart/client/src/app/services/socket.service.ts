@@ -29,7 +29,7 @@ export class SocketService {
   }
 
   private setSocket(): void {
-    this.io = socket('http://localhost:8181');
+    this.io = socket();
 
     this.io.on('remove', (stock) => {
       this.stockService.updateData(stock, 'remove');

@@ -6,12 +6,6 @@ import { Stock } from '../models/stock';
 
 export const apiRouter = Router();
 
-apiRouter.all('/*', (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-});
-
 apiRouter.get('/api/stock-remove/:name', (req, res) => {
   const name = req.params.name;
 
