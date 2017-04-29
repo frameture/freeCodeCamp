@@ -7,8 +7,6 @@ import { Stock } from '../models/stock';
 export const apiRouter = Router();
 
 apiRouter.all('/*', (req, res, next) => {
- // res.setHeader('Access-Control-Allow-Origin', 'http://');
- // res.setHeader('Access-Control-Allow-Origin', 'http://localhost');
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
@@ -16,7 +14,7 @@ apiRouter.all('/*', (req, res, next) => {
 
 apiRouter.get('/api/stock-remove/:name', (req, res) => {
   const name = req.params.name;
-  
+
   Stock.findOneAndRemove({ name }, (err) => {
     if (err) { return console.error(err); }
     res.json({ success: true });
@@ -26,9 +24,16 @@ apiRouter.get('/api/stock-remove/:name', (req, res) => {
 apiRouter.get('/api/stock-add/:name', (req, res) => {
   const name = req.params.name;
 
-  new Stock({ name }).save((err) => {
+  Stock.findOne({ name }, (err, doc) => {
     if (err) { return console.error(err); }
-    res.json({ success: true });
+    if (doc) {
+      return res.json({ message: 'Stock has been already added.' });
+    }
+
+    new Stock({ name }).save((err) => {
+      if (err) { return console.error(err); }
+      res.json({ success: true });
+    });
   });
 });
 

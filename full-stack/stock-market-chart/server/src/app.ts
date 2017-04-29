@@ -16,17 +16,21 @@ const io = socketIO(server);
 
 io.on('connection', (socket) => {
   console.log('new connection');
-});
+  io.emit('message', 'new user');
+  
 
-io.on('message', (data) => {
-  io.emit('message', data);
+  socket.on('disconnect', () => {
+    console.log('disconnection' + socket.id);
+  });
+
+  socket.on('add', stock =>  socket.broadcast.emit('add', stock));
+  socket.on('remove', stock =>  socket.broadcast.emit('remove', stock));
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-//app.use(cors());
 app.use(logger('dev'));
 app.use(apiRouter);
 
 mongoose.connect(DB_URI, () => console.log('Connected to the DB'));
-app.listen(8181, () => console.log('Started'));
+server.listen(8181, () => console.log('Started'));
