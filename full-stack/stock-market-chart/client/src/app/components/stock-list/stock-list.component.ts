@@ -1,13 +1,14 @@
+import { Component } from '@angular/core';
+
 import { SocketService } from '../../services/socket.service';
 import { StockService } from '../../services/stock.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-stock-list',
   templateUrl: './stock-list.component.html',
   styleUrls: [ './stock-list.component.scss' ]
 })
-export class StockListComponent implements OnInit {
+export class StockListComponent {
 
   constructor(
     private socketService: SocketService,
@@ -15,19 +16,15 @@ export class StockListComponent implements OnInit {
   ) { }
 
   get stocks() {
-    return this.stockService.stockNames;
-  }
-
-  ngOnInit() {
+    return this.stockService.names;
   }
 
   onAdd(stock: string): void {
-    this.socketService.main();
-    this.stockService.addStock(stock);
+    this.socketService.addStock(stock);
   }
 
   onRemove(stock: string): void {
-    this.stockService.removeStock(stock);
+    this.socketService.removeStock(stock);
   }
 
 }
