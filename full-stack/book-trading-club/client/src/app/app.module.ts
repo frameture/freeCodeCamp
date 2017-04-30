@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { AuthService } from './services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BackendService } from './services/backend.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,11 @@ import { AppComponent } from './app.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    BackendService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
