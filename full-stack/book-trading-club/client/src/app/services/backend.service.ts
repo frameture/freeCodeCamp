@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class BackendService {
 
-  private readonly URL = 'http:localhost:8080/api';
+  private readonly URL = 'http://localhost:8080/api';
 
   constructor(private http: Http) { }
 
