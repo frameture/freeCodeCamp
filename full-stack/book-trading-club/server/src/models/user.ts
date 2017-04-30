@@ -38,4 +38,17 @@ schema.methods.checkPassword = function (guess, next) {
   });
 }
 
+schema.methods.getProfile = function () {
+  const user = this._doc;
+  const profile = {};
+  
+  for (let prop in user) {
+    if (prop !== 'password') {
+      console.log(prop, ' = ', user[ prop ]);
+      profile[ prop ] = user[ prop ];
+    }  
+  }
+  return profile;
+}
+
 User = mongoose.model('User', schema, 'users');
