@@ -44,7 +44,6 @@ schema.methods.getProfile = function () {
   
   for (let prop in user) {
     if (prop !== 'password') {
-      console.log(prop, ' = ', user[ prop ]);
       profile[ prop ] = user[ prop ];
     }  
   }
