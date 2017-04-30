@@ -13,11 +13,11 @@ api.post('/add-book', (req, res, next) => {
     owner: data.owner
   }).save((err, newBook) => {
     if (err) { return next(err); }
-    
+
     User.findOne({ username: data.owner }, (err, doc: any) => {
       if (err) { return next(err); }
       if (!doc) { return next(new Error('No such user')); }
-      
+
       doc.books.push(newBook._id);
       doc.save((err) => {
         if (err) { return next(err); }
@@ -27,12 +27,23 @@ api.post('/add-book', (req, res, next) => {
   })
 });
 
-api.post('/user-update', (req, res, next) => {
-  const data = req.body.data;
+// api.post('/user-update', (req, res, next) => {
+//   const data = req.body.data;
 
-  User.findByIdAndUpdate(data._id, data, (err, doc) => {
+//   User.findByIdAndUpdate(data._id, data, (err, doc: any) => {
+//     if (err) { return next(err); }
+//     res.json(doc.getProfile());
+//   });
+// });
+
+api.get('/user/:id', (req, res, next) => {
+  const id = req.params.id;
+
+  User.findById(id, (err, doc: any) => {
     if (err) { return next(err); }
-    res.json(doc);
+    if (!doc) { return next(new Error('No such user')); }
+    
+    res.json(doc.getProfile());
   });
 });
 
