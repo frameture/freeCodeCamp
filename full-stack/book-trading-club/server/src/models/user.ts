@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt-nodejs';
 import * as mongoose from 'mongoose';
 import { Document, Model, Schema } from 'mongoose';
 
@@ -16,6 +16,26 @@ const schema = new Schema({
   outgoingRequests: [ String ]
 });
 
-// schema.pre('save', parallel, fn, errorCb)
+schema.pre('save', function (done) {
+  const user = this;
+  const empty = () => { };
+
+  if (!user.isModified('password')) { return done(); }
+
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) { return done(err); }
+    bcrypt.hash(user.password, salt, empty, function (err, hashed) {
+      if (err) { return done(err); }
+      user.password = hashed;
+      done();
+    });
+  });
+});
+
+schema.methods.checkPassword = function (guess, next) {
+  bcrypt.compare(guess, this.password, (err, isMatch) => {
+    next(err, isMatch);
+  });
+}
 
 User = mongoose.model('User', schema, 'users');
