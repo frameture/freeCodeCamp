@@ -16,9 +16,9 @@ export class UserService {
     return this.user;
   }
 
-  updateProfile(user: User): Observable<any> {
+  updateProfile(data): Observable<any> {
     return this.be
-      .update(user)
+      .update(data)
       .map((res) => {
         if (!res.message) { this.setProfile(res); }
         return res;
