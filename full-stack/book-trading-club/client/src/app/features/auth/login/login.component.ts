@@ -24,11 +24,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('submit');
     this.authService
       .login(this.getControl('username'), this.getControl('password'))
       .subscribe((res) => {
-        console.log(res);
         if (res.message) { return this.errorInfo = res.message; }
         this.router.navigate([ '/' ]);
       });
