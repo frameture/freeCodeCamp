@@ -5,6 +5,62 @@ import { User } from '../models/user';
 
 export const api = Router();
 
+api.get('/book/:id', (req, res, next) => {
+  const id = req.params.id;
+  
+  Book.findById(id, (err, doc) => {
+    if (err) { return next(err); }
+    res.json(doc);
+  });
+});
+
+api.get('/books', (req, res, next) => {
+  Book.find((err, docs) => {
+    if (err) { return next(err); }
+    res.json(docs);
+  });
+});
+
+api.post('/accept-request', (req, res, next) => {
+  const data = req.body.data;
+  
+  User.findOne({ username: data.username }, (err, doc: any) => {
+    if (err) { return next(err); }
+    doc.acceptRequest(data.reqId, (err, doc) => {
+      if (err) { return next(err); }
+      res.json(doc.getProfile());
+    });
+  });
+});
+
+api.post('/add-request', (req, res, next) => {
+  const data = req.body.data;
+  
+  User.findOne({ username: data.username }, (err, doc: any) => {
+    if (err) { return next(err); }
+    if (!doc) { return next({ message: 'No such user' }); }
+    
+    doc.addRequest(data.bookId, (err, doc: any) => {
+      if (err) { return next(err); }
+      res.json(doc.getProfile());
+    });
+  });
+});
+
+api.post('/remove-book', (req, res, next) => {
+  const data = req.body.data;
+
+  User.findOne({ username: data.username }, (err, doc: any) => {
+    if (err) { return next(err); }
+    if (!doc) { return next({ message: 'No such user' }); }
+    
+    doc.removeBook(data.bookId, (err, doc: any) => {
+      if (err) { return next(err); }
+      res.json(doc.getProfile());
+    });
+  });
+});
+
 api.post('/add-book', (req, res, next) => {
   const data = req.body.data;
 
@@ -19,9 +75,9 @@ api.post('/add-book', (req, res, next) => {
       if (!doc) { next({ message: 'No such user' }); }
 
       doc.books.push(newBook._id);
-      doc.save((err) => {
+      doc.save((err, doc: any) => {
         if (err) { return next(err); }
-        res.end();
+        res.json(doc.getProfile());
       })
     });
   })
@@ -31,13 +87,12 @@ api.post('/update-profile', (req, res, next) => {
   const data = req.body.data;
 
   User.findByIdAndUpdate(data._id, data, (err, doc: any) => {
-    console.log('updated?', doc);
     if (err) { return next(err); }
     if (!doc) { return next({ message: 'No such user' }); }
-    
+
     User.findById(doc._id, (err, doc: any) => {
       if (err) { return next(err); }
-      res.json(doc.getProfile());  
+      res.json(doc.getProfile());
     });
   });
 });
