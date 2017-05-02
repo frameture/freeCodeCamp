@@ -1,0 +1,40 @@
+<div>
+  
+  <ng-container *ngIf="isLoggedIn()">
+    <h3>Your books:</h3>
+    <div class="well" *ngFor="let book of userBooks">
+      <h5>Title: {{ book.name }}
+        <a (click)="onRemoveBook(book._id)">x</a>
+      </h5>
+    </div>
+
+    <h4>Incoming requests: {{user.incomingRequests.length}}</h4>
+    <div class="well" *ngFor="let req of user.incomingRequests">
+      <h5>From: {{ req.from }}</h5>
+      <h5>Book: {{ req.book }}</h5>
+      <h5>Accepted: {{ req.accepted ? 'yes' : 'no' }}</h5>
+      <button class="btn btn-default" (click)="onAccept(req._id)" *ngIf="!req.accepted">Accept</button>
+    </div>
+
+    <h4>Outgoing requests: {{user.outgoingRequests.length}}</h4>
+    <div class="well" *ngFor="let req of user.outgoingRequests">
+      <h5>From: {{ req.from }}</h5>
+      <h5>Book: {{ req.book }}</h5>
+      <h5>Accepted: {{ req.accepted ? 'yes' : 'no' }}</h5>
+    </div>
+
+    <label>New book: 
+      <input type="text" #bookName>
+    </label>
+    <button class="btn btn-primary" (click)="onAddBook(bookName.value)">Add book</button>
+  </ng-container>
+
+  <ng-container *ngIf="books">
+    <h3>All Books:</h3>
+    <div class="well" *ngFor="let book of books">
+      Title: {{ book.name }}
+      <button class="btn btn-default" (click)="onRequest(book._id)" *ngIf="isLoggedIn()">Request</button>
+    </div>
+  </ng-container>
+  
+</div>
