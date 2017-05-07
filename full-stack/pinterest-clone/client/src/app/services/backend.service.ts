@@ -19,6 +19,33 @@ export class BackendService {
       .map(res => this.extractData(res));
   }
 
+  getWins(): Observable<any> {
+    return this.http
+      .get(this.URL + '/wins')
+      .map(res => this.extractData(res));
+  }
+
+  likeWin(username: string, winOwner: string, winId: string): Observable<any> {
+    const data = { username, winOwner, winId, like: true };
+    return this.http
+      .post(this.URL + '/like-unlike', { data })
+      .map(res => this.extractData(res));
+  }
+
+  login(username: string, password: string): Observable<any> {
+    const data = { username, password };
+    return this.http
+      .post(this.URL + '/login', { data })
+      .map(res => this.extractData(res));
+  }
+
+  unlikeWin(username: string, winOwner: string, winId: string): Observable<any> {
+    const data = { username, winOwner, winId };
+    return this.http
+      .post(this.URL + '/like-unlike', { data })
+      .map(res => this.extractData(res));
+  }
+
   removeWin(username: string, winId: string): Observable<any> {
     const data = { username, winId };
     return this.http
@@ -30,13 +57,6 @@ export class BackendService {
     const data = { username, password };
     return this.http
       .post(this.URL + '/sign-up', { data })
-      .map(res => this.extractData(res));
-  }
-
-  login(username: string, password: string): Observable<any> {
-    const data = { username, password };
-    return this.http
-      .post(this.URL + '/login', { data })
       .map(res => this.extractData(res));
   }
 

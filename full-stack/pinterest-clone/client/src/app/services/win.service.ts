@@ -19,6 +19,20 @@ export class WinService {
       .map(res => this.mapResponse(res));
   }
 
+  getWins(): Observable<any> {
+    return this.backendService.getWins();
+  }
+
+  like(winOwner: string, winId: string): Observable<any> {
+    const username = this.userService.getUserProfile().username;
+    return this.backendService.likeWin(username, winOwner, winId);
+  }
+
+  unlike(winOwner: string, winId: string): Observable<any> {
+    const username = this.userService.getUserProfile().username;
+    return this.backendService.unlikeWin(username, winOwner, winId);
+  }
+
   removeWin(winId: string): Observable<any> {
     const username = this.userService.getUserProfile().username;
     return this.backendService

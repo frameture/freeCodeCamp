@@ -59,7 +59,7 @@ schema.methods.removeWin = function (winId: string, next) {
 }
 
 schema.methods.addWin = function (title: string, link: string, next) {
-  const win = { title, link, userId: this.username, likes: [] };
+  const win = { title, link, userId: this._id, likes: [] };
   this.wins.push(win);
   this.save((err, doc) => {
     if (err) { return next(err); }
@@ -98,19 +98,18 @@ schema.methods.addLikerToWins = function (winId: string, liker: string, next) {
 }
 
 schema.methods.removeLikerFromWins = function (winId: string, unliker: string, next) {
+  let win;
   for (let i = 0; i < this.wins.length; i++) {
-    const win = this.wins[ i ];
+    win = this.wins[ i ];
     if (win._id == winId) {
       win.likes.splice(win.likes.indexOf(unliker), 1);
-      // TODO
-      console.log('\n\n delete \n\n', winId, unliker, 'deleted', win.likes);
       break;
     }
   }
 
   this.save((err, doc) => {
     if (err) { return next(err); }
-    next(null, doc);
+    next(null, win);
   });
 }
 
