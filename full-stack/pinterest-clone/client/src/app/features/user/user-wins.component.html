@@ -1,4 +1,10 @@
-<h1>user-wins works</h1>
+<h1> wins: </h1>
+<ng-container *ngIf="wins">
+  <div class="win well" *ngFor="let win of wins">
+    <h2>{{win.title}}</h2>
+    <img class="image-responsive" [src]=win.link>
+    <button class="btn btn-default" (click)="onRemoveWin(win._id)">x</button>
+  </div>
+</ng-container>
 
-<pre>{{userProfile | json}}</pre>
-<pre>{{wins | json}}</pre>
+<app-win-form></app-win-form>

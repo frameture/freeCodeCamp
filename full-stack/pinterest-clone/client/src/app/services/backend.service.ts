@@ -12,6 +12,20 @@ export class BackendService {
 
   constructor(private http: Http) { }
 
+  addWin(username: string, title: string, link: string): Observable<any> {
+    const data = { username, title, link };
+    return this.http
+      .post(this.URL + '/add-win', { data })
+      .map(res => this.extractData(res));
+  }
+
+  removeWin(username: string, winId: string): Observable<any> {
+    const data = { username, winId };
+    return this.http
+      .post(this.URL + '/remove-win', { data })
+      .map(res => this.extractData(res));
+  }
+
   signUp(username: string, password: string): Observable<any> {
     const data = { username, password };
     return this.http

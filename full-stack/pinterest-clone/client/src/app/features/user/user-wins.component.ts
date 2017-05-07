@@ -1,36 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { UserProfile } from '../../models/user-profile';
 import { Win } from '../../models/win';
 import { UserService } from '../../services/user.service';
+import { WinService } from '../../services/win.service';
 
 @Component({
   templateUrl: './user-wins.component.html',
   styleUrls: [ './user-wins.component.scss' ]
 })
-export class UserWinsComponent implements OnInit {
-
-  wins: Win[];
-  userProfile: UserProfile;
+export class UserWinsComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService) { }
+    private userService: UserService,
+    private winService: WinService
+  ) { }
 
-  ngOnInit() {
-    this.userProfile = this.userService.getUserProfile();
-    this.wins = this.userProfile.wins;
+  get userProfile() {
+    return this.userService.getUserProfile();
   }
 
-  // onSubmit(): void {
-  //   const controls = this.getControls();
+  get wins() {
+    return this.userProfile.wins;
+  }
 
-  //   this.userService
-  //     .updateProfile(controls)
-  //     .subscribe((res) => {
-  //       if (!res.message) { this.userProfile = res; }
-  //     });
-  // }
+  onRemoveWin(winId: string): void {
+    this.winService
+      .removeWin(winId)
+      .subscribe();
+  }
 
 }
