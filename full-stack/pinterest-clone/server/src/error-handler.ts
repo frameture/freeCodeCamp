@@ -1,4 +1,7 @@
-export const errorHandler = (err, req, res) => {
-  console.error('Error', err);
-  res.json(err);
+export const errorHandler = (err, req, res, next) => {
+    console.log('Error', err);
+  if (err) {
+    return res.json(err);
+  }
+  next();
 }

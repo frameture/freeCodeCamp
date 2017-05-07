@@ -7,7 +7,7 @@ export let User: Model<Document>;
 const schema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  wins: [ { link: String, user: String, likes: [ String ] }]
+  wins: [ { link: String, userId: String, likes: [ String ] }]
 });
 
 schema.pre('save', function (done) {
@@ -66,7 +66,7 @@ schema.methods.removeWin = function (winId: string, next) {
 }
 
 schema.methods.addWin = function (link: string, next) {
-  const win = { link, user: this.username, likes: [] };
+  const win = { link, userId: this.username, likes: [] };
   this.wins.push(win);
   this.save((err, doc) => {
     if (err) { return next(err); }
@@ -75,14 +75,14 @@ schema.methods.addWin = function (link: string, next) {
 }
 
 schema.methods.likeWin = function (winId: string, winOwner: string, next) {
-  User.findOne({ username: winOwner }, (err, doc: any) => {
+  User.findById(winOwner, (err, doc: any) => {
     if (err) { return next(err); }
     doc.addLikerToWins(winId, this.username, next);
   });
 }
 
 schema.methods.unlikeWin = function (winId: string, winOwner: string, next) {
-  User.findOne({ username: winOwner }, (err, doc: any) => {
+  User.findById(winOwner, (err, doc: any) => {
     if (err) { return next(err); }
     doc.removeLikerFromWins(winId, this.username, next);
   });
