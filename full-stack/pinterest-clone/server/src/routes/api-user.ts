@@ -13,6 +13,32 @@ apiUserRouter.get('/wins', (req, res, next) => {
   });
 });
 
+apiUserRouter.post('/add-win', (req, res, next) => {
+  const data = req.body.data;
+
+  User.findOne({ username: data.username }, (err, doc: any) => {
+    if (err) { return next(err); }
+    if (!doc) { return next({ message: 'No such user' }); }
+    doc.addWin(data.title, data.link, (err, doc) => {
+      if (err) { return next(err); }
+      res.json(doc.getProfile());
+    });
+  });
+});
+
+apiUserRouter.post('/remove-win', (req, res, next) => {
+  const data = req.body.data;
+
+  User.findOne({ username: data.username }, (err, doc: any) => {
+    if (err) { return next(err); }
+    if (!doc) { return next({ message: 'No such user' }); }
+    doc.removeWin(data.winId, (err, doc) => {
+      if (err) { return next(err); }
+      res.json(doc.getProfile());
+    });
+  });
+});
+
 apiUserRouter.post('/like-unlike', (req, res, next) => {
   const data = req.body.data;
 
@@ -22,12 +48,12 @@ apiUserRouter.post('/like-unlike', (req, res, next) => {
     if (data.like) {
       return doc.likeWin(data.winId, data.winOwner, (err, doc) => {
         if (err) { return next(err); }
-        res.json(doc);
+        res.json(doc.getProfile());
       });
     }
     doc.unlikeWin(data.winId, data.winOwner, (err, doc) => {
       if (err) { return next(err); }
-      res.json(doc);
+      res.json(doc.getProfile());
     });
   });
 });

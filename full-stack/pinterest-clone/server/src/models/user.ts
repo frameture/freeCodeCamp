@@ -7,7 +7,7 @@ export let User: Model<Document>;
 const schema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  wins: [ { link: String, userId: String, likes: [ String ] }]
+  wins: [ { link: String, userId: String, likes: [ String ], title: String }]
 });
 
 schema.pre('save', function (done) {
@@ -45,19 +45,12 @@ schema.methods.getProfile = function () {
 }
 
 schema.methods.removeWin = function (winId: string, next) {
-  //let index;
   for (let i = 0; i < this.wins.length; i++) {
-    const win = this.wins[ i ];
-    if (win._id == winId) {
-      // TODO
-      console.log('removeWin before delete', this.wins);
-      delete this.wins[ i ];
-      console.log('removeWin after delete', this.wins);
+    if (this.wins[ i ]._id == winId) {
+      this.wins.splice(i, 1);
       break;
     }
   }
-
-  // TODO this.wins.splice(this.wins.indexOf(winId), 1);
 
   this.save((err, doc) => {
     if (err) { return next(err); }
@@ -65,8 +58,8 @@ schema.methods.removeWin = function (winId: string, next) {
   });
 }
 
-schema.methods.addWin = function (link: string, next) {
-  const win = { link, userId: this.username, likes: [] };
+schema.methods.addWin = function (title: string, link: string, next) {
+  const win = { title, link, userId: this.username, likes: [] };
   this.wins.push(win);
   this.save((err, doc) => {
     if (err) { return next(err); }
@@ -97,23 +90,24 @@ schema.methods.addLikerToWins = function (winId: string, liker: string, next) {
       break;
     }
   }
-  
+
   this.save((err, doc) => {
     if (err) { return next(err); }
     next(null, win);
   });
 }
 
-schema.methods.removeLikerFromWins = function(winId: string, unliker: string, next) {
+schema.methods.removeLikerFromWins = function (winId: string, unliker: string, next) {
   for (let i = 0; i < this.wins.length; i++) {
     const win = this.wins[ i ];
     if (win._id == winId) {
-// TODO
-      console.log('\n\n delete \n\n', winId, unliker);
+      win.likes.splice(win.likes.indexOf(unliker), 1);
+      // TODO
+      console.log('\n\n delete \n\n', winId, unliker, 'deleted', win.likes);
       break;
     }
   }
-  
+
   this.save((err, doc) => {
     if (err) { return next(err); }
     next(null, doc);
