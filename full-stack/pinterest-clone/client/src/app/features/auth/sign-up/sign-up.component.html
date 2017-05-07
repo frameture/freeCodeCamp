@@ -1,0 +1,23 @@
+<form [formGroup]="form" *ngIf="form" ngSubmit="onSubmit()">
+  <div class="form-group">
+    <label>Username:
+      <input type="text" name="username" class="form-control"
+             formControlName="username" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>Password:
+      <input type="password" name="password" class="form-control"
+             formControlName="password" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>Re-enter password:
+      <input type="password" name="rePassword" class="form-control"    
+             formControlName="rePassword" required>
+    </label>
+  </div>
+  <p class="error" *ngIf="errorInfo">{{errorInfo}}</p>
+  <button class="btn btn-success" type="submit" (click)="onSubmit()" [disabled]="!form.valid">Sign Up</button>
+  <button class="btn btn-danger" type="button" (click)="onReset()">Reset</button>
+</form>
