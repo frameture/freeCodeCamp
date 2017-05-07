@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { UserWinsComponent } from './user-wins.component';
 import { UserRoutingModule } from './user-routing.module';
+import { WinFormComponent } from './win-form/win-form.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,9 @@ import { UserRoutingModule } from './user-routing.module';
     ReactiveFormsModule,
     UserRoutingModule
   ],
-  declarations: [ UserWinsComponent ]
+  declarations: [
+    UserWinsComponent,
+    WinFormComponent
+  ]
 })
 export class UserModule { }

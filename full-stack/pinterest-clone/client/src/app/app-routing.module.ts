@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'user',
     loadChildren: 'app/features/user/user.module#UserModule'
   },
+  {
+    path: 'wins',
+    loadChildren: 'app/features/wins/wins.module#WinsModule'
+  },
   { path: 'home', component: HomeComponent },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: '**', component: NotFoundComponent }

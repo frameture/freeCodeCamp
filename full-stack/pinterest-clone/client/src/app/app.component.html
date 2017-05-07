@@ -21,7 +21,10 @@
 
       <ul class="nav navbar-nav" *ngIf="isLoggedIn()">
         <li>
-          <a routerLink="/user" routerLinkActive="active">Profile</a>
+          <a routerLink="/wins" routerLinkActive="active">All wins</a>
+        </li>
+        <li>
+          <a routerLink="/user" routerLinkActive="active">Your wins</a>
         </li>
         <li>
           <a (click)=onLogout()>Logout</a>
