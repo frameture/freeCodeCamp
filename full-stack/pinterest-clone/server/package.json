@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && nodemon src/js/app.js"
+    "start": "tsc && node src/js/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,5 +20,8 @@
     "mongoose": "^4.9.7",
     "morgan": "^1.8.1",
     "typescript": "^2.3.2"
+  },
+  "engines": {
+    "node": "7.5.x"
   }
 }
