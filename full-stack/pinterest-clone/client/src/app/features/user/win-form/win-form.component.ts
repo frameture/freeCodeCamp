@@ -25,12 +25,9 @@ export class WinFormComponent implements OnInit {
     const title = this.getControl('title');
     const link = this.getControl('link');
 
-    console.log(title, link);
     this.winService
       .addWin(title, link)
-      .subscribe((res) => {
-        console.log(res);
-      });
+      .subscribe();
   }
 
   private createForm(): void {

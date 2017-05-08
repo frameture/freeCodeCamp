@@ -15,15 +15,6 @@ export class UserService {
   getUserProfile(): UserProfile {
     return this.userProfile;
   }
-// TODO
-  // updateProfile(data): Observable<any> {
-  //   return this.be
-  //     .update(data)
-  //     .map((res) => {
-  //       if (!res.message) { this.setProfile(res); }
-  //       return res;
-  //     });
-  // }
 
   setUserProfile(profile: UserProfile): void {
     this.userProfile = profile;

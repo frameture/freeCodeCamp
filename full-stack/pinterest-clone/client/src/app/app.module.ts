@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from      '@angular/core';
 import { FormsModule } from   '@angular/forms';
 import { HttpModule } from    '@angular/http';
+import { MasonryModule } from 'angular2-masonry';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from     './app.component';
@@ -12,7 +13,7 @@ import { AuthGuard } from      './services/auth-guard.service';
 import { BackendService } from './services/backend.service';
 import { UserService } from    './services/user.service';
 import { WinService } from     './services/win.service';
-import { WinsComponent } from  './components/wins/wins.component';
+import { WinsComponent } from './components/wins/wins.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { WinsComponent } from  './components/wins/wins.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    MasonryModule,
     AppRoutingModule
   ],
   providers: [

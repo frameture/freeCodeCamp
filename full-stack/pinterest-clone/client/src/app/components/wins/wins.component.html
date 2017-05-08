@@ -1,15 +1,15 @@
-<ng-container *ngIf="wins">
-  <div class="win well" *ngFor="let win of wins; let i = index">
-    <h2>{{win.title}}</h2>
-    <img class="image-responsive" [src]=win.link>
-    <div class="likes">
-      Likes: {{win.likes.length}}
-      <ng-container *ngIf="isLoggedIn() && isNotOwnWin(win.userId)">
-        <button *ngIf="!isLiked(win.likes)" class="btn btn-default"
-                (click)="onLike(win.userId, win._id, i)">Like</button>
-        <button *ngIf="isLiked(win.likes)" class="btn btn-default" 
-                (click)="onUnlike(win.userId, win._id, i)">Unlike</button>
-      </ng-container>
+<masonry *ngIf="wins">
+  <masonry-brick class="brick" *ngFor="let win of wins">
+    <div class="win">
+      <h5>{{win.title}}</h5>
+      <img [src]="win.link" onerror="this.src='/assets/images/placeholder.png'">
+      <div class="likes">
+        Likes: {{win.likes.length}}
+        <ng-container *ngIf="isLoggedIn() && isNotOwnWin(win.userId)">
+          <button *ngIf="!isLiked(win.likes)" class="btn btn-default" (click)="onLike(win.userId, win._id, i)">Like</button>
+          <button *ngIf="isLiked(win.likes)" class="btn btn-default" (click)="onUnlike(win.userId, win._id, i)">Unlike</button>
+        </ng-container>
+      </div>
     </div>
-  </div>
-</ng-container>
+  </masonry-brick>
+</masonry>
