@@ -5,7 +5,7 @@ import * as mongoose from 'mongoose';
 import * as logger from 'morgan';
 import * as path from 'path';
 
-import { DB_URI } from './env'; // TODO
+import { DB_URI } from './env';
 import { apiUserRouter } from './routes/api-user';
 import { apiAuthRouter } from './routes/api-auth';
 import { indexRouter } from './routes/index';
@@ -15,10 +15,10 @@ export const publicPath = path.resolve(__dirname, 'public');
 
 const app = express();
 
-app.use(cors()); // TODO
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static(publicPath));
 app.use('/api', apiUserRouter);
 app.use('/api', apiAuthRouter);
 app.use(indexRouter);
