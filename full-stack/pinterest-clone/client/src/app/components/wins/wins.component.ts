@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Win } from '../../models/win';
+import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { WinService } from '../../services/win.service';
 
 @Component({
+  selector: 'app-wins',
   templateUrl: './wins.component.html',
   styleUrls: [ './wins.component.scss' ]
 })
@@ -13,6 +15,7 @@ export class WinsComponent implements OnInit {
   wins: Win[];
 
   constructor(
+    private authService: AuthService,
     private userService: UserService,
     private winService: WinService
   ) { }
@@ -43,6 +46,10 @@ export class WinsComponent implements OnInit {
   isLiked(likes: string[]): boolean {
     const username = this.userService.getUserProfile().username;
     return likes.indexOf(username) >= 0;
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
 }

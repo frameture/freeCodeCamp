@@ -4,7 +4,7 @@
     <img class="image-responsive" [src]=win.link>
     <div class="likes">
       Likes: {{win.likes.length}}
-      <ng-container *ngIf="isNotOwnWin(win.userId)">
+      <ng-container *ngIf="isLoggedIn() && isNotOwnWin(win.userId)">
         <button *ngIf="!isLiked(win.likes)" class="btn btn-default"
                 (click)="onLike(win.userId, win._id, i)">Like</button>
         <button *ngIf="isLiked(win.likes)" class="btn btn-default" 
