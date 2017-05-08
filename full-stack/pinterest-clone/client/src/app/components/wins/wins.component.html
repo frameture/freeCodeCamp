@@ -1,5 +1,5 @@
 <masonry *ngIf="wins">
-  <masonry-brick class="brick" *ngFor="let win of wins">
+  <masonry-brick class="brick" *ngFor="let win of wins; let i = index">
     <div class="win">
       <h5>{{win.title}}</h5>
       <img [src]="win.link" onerror="this.src='/assets/images/placeholder.png'">
